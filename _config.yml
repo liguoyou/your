@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ""
-description: ""
-keywords:
-author: John Doe
-language: en
-timezone: ""
+title: "GuoYou.Li 的长成笔记"
+subtitle: "学习笔记 | 总结 | 知识分享"
+description: "GuoYou.Li(李国有)的博客, 用于做学习过程中的笔记、总结以及知识分享"
+keywords: "前端,Vue.js,JavaScript,Node.js,小程序"
+author: "GuoYou.Li"
+language: cn
+timezone: "Asia/Shanghai"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -34,6 +34,7 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
+auto_spacing: true # 在中文和英文之间加入空格
 titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
@@ -41,7 +42,7 @@ external_link:
   exclude: ""
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true # 启动 Asset 文件夹
 relative_link: false
 future: true
 highlight:

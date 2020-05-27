@@ -1,22 +1,21 @@
 # Menu
 menu:
-  Home: /
-  Archives: /archives
-  Gallery: /gallery
-  About: /about
+  首页: /
+  时间轴: /archives
+  相册: /gallery
+  关于: /about
 rss: /atom.xml
 
-
 # Miscellaneous
-favicon: /favicon.ico
-brand: /images/hexo.svg
+favicon: ./favicon.ico
+brand: ./images/hexo.svg
 
 # Ocean Video
 # Because I put videos in multiple formats on the same path, I just labeled the path here.
 ocean:
   overlay: true
-  path: /images/ocean/
-  brand: /images/hexo-inverted.svg
+  path: ./images/ocean/
+  brand: ./images/hexo-inverted.svg
 
 # Content
 excerpt_link: Read More...
@@ -42,11 +41,11 @@ gitalk:
 # Valine
 valine:
   enable: false # true
-  el: 'vcomments'
-  appId: 
-  appKey: 
+  el: "vcomments"
+  appId:
+  appKey:
   notify: false
   verify: true
-  avatar: 'mp'
-  pageSize: '10'
-  placeholder: '请输入...' 
+  avatar: "mp"
+  pageSize: "10"
+  placeholder: "请输入..."
