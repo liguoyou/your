@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
-    <url>/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</url>
+    <url>/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>这里默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理器</em></p>
 <p><strong>1. 全局安装 Hexo</strong> 这里我使用的是 <code>yarn</code></p>
 <p><code>yarn global add hexo-cli</code></p>
@@ -87,7 +87,7 @@
   </entry>
   <entry>
     <title>yarn 全局安装（yarn global add [package]）后，命令不生效</title>
-    <url>/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</url>
+    <url>/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</url>
     <content><![CDATA[<p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
 <p><code>yarn global add hexo-cli</code></p>
 <a id="more"></a>

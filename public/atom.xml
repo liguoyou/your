@@ -3,11 +3,11 @@
   <title>种子的信仰</title>
   
   <subtitle>学习笔记 | 总结 | 知识分享</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/your/atom.xml" rel="self"/>
   
-  <link href="http://liguoyou.gitee.io/"/>
+  <link href="http://liguoyou.gitee.io/your/"/>
   <updated>2020-05-29T14:57:56.951Z</updated>
-  <id>http://liguoyou.gitee.io/</id>
+  <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
     <name>GuoYou.Li</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>yarn 全局安装（yarn global add [package]）后，命令不生效</title>
-    <link href="http://liguoyou.gitee.io/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/"/>
-    <id>http://liguoyou.gitee.io/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</id>
+    <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/"/>
+    <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</id>
     <published>2020-05-28T16:07:52.000Z</published>
     <updated>2020-05-29T14:57:56.951Z</updated>
     
@@ -36,8 +36,8 @@
   
   <entry>
     <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
-    <link href="http://liguoyou.gitee.io/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://liguoyou.gitee.io/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</id>
+    <link href="http://liguoyou.gitee.io/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://liguoyou.gitee.io/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</id>
     <published>2020-05-28T16:04:28.000Z</published>
     <updated>2020-05-29T16:55:25.500Z</updated>
     
