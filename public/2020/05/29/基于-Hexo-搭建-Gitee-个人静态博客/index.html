@@ -122,9 +122,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.search)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.local_search.enable)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'/js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p>然而并没有作用..</p>
 <p><strong>最终解决方案:</strong><br>在 <code>themes\ocean\source\js\ocean.js</code> 文件中修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># $.getScript('/js/search.js',</span></span><br><span class="line">$.getScript(<span class="string">'./js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line">searchFunc(<span class="string">"./search.xml"</span>,</span><br></pre></td></tr></table></figure>
-<p>就ok了! 切记, 不要烦躁.</p>
-<p>(3) 关于很多的问题, 直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 Hexo 的文档, 非常详细…</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># $.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">$.getScript(<span class="string">'./js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"./search.xml"</span>,</span><br></pre></td></tr></table></figure>
+<p>就ok了! 切记, 遇事冷静思考, 不要烦躁.</p>
+<p>(3) 关于很多的问题, 直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
 <p><strong>2. 重启</strong></p>
 <p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> 新的主题:</p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526221210487.png" class="" title="新主题">
@@ -184,11 +184,6 @@
         </div>
       </a>
     
-    
-      <a href="/your/2019/07/18/hello-world/" class="article-nav-link">
-        <strong class="article-nav-caption">Older</strong>
-        <div class="article-nav-title">Hello World</div>
-      </a>
     
   </nav>
 

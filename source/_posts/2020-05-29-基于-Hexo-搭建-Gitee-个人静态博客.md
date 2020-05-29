@@ -2,6 +2,7 @@
 title: 基于 Hexo 搭建 Gitee 个人静态博客
 date: 2020-05-29 00:04:28
 tags:
+top: true
 excerpt: 基于 Hexo 搭建静态博客的过程记录, 这里选择的是 Ocean 主题
 ---
 
@@ -97,15 +98,19 @@ search:
 **最终解决方案:**
 在 `themes\ocean\source\js\ocean.js` 文件中修改
 ```bash
+# 原代码
 # $.getScript('/js/search.js',
+# 修改为
 $.getScript('./js/search.js',
 
+# 原代码
 # searchFunc("/search.xml",
+# 修改为
 searchFunc("./search.xml",
 ```
-就ok了! 切记, 不要烦躁.
+就ok了! 切记, 遇事冷静思考, 不要烦躁.
 
-(3) 关于很多的问题, 直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 Hexo 的文档, 非常详细...
+(3) 关于很多的问题, 直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 [Hexo 的文档](https://hexo.io/zh-cn/docs/), 非常详细...
 
 **2. 重启**
 
