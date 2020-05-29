@@ -103,3 +103,20 @@ deploy:
   type: git
   repo: git@gitee.com:liguoyou/your.git
   branch: master
+
+# 本地检索 hexo-generator-searchdb
+search:
+  path: search.xml
+  field: post
+  content: true
+
+# RSS hexo-generate-feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: " "
+  order_by: -date

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>种子的信仰</title>
+  
+  <subtitle>学习笔记 | 总结 | 知识分享</subtitle>
+  <link href="/your/atom.xml" rel="self"/>
+  
+  <link href="http://liguoyou.gitee.io/your/"/>
+  <updated>2020-05-29T14:57:56.951Z</updated>
+  <id>http://liguoyou.gitee.io/your/</id>
+  
+  <author>
+    <name>GuoYou.Li</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>yarn 全局安装（yarn global add [package]）后，命令不生效</title>
+    <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/"/>
+    <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</id>
+    <published>2020-05-28T16:07:52.000Z</published>
+    <updated>2020-05-29T14:57:56.951Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 yarn 全局安装 &lt;code&gt;@vue/cli&lt;/code&gt;, &lt;code&gt;hexo-cli&lt;/code&gt; 等, 安装成功, 但是使用命令却不生效…&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;yarn global add hexo-cli&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
+    <link href="http://liguoyou.gitee.io/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://liguoyou.gitee.io/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</id>
+    <published>2020-05-28T16:04:28.000Z</published>
+    <updated>2020-05-29T15:18:25.318Z</updated>
+    
+    <summary type="html">
+    
+      基于 Hexo 搭建静态博客的过程记录, 这里选择的是 Ocean 主题
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://liguoyou.gitee.io/your/2019/07/18/hello-world/"/>
+    <id>http://liguoyou.gitee.io/your/2019/07/18/hello-world/</id>
+    <published>2019-07-18T07:45:03.000Z</published>
+    <updated>2020-05-29T14:46:15.852Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;摘要&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
