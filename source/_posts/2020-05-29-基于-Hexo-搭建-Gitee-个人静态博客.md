@@ -101,12 +101,12 @@ search:
 # 原代码
 # $.getScript('/js/search.js',
 # 修改为
-$.getScript('./js/search.js',
+$.getScript('js/search.js',
 
 # 原代码
 # searchFunc("/search.xml",
 # 修改为
-searchFunc("./search.xml",
+searchFunc("search.xml",
 ```
 就ok了! 切记, 遇事冷静思考, 不要烦躁.
 
