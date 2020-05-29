@@ -65,7 +65,47 @@ init 后目录如下, 关于目录及文件的说明请查看[官方文档(中�
 
 将中的 `/themes/ocean/_config.yml` 文件中的 `/images/.....` 改成 `./images/.....`, 没遇到这个问题的话不要这么干.
 
-(2) 关于很多的问题, 直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 Hexo 的文档, 非常详细...
+(2) Cannot GET /js/search.js 这个问题找了好久...终于弄好: 2020:05:30 0:41:XX
+
+一开始按照作者的文档配置好
+
+安装插件依赖
+`yarn add hexo-generator-searchdb`
+
+在 `./_config.yml` 中添加配置 (注意: 这不是 ocean 中的)
+```bash
+# 本地检索 hexo-generator-searchdb
+search:
+  path: search.xml
+  field: post
+  content: true
+```
+
+然后就报错 404, 按照 [关于搜索问题 sevilen 同学给了一个详细的步骤](https://github.com/zhwangart/gitalk/issues/7)
+在 `\themes\ocean\layout\_partial\after-footer.ejs` 中配置
+```bash
+<% if (theme.search){ %>
+  <%- js('js/search') %>
+<% } %>
+# 或者
+<% if (theme.local_search.enable){ %>
+  <%- js('/js/search') %>
+<% } %>
+```
+然而并没有作用..
+
+**最终解决方案:**
+在 `themes\ocean\source\js\ocean.js` 文件中修改
+```bash
+# $.getScript('/js/search.js',
+$.getScript('./js/search.js',
+
+# searchFunc("/search.xml",
+searchFunc("./search.xml",
+```
+就ok了! 切记, 不要烦躁.
+
+(3) 关于很多的问题, 直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 Hexo 的文档, 非常详细...
 
 **2. 重启**
 
