@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: "GuoYou.Li 的长成笔记"
+title: "种子的信仰"
 subtitle: "学习笔记 | 总结 | 知识分享"
 description: "GuoYou.Li(李国有)的博客, 用于做学习过程中的笔记、总结以及知识分享"
 keywords: "前端,Vue.js,JavaScript,Node.js,小程序"
@@ -32,7 +32,7 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
 auto_spacing: true # 在中文和英文之间加入空格
 titlecase: false # Transform title into titlecase
