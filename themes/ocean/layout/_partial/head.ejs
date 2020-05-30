@@ -34,7 +34,7 @@
     <% } %>
     <%= config.title %></title>
   <% if (theme.favicon){ %>
-    <link rel="shortcut icon" href="<%- theme.favicon %>">
+    <link rel="shortcut icon" href="<%- url_for(theme.favicon) %>">
   <% } %>
   <%- css('css/style') %>
   <% if (theme.fancybox){ %>

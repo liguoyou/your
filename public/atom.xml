@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-05-29T14:57:56.951Z</updated>
+  <updated>2020-05-30T13:25:03.887Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -21,12 +21,11 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</id>
     <published>2020-05-28T16:07:52.000Z</published>
-    <updated>2020-05-29T14:57:56.951Z</updated>
+    <updated>2020-05-30T13:25:03.887Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;使用 yarn 全局安装 &lt;code&gt;@vue/cli&lt;/code&gt;, &lt;code&gt;hexo-cli&lt;/code&gt; 等, 安装成功, 但是使用命令却不生效…&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;yarn global add hexo-cli&lt;/code&gt;&lt;/p&gt;
+      使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但是使用命令却不生效, 一般是环境变量配置问题
     
     </summary>
     
@@ -39,11 +38,11 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</id>
     <published>2020-05-28T16:04:28.000Z</published>
-    <updated>2020-05-29T16:55:25.500Z</updated>
+    <updated>2020-05-29T17:29:08.639Z</updated>
     
     <summary type="html">
     
-      基于 Hexo 搭建静态博客的过程记录, 这里选择的是 Ocean 主题
+      基于 Hexo 搭建静态博客的过程记录及问题解决方案, 本文选择的是 Ocean 主题
     
     </summary>
     

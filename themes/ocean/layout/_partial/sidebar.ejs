@@ -2,7 +2,7 @@
 <nav class="navbar">
   <% if (theme.brand){ %>
     <div class="logo">
-      <a href="<%- url_for() %>"><img src="<%- theme.brand %>" alt="<%= config.title %>"></a>
+      <a href="<%- url_for() %>"><img src="<%- url_for(theme.brand) %>" alt="<%= config.title %>"></a>
     </div>
   <% } %>
   <ul class="nav nav-main">

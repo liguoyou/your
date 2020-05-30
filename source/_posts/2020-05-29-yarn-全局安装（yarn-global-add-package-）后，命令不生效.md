@@ -2,13 +2,9 @@
 title: "yarn 全局安装（yarn global add [package]）后，命令不生效"
 date: 2020-05-29 00:07:52
 tags:
+excerpt: 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但是使用命令却不生效, 一般是环境变量配置问题
 ---
 
-使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但是使用命令却不生效...
-
-`yarn global add hexo-cli`
-
-<!-- more -->
 
 **背景**
 
@@ -22,7 +18,7 @@ tags:
 
 **解决过程**
 
-第一个感觉就是环境变量问题了, 本人是 win10
+第一个感觉就是环境变量问题了, 本文是 win10 下的截图
 
 (1) 找到 yarn 的全局安装目录 `yarn global bin`
 
@@ -44,7 +40,7 @@ tags:
 
 然后我发现我的安装文件在 `C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin` 中,
 
-尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了
+尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(win7 可能需要重启电脑!!)
 
 **原因**
 

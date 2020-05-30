@@ -3,14 +3,14 @@ title: 基于 Hexo 搭建 Gitee 个人静态博客
 date: 2020-05-29 00:04:28
 tags:
 top: true
-excerpt: 基于 Hexo 搭建静态博客的过程记录, 这里选择的是 Ocean 主题
+excerpt: 基于 Hexo 搭建静态博客的过程记录及问题解决方案, 本文选择的是 Ocean 主题
 ---
 
 ## 首次搭建博客
 
-_这里默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理器_
+_本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理器_
 
-**1. 全局安装 Hexo** 这里我使用的是 `yarn`
+**1. 全局安装 Hexo** 本文使用的是 `yarn`
 
 `yarn global add hexo-cli`
 
@@ -54,7 +54,7 @@ init 后目录如下, 关于目录及文件的说明请查看[官方文档(中�
 
 ## 安装主题
 
-**1. 选择主题** 我这里选择的主题是 [Ocean](https://zhwangart.github.io/),
+**1. 选择主题** 本文选择的主题是 [Ocean](https://zhwangart.github.io/),
 
 在[官方的主题](https://hexo.io/themes/)里面选择一个你喜欢的主题, 按照主题的[文档](https://zhwangart.github.io/2018/11/30/Ocean/)来就好
 
@@ -153,7 +153,7 @@ deploy:
 
 **值得注意的是**
 
-执行`hexo d`之后, 会将编译后的文件 push 至仓库中
+执行`hexo d`之后, 会将编译完成后的 public 文件中的所有文件 push 至仓库中
 
 如图:
 

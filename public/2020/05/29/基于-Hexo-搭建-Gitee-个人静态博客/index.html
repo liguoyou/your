@@ -15,7 +15,7 @@
     
     种子的信仰</title>
   
-    <link rel="shortcut icon" href="./favicon.ico">
+    <link rel="shortcut icon" href="/your/favicon.ico">
   
   
 <link rel="stylesheet" href="/your/css/style.css">
@@ -79,8 +79,8 @@
                                             
 
                                                 
-                                                                    <h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>这里默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理器</em></p>
-<p><strong>1. 全局安装 Hexo</strong> 这里我使用的是 <code>yarn</code></p>
+                                                                    <h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理器</em></p>
+<p><strong>1. 全局安装 Hexo</strong> 本文使用的是 <code>yarn</code></p>
 <p><code>yarn global add hexo-cli</code></p>
 <p>或者</p>
 <p><code>npm install -g hexo-cli</code></p>
@@ -106,7 +106,7 @@
 <p><strong>4. 首次运行如图</strong> 默认主题 landscape</p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526210938239.png" class="" title="首次运行">
 
-<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><p><strong>1. 选择主题</strong> 我这里选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
+<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><p><strong>1. 选择主题</strong> 本文选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
 <p>在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方的主题</a>里面选择一个你喜欢的主题, 按照主题的<a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">文档</a>来就好</p>
 <p>下载好慢….等等等…</p>
 <p>遇到的问题:</p>
@@ -122,7 +122,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (theme.search)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.local_search.enable)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'/js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p>然而并没有作用..</p>
 <p><strong>最终解决方案:</strong><br>在 <code>themes\ocean\source\js\ocean.js</code> 文件中修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># $.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">$.getScript(<span class="string">'./js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"./search.xml"</span>,</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># $.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">$.getScript(<span class="string">'js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"search.xml"</span>,</span><br></pre></td></tr></table></figure>
 <p>就ok了! 切记, 遇事冷静思考, 不要烦躁.</p>
 <p>(3) 关于很多的问题, 直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
 <p><strong>2. 重启</strong></p>
@@ -143,7 +143,7 @@
 <p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></p>
 <p>进入 Gitee Pages 点击更新按钮, 等待部署完成即可</p>
 <p><strong>值得注意的是</strong></p>
-<p>执行<code>hexo d</code>之后, 会将编译后的文件 push 至仓库中</p>
+<p>执行<code>hexo d</code>之后, 会将编译完成后的 public 文件中的所有文件 push 至仓库中</p>
 <p>如图:</p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526235831345.png" class="" title="hexo d">
 
@@ -222,7 +222,7 @@
 <nav class="navbar">
   
     <div class="logo">
-      <a href="/your/"><img src="./images/hexo.svg" alt="种子的信仰"></a>
+      <a href="/your/"><img src="/your/images/hexo.svg" alt="种子的信仰"></a>
     </div>
   
   <ul class="nav nav-main">
@@ -310,6 +310,8 @@
     });
   </script>
 
+
+<script src="/your/js/search.js"></script>
 
 
 <script src="/your/js/ocean.js"></script>
