@@ -28,7 +28,7 @@ _本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管�
 
 init 后目录如下, 关于目录及文件的说明请查看[官方文档(中文)](https://hexo.io/zh-cn/docs/)
 
-{% asset_img image-20200526205207269.png hexo init 生成的目录 %}
+{% asset_img image-20200526205207269.png "hexo init 生成的目录" %}
 
 **3. 编译&运行**
 
@@ -36,7 +36,7 @@ init 后目录如下, 关于目录及文件的说明请查看[官方文档(中�
 
 执行 `yarn build` 进行编译, 再执行 `yarn server` 可以运行服务
 
-{% asset_img image-20200526210826688.png 编译&运行 %}
+{% asset_img image-20200526210826688.png height:300 编译&运行 %}
 
 当然, 更便捷的操作是执行
 
@@ -54,21 +54,20 @@ init 后目录如下, 关于目录及文件的说明请查看[官方文档(中�
 
 ## 安装主题
 
-**1. 选择主题** 本文选择的主题是 [Ocean](https://zhwangart.github.io/),
+### 一. 选择主题
+
+本文选择的主题是 [Ocean](https://zhwangart.github.io/),
 
 在[官方的主题](https://hexo.io/themes/)里面选择一个你喜欢的主题, 按照主题的[文档](https://zhwangart.github.io/2018/11/30/Ocean/)来就好
 
 下载好慢....等等等...
 
-遇到的问题:
+### 遇到的问题:
 
-(1) 首页的视频 / 图片 / 图标 / logo 等无法正常显示
+#### (1) Cannot GET /js/search.js 404 这个问题搞了好久...下面是历程:
 
-将中的 `/themes/ocean/_config.yml` 文件中的 `/images/.....` 改成 `./images/.....`, 没遇到这个问题的话不要这么干.
-
-(2) Cannot GET /js/search.js 这个问题找了好久...终于弄好: 2020:05:30 0:41:XX
-
-一开始按照作者的文档配置好
+{% blockquote %}
+一开始按照作者的文档操作配置
 
 安装插件依赖
 `yarn add hexo-generator-searchdb`
@@ -81,23 +80,29 @@ search:
   field: post
   content: true
 ```
+{% endblockquote %}
 
-然后就报错 404, 按照 [关于搜索问题 sevilen 同学给了一个详细的步骤](https://github.com/zhwangart/gitalk/issues/7)
+
+然后就报错 Cannot GET /js/search.js 404!!
+
+**首先**, 按照 [关于搜索问题 sevilen 同学给了一个详细的步骤](https://github.com/zhwangart/gitalk/issues/7)
+
 在 `\themes\ocean\layout\_partial\after-footer.ejs` 中配置
 ```bash
+# 不管是这个
 <% if (theme.search){ %>
   <%- js('js/search') %>
 <% } %>
-# 或者
+# 还是这个
 <% if (theme.local_search.enable){ %>
   <%- js('/js/search') %>
 <% } %>
 ```
-然而并没有作用..
+然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..
 
-**最终解决方案:**
-在 `themes\ocean\source\js\ocean.js` 文件中修改
-```bash
+**然后**
+
+{% codeblock lang:bash themes\ocean\source\js\ocean.js %}
 # 原代码
 # $.getScript('/js/search.js',
 # 修改为
@@ -107,12 +112,72 @@ $.getScript('js/search.js',
 # searchFunc("/search.xml",
 # 修改为
 searchFunc("search.xml",
+{% endcodeblock %}
+
+首页可以了! 内页还是不行啊, 一看请求失败的链接, 居然把路径拼在了整个地址的最后, 好无奈:
+
 ```
-就ok了! 切记, 遇事冷静思考, 不要烦躁.
+http://localhost:4000/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/js/search.js?_=1590852138728
+```
 
-(3) 关于很多的问题, 直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 [Hexo 的文档](https://hexo.io/zh-cn/docs/), 非常详细...
 
-**2. 重启**
+**最后使用了一种不是很好的办法解决了**
+
+在文件路径前面添加根路径`/your/` (_config.yml 中的 `root: /your/`)
+
+{% codeblock lang:bash themes\ocean\source\js\ocean.js %}
+# 原代码
+# $.getScript('/js/search.js',
+# 修改为
+$.getScript('/your/js/search.js',
+
+# 原代码
+# searchFunc("/search.xml",
+# 修改为
+searchFunc("/your/search.xml",
+{% endcodeblock %}
+
+就**ok**了! 切记, 遇事冷静思考, 不要烦躁.
+
+#### (2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示
+
+图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加[辅助函数 url_for](https://hexo.io/zh-cn/docs/helpers#url-for)就可以顺利解决: 
+
+**修改以下文件**
+
+{% codeblock lang:html themes\ocean\layout\_partial\sidebar.ejs %}
+<!-- 原代码 -->
+<%- theme.brand %>
+
+<!-- 修改为 -->
+<%- url_for(theme.brand) %>
+{% endcodeblock %}
+
+{% codeblock lang:html themes\ocean\layout\_partial\head.ejs %}
+<!-- 原代码 -->
+<%- theme.favicon %>
+
+<!-- 修改为 -->
+<%- url_for(theme.favicon) %>
+{% endcodeblock %}
+
+{% codeblock lang:html themes\ocean\layout\_partial\ocean.ejs %}
+<!-- 原代码 有五处 -->
+theme.ocean.path
+<!-- 修改为 -->
+url_for(theme.ocean.path)
+
+<!-- 原代码 -->
+<%- theme.ocean.brand %>
+<!-- 修改为 -->
+<%- url_for(theme.ocean.brand) %>
+{% endcodeblock %}
+
+#### (3) 关于很多的问题
+
+直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 [Hexo 的文档](https://hexo.io/zh-cn/docs/), 非常详细...
+
+### 二. 编译&重启
 
 `hexo clean && hexo g && hexo s` 新的主题:
 
