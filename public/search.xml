@@ -5,22 +5,28 @@
     <url>/your/2020/05/29/build-a-blog-based-on-hexo/</url>
     <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理工具</em></p>
 <h3 id="1-全局安装-Hexo"><a href="#1-全局安装-Hexo" class="headerlink" title="1. 全局安装 Hexo"></a>1. 全局安装 Hexo</h3><p>本文使用的是 <code>yarn</code></p>
-<p><code>yarn global add hexo-cli</code>  或者 <code>npm install -g hexo-cli</code></p>
-<h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 hexo, 在 hexo 中打开 git Bash, 执行:</p>
-<p><code>hexo init</code> <em>网速不好的话, 这里可能需要点时间</em></p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526204940892.png" class="" title="hexo init 成功">
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 <del>hexo</del> your (<strong>后面我把文件夹名改成了 your, 保持和访问的根目录一致</strong>), </p>
+<p>在 <del>hexo</del> your 中打开 git Bash, 执行:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 网速不好的话, 这里可能需要点时间</span></span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526204940892.png" class="" title="init 成功">
 
 <p>init 后目录如下, 关于目录及文件的说明请查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档(中文)</a></p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526205207269.png" class="" title="hexo init 生成的目录">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526205207269.png" class="" title="init 生成的目录">
 
 <h3 id="3-编译-amp-运行"><a href="#3-编译-amp-运行" class="headerlink" title="3. 编译&amp;运行"></a>3. 编译&amp;运行</h3><p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
-<p>执行 <code>yarn build</code> 进行编译, 再执行 <code>yarn server</code> 可以运行服务</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">yarn build</span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">yarn server</span><br></pre></td></tr></table></figure>
+
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210826688.png" class="" title="编译&amp;运行">
 
 <p>当然, 更便捷的操作是执行</p>
-<p><code>hexo generate</code> &amp;&amp; <code>hexo server</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+
 <p>简写</p>
-<p><code>hexo g</code> &amp;&amp; <code>hexo s</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
 
 <h3 id="4-首次运行如图"><a href="#4-首次运行如图" class="headerlink" title="4. 首次运行如图"></a>4. 首次运行如图</h3><p>默认主题 landscape</p>
@@ -60,10 +66,10 @@
 
 <figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\ocean.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 有五处 --&gt;</span></span><br><span class="line">theme.ocean.path</span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line">url_for(theme.ocean.path)</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.ocean.brand</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.ocean.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="3-修改文件-比如修改样式部署之后不生效"><a href="#3-修改文件-比如修改样式部署之后不生效" class="headerlink" title="(3) 修改文件, 比如修改样式部署之后不生效?"></a>(3) 修改文件, 比如修改样式部署之后不生效?</h4><p><code>hexo clean &amp;&amp; hexo g</code> 试试</p>
-<h4 id="4-关于很多的问题"><a href="#4-关于很多的问题" class="headerlink" title="(4) 关于很多的问题"></a>(4) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
-<p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
-<h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> 新的主题:</p>
+<h4 id="3-修改文件-比如修改样式部署之后不生效"><a href="#3-修改文件-比如修改样式部署之后不生效" class="headerlink" title="(3) 修改文件, 比如修改样式部署之后不生效?"></a>(3) 修改文件, 比如修改样式部署之后不生效?</h4><p>一般是缓存文件问题, 试试:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">#### (4) 关于很多的问题</span></span><br><span class="line"></span><br><span class="line">直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 [Hexo 的文档](https://hexo.io/zh-cn/docs/), 非常详细...</span><br><span class="line"></span><br><span class="line">**切记, 遇事冷静思考, 不要烦躁.**</span><br><span class="line"></span><br><span class="line"><span class="comment">### 二. 编译&amp;重启</span></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<p>新的主题:</p>
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526221210487.png" class="" title="新主题">
 
 <h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235114597.png" class="" title="创建仓库及开启服务">
@@ -72,12 +78,16 @@
 
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@gitee.com:liguoyou/your.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="3-安装自动部署发布工具"><a href="#3-安装自动部署发布工具" class="headerlink" title="(3) 安装自动部署发布工具"></a>(3) 安装自动部署发布工具</h3><p><code>yarn add hexo-deployer-git</code></p>
+<h3 id="3-安装自动部署发布工具"><a href="#3-安装自动部署发布工具" class="headerlink" title="(3) 安装自动部署发布工具"></a>(3) 安装自动部署发布工具</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
 <p>发布博客</p>
-<p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
 <p>进入 Gitee Pages 点击更新按钮, 等待部署完成即可</p>
 <p><strong>值得注意的是</strong></p>
-<p>执行<code>hexo d</code>之后, 会将编译完成后的 public 文件中的所有文件 push 至仓库中</p>
+<p>如果你只想把编译完成后的 public 文件中的所有文件 push 至仓库中:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
 <p>如图:</p>
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235831345.png" class="" title="hexo d">
 
@@ -85,34 +95,38 @@
 <p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="">更多关于 git 的操作</a>)</p>
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527224538977.png" class="" title="git push">
 
-<p>然后设置部署目录为 public 即可</p>
+<p>然后<strong>设置部署目录为 public</strong> 即可</p>
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527000632686.png" class="" title="设置部署目录为 public">
 
 <p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
-<p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> hexo 官方文档, 真的很详细<br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">https://zhwangart.github.io/2018/11/30/Ocean/</a> Ocean 中文文档<br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018662692</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">https://www.jianshu.com/p/5014133ba61a</a></p>
+<p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档, 真的很详细</a><br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">Ocean 中文文档 - zhwangart</a><br><a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题 - zhwangart</a><br><a href="https://zhwangart.github.io/2018/12/06/Gitalk/" target="_blank" rel="noopener">Gitalk 的使用 - zhwangart</a><br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">基于Gitee+Hexo搭建个人博客 - segmentfault</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">使用Gitee+Hexo搭建个人博客 - 简书</a></p>
 ]]></content>
   </entry>
   <entry>
     <title>yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效</title>
     <url>/your/2020/05/29/yarn-global-add-package/</url>
     <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
-<p><code>yarn global add hexo-cli</code></p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装成功, 但是使用命令却不生效…</p>
 <h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
-<p>(1) 找到 yarn 的全局安装目录 <code>yarn global bin</code></p>
+<p>(1) 找到 yarn 的全局安装目录 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global bin</span><br></pre></td></tr></table></figure>
+
 <img src="/your/2020/05/29/yarn-global-add-package/image_01.png" class="" title="yarn global bin">
 
-<p>(2) 将该目录地址拷贝至环境变量-系统变量-path 中:</p>
-<img src="/your/2020/05/29/yarn-global-add-package/image_02.png" class="" title="将该目录地址拷贝至环境变量-系统变量-path">
+<p>(2) 将该目录地址拷贝至系统属性-环境变量-系统变量-path 中:</p>
+<img src="/your/2020/05/29/yarn-global-add-package/image_02.png" class="" title="将该目录地址拷贝至系统属性-环境变量-系统变量-path">
 
-<p>(3) 重启终端 <code>git bash</code>, 执行命令, <strong>应该</strong>就可以了.</p>
+<p>(3) 重启终端, <strong>应该</strong>就可以了.</p>
 <p><strong>好吧, 我的还不可以</strong></p>
-<p>卸载全局依赖包 <code>yarn global remove hexo</code> , 再重新安装 <code>yarn global add hexo</code></p>
-<p><strong>还是不行</strong></p>
 <img src="/your/2020/05/29/yarn-global-add-package/image_03.png" class="" title="hexo init 失败">
 
-<p>然后我发现我的安装文件在 <code>C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</code> 中,</p>
-<p>尝试将刚刚新增的环境变量地址修改成这个, ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
+<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址: </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</span><br></pre></td></tr></table></figure>
+
+<p>ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
 <img src="/your/2020/05/29/yarn-global-add-package/20200531155353.jpg" class="" title="修改环境变量地址">
 
 
@@ -120,7 +134,26 @@
 <li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
 <li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
 </ol>
-<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41643133/article/details/83829235</a></p>
+<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>301 Moved Permanently (from disk cache)</title>
+    <url>/your/2020/05/31/301-moved-permanently/</url>
+    <content><![CDATA[<p>不得不记录下这个奇葩的遭遇,</p>
+<p>本来一切好好的, 然后我把 vue.config.js 的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
+<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情, 获取导航的接口, 居然发生了 301 重定向, 到了生产环境 api 地址</p>
+<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找和后端沟通, baidu 了也没找到解决方案,</p>
+<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
+<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
+
+<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
+<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
+<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
+<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome浏览器清除301缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
 ]]></content>
   </entry>
 </search>

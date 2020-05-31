@@ -40,7 +40,7 @@ yarn global bin
 
 **好吧, 我的还不可以**
 
-{% asset_img image_03.png hexo init 失败 %}
+{% asset_img image_03.png "hexo init 失败" %}
 
 上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址: 
 ```

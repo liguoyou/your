@@ -22,7 +22,7 @@ npm install -g hexo-cli
 
 ### 2. 初始化文件夹
 
-创建文件夹 ~~hexo~~ your (**后面我把文件夹名改成了 your, 保持和访问的根目录一直**), 
+创建文件夹 ~~hexo~~ your (**后面我把文件夹名改成了 your, 保持和访问的根目录一致**), 
 
 在 ~~hexo~~ your 中打开 git Bash, 执行:
 

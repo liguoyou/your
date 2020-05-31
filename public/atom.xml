@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-05-31T12:08:44.505Z</updated>
+  <updated>2020-05-31T15:27:57.312Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -17,11 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>301 Moved Permanently (from disk cache)</title>
+    <link href="http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/"/>
+    <id>http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/</id>
+    <published>2020-05-31T15:10:42.000Z</published>
+    <updated>2020-05-31T15:27:57.312Z</updated>
+    
+    <summary type="html">
+    
+      301 Moved Permanently (from disk cache) 清除浏览器的 301 换缓存
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效</title>
     <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/</id>
     <published>2020-05-28T16:07:52.000Z</published>
-    <updated>2020-05-31T12:08:44.505Z</updated>
+    <updated>2020-05-31T15:20:13.297Z</updated>
     
     <summary type="html">
     
@@ -38,7 +55,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/</id>
     <published>2020-05-28T16:04:28.000Z</published>
-    <updated>2020-05-31T13:28:19.232Z</updated>
+    <updated>2020-05-31T15:28:48.425Z</updated>
     
     <summary type="html">
     

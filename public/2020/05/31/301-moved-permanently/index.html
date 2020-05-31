@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
-    yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效 |
+    301 Moved Permanently (from disk cache) |
     
     种子的信仰</title>
   
@@ -34,7 +34,7 @@
 <body>
 <main class="content">
   <section class="outer">
-  <article id="post-yarn-global-add-package" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  <article id="post-301-moved-permanently" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
 
     <div class="article-inner">
         
@@ -42,7 +42,7 @@
                 
   
     <h1 class="article-title" itemprop="name">
-      yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效
+      301 Moved Permanently (from disk cache)
     </h1>
   
   
@@ -55,8 +55,8 @@
 
                 
                     <div class="article-meta">
-                        <a href="/your/2020/05/29/yarn-global-add-package/" class="article-date">
-  <time datetime="2020-05-28T16:07:52.000Z" itemprop="datePublished">2020-05-29</time>
+                        <a href="/your/2020/05/31/301-moved-permanently/" class="article-date">
+  <time datetime="2020-05-31T15:10:42.000Z" itemprop="datePublished">2020-05-31</time>
 </a>
                             
                     </div>
@@ -64,8 +64,6 @@
 
                         
                             
-    <div class="tocbot"></div>
-
 
 
 
@@ -79,42 +77,26 @@
                                             
 
                                                 
-                                                                    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br></pre></td></tr></table></figure>
+                                                                    <p>不得不记录下这个奇葩的遭遇,</p>
+<p>本来一切好好的, 然后我把 vue.config.js 的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
-<p>安装成功, 但是使用命令却不生效…</p>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
-<p>(1) 找到 yarn 的全局安装目录 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global bin</span><br></pre></td></tr></table></figure>
+<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
+<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情, 获取导航的接口, 居然发生了 301 重定向, 到了生产环境 api 地址</p>
+<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找和后端沟通, baidu 了也没找到解决方案,</p>
+<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
+<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
 
-<img src="/your/2020/05/29/yarn-global-add-package/image_01.png" class="" title="yarn global bin">
-
-<p>(2) 将该目录地址拷贝至系统属性-环境变量-系统变量-path 中:</p>
-<img src="/your/2020/05/29/yarn-global-add-package/image_02.png" class="" title="将该目录地址拷贝至系统属性-环境变量-系统变量-path">
-
-<p>(3) 重启终端, <strong>应该</strong>就可以了.</p>
-<p><strong>好吧, 我的还不可以</strong></p>
-<img src="/your/2020/05/29/yarn-global-add-package/image_03.png" class="" title="hexo init 失败">
-
-<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址: </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</span><br></pre></td></tr></table></figure>
-
-<p>ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
-<img src="/your/2020/05/29/yarn-global-add-package/20200531155353.jpg" class="" title="修改环境变量地址">
-
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
-<li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
-<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
-</ol>
-<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
+<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
+<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
+<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
+<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome浏览器清除301缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
 
                                                                         
                                     </div>
                                     <!-- 注释 - 分享按钮 -->
                                     <!-- <footer class="article-footer">
-                                        <a data-url="http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/" data-id="ckav7z2l90002pson39y0esfw" class="article-share-link">
+                                        <a data-url="http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/" data-id="ckav7z2lb0003psong6rtboh9" class="article-share-link">
                                             分享
                                         </a>
                                         
@@ -126,19 +108,10 @@
         
   <nav class="article-nav">
     
-      <a href="/your/2020/05/31/301-moved-permanently/" class="article-nav-link">
-        <strong class="article-nav-caption">前一篇</strong>
-        <div class="article-nav-title">
-          
-            301 Moved Permanently (from disk cache)
-          
-        </div>
-      </a>
     
-    
-      <a href="/your/2020/05/29/build-a-blog-based-on-hexo/" class="article-nav-link">
+      <a href="/your/2020/05/29/yarn-global-add-package/" class="article-nav-link">
         <strong class="article-nav-caption">后一篇</strong>
-        <div class="article-nav-title">基于 Hexo 搭建 Gitee 个人静态博客</div>
+        <div class="article-nav-title">yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效</div>
       </a>
     
   </nav>
