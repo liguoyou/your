@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-05-31T07:57:02.283Z</updated>
+  <updated>2020-05-31T12:08:44.505Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,23 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>yarn 全局安装（yarn global add [package]）后，命令不生效</title>
-    <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/"/>
-    <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</id>
-    <published>2020-05-28T16:07:52.000Z</published>
-    <updated>2020-05-31T07:57:02.283Z</updated>
-    
-    <summary type="html">
-    
-      使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但是使用命令却不生效, 一般是环境变量配置问题
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效</title>
