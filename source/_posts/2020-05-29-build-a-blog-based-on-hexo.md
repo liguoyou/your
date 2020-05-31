@@ -14,35 +14,53 @@ _本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管�
 
 本文使用的是 `yarn`
 
-`yarn global add hexo-cli`  或者 `npm install -g hexo-cli`
+```bash
+yarn global add hexo-cli
+# 或者
+npm install -g hexo-cli
+```
 
 ### 2. 初始化文件夹
 
-创建文件夹 hexo, 在 hexo 中打开 git Bash, 执行:
+创建文件夹 ~~hexo~~ your (**后面我把文件夹名改成了 your, 保持和访问的根目录一直**), 
 
-`hexo init` _网速不好的话, 这里可能需要点时间_
+在 ~~hexo~~ your 中打开 git Bash, 执行:
 
-{% asset_img image-20200526204940892.png hexo init 成功 %}
+```bash
+# 网速不好的话, 这里可能需要点时间
+hexo init
+```
+
+{% asset_img image-20200526204940892.png "init 成功" %}
 
 init 后目录如下, 关于目录及文件的说明请查看[官方文档(中文)](https://hexo.io/zh-cn/docs/)
 
-{% asset_img image-20200526205207269.png "hexo init 生成的目录" %}
+{% asset_img image-20200526205207269.png "init 生成的目录" %}
 
 ### 3. 编译&运行
 
 打开代码, 从 `package.json` 文件中可以看到:
 
-执行 `yarn build` 进行编译, 再执行 `yarn server` 可以运行服务
+```bash
+# 编译
+yarn build
+# 启动服务
+yarn server
+```
 
 {% asset_img image-20200526210826688.png 编译&运行 %}
 
 当然, 更便捷的操作是执行
 
-`hexo generate` && `hexo server`
+```bash
+hexo generate && hexo server
+```
 
 简写
 
-`hexo g` && `hexo s`
+```bash
+hexo g && hexo s
+```
 
 {% asset_img image-20200526211114174.png hexo g && hexo s %}
 
@@ -175,7 +193,10 @@ url_for(theme.ocean.path)
 
 #### (3) 修改文件, 比如修改样式部署之后不生效?
 
-`hexo clean && hexo g` 试试
+一般是缓存文件问题, 试试:
+```bash
+hexo clean && hexo g
+``` 
 
 #### (4) 关于很多的问题
 
@@ -185,7 +206,11 @@ url_for(theme.ocean.path)
 
 ### 二. 编译&重启
 
-`hexo clean && hexo g && hexo s` 新的主题:
+```bash
+hexo clean && hexo g && hexo s
+```
+
+新的主题:
 
 {% asset_img image-20200526221210487.png 新主题 %}
 
@@ -212,17 +237,26 @@ deploy:
 ```
 
 ### (3) 安装自动部署发布工具
-`yarn add hexo-deployer-git`
+
+```bash
+yarn add hexo-deployer-git
+```
 
 发布博客
 
-`hexo clean && hexo g && hexo d`
+```bash
+hexo clean && hexo g && hexo d
+```
 
 进入 Gitee Pages 点击更新按钮, 等待部署完成即可
 
 **值得注意的是**
 
-执行`hexo d`之后, 会将编译完成后的 public 文件中的所有文件 push 至仓库中
+如果你只想把编译完成后的 public 文件中的所有文件 push 至仓库中:
+
+```bash
+hexo d
+```
 
 如图:
 
@@ -232,16 +266,18 @@ deploy:
 
 那就将编译好的整个仓库的内容提交(`git push`)上去, ([更多关于 git 的操作]())
 
-{% asset_img image-20200527224538977.png git push %}
+{% asset_img image-20200527224538977.png "git push" %}
 
-然后设置部署目录为 public 即可
+然后**设置部署目录为 public** 即可
 
-{% asset_img image-20200527000632686.png 设置部署目录为 public %}
+{% asset_img image-20200527000632686.png "设置部署目录为 public" %}
 
 **每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)**
 
 **参考**
 [Hexo 官方文档, 真的很详细](https://hexo.io/zh-cn/docs/)
-[Ocean 中文文档](https://zhwangart.github.io/2018/11/30/Ocean/)
+[Ocean 中文文档 - zhwangart](https://zhwangart.github.io/2018/11/30/Ocean/)
+[关于 Ocean 使用中的问题 - zhwangart](https://zhwangart.github.io/2019/07/02/Ocean-Issues/)
+[Gitalk 的使用 - zhwangart](https://zhwangart.github.io/2018/12/06/Gitalk/)
 [基于Gitee+Hexo搭建个人博客 - segmentfault](https://segmentfault.com/a/1190000018662692)
 [使用Gitee+Hexo搭建个人博客 - 简书](https://www.jianshu.com/p/5014133ba61a)
