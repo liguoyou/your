@@ -264,7 +264,8 @@ hexo d
 
 **但是, 我想把整个本地的仓库 push 上去怎么做呢**
 
-那就将编译好的整个仓库的内容提交(`git push`)上去, ([更多关于 git 的操作]())
+那就将编译好的整个仓库的内容提交(`git push`)上去, ({% post_link summary-of-git "更多git操作" %})
+
 
 {% asset_img image-20200527224538977.png "git push" %}
 

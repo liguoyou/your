@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="前端,Vue.js,JavaScript,Node.js,小程序">
+  
+  
+    <meta name="description" content="GuoYou.Li(李国有)的博客, 用于做学习过程中的笔记、总结以及知识分享">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Git 常用操作命令总结 |
+    
+    种子的信仰</title>
+  
+    <link rel="shortcut icon" href="/your/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/your/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/your/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/your/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/your/atom.xml" title="种子的信仰" type="application/atom+xml">
+</head>
+
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-summary-of-git" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h1 class="article-title" itemprop="name">
+      Git 常用操作命令总结
+    </h1>
+  
+  
+
+
+
+
+            </header>
+            
+
+                
+                    <div class="article-meta">
+                        <a href="/your/2020/05/31/summary-of-git/" class="article-date">
+  <time datetime="2020-05-31T15:38:41.000Z" itemprop="datePublished">2020-05-31</time>
+</a>
+                            
+                    </div>
+                    
+
+                        
+                            
+    <div class="tocbot"></div>
+
+
+
+
+
+                                
+
+                                    <div class="article-entry" itemprop="articleBody">
+                                        
+
+
+                                            
+
+                                                
+                                                                    <h2 id="场景"><a href="#场景" class="headerlink" title="场景:"></a>场景:</h2><p>小 G 去了一家公司, 公司使用了 git 作为源代码的管理工具</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>第一步先下载一个敲命令的工具: Git Bash</p>
+<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧:"></a>使用技巧:</h2><p>键盘 <strong>上箭头</strong> 和 <strong>下箭头</strong> 可以快速切换到历史命令</p>
+<p>在对应的目录右键, 选择 Git Bash Here, 即可直接在当前目录下打开命令界面</p>
+<img src="/your/2020/05/31/summary-of-git/git_01.png" class="" title="右键, 选择 Git Bash Here">
+
+<hr>
+<h2 id="准备工作-获取项目源代码"><a href="#准备工作-获取项目源代码" class="headerlink" title="准备工作: 获取项目源代码"></a>准备工作: 获取项目源代码</h2><p><strong>生成 SSH 公钥, 发给 Git 服务器的管理员, 获得代码授权</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成 SSH 公钥</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"xxxxx@xxxxx.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看公钥, 全部复制粘贴</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置 Git 使用者信息</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"GuoYou.Li"</span></span><br><span class="line">git config --global user.email GuoYou.Li@foxmail.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>注:</strong> 执行了上面的命令之后, 以后的每个项目的每次 Git 提交时, 都是使用了 这两条信息来说明是谁提交了更新</p>
+<p><strong>克隆项目到本地指定的文件夹内</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git clone 你的项目地址</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:liguoyou/vue-demo.git</span><br></pre></td></tr></table></figure>
+
+<p>进入文件夹: cd 项目文件夹名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> vue-demo</span><br></pre></td></tr></table></figure>
+
+<p><strong>注:</strong> cd .. 返回上一层; cd ../../ 返回两层; cd view/home 进入文件夹</p>
+<p><strong>npm 安装依赖包</strong></p>
+<p>更推荐使用 <code>yarn</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br><span class="line"><span class="comment"># cnpm install (如果你安装了淘宝镜像, 速度会更快些)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行项目 (具体命令还需要查看 package.json 里面的 scripts)</span></span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_02.png" class="" title="git reflog">
+
+<p><strong>注:</strong> Ctrl + c 可以结束项目运行</p>
+<hr>
+<h2 id="项目开发过程的-Git-使用"><a href="#项目开发过程的-Git-使用" class="headerlink" title="项目开发过程的 Git 使用"></a>项目开发过程的 Git 使用</h2><p><strong>流程</strong></p>
+<p>远程库&lt;<code>git pull</code>&gt; 工作区 &lt;<code>git add</code>&gt; 暂存区 &lt;<code>git commit</code>&gt; 版本区&lt;<code>git push</code>&gt; 远程库</p>
+<p><strong>查看当前状态</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p><strong>把修改的文件提交到暂存区</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git add 文件名</span></span><br><span class="line">git add vue.config.js</span><br></pre></td></tr></table></figure>
+
+<p><strong>把修改的所有文件提交到暂存区</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<p><strong>把暂存区的内容提交到版本区, -m 为 message 的意思</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git commit -m 备注信息</span></span><br><span class="line">git commit -m <span class="string">'create vue.config.js'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>也可以一步直接提交暂存区和版本区 -a 为 add 的意思</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新增的文件第一次提交, 不能使用</span></span><br><span class="line">git commit -a -m <span class="string">'这里填写修改的备注信息'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看提交的历史记录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_03.png" class="" title="查看提交的历史记录">
+
+<p><strong>注:</strong> 回车可以往下查看更多记录, 输入 q 可以退出当前 log 界面</p>
+<p><strong>回滚指定版本, 先从 git log 中找到要回滚的 commit id</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># git reset --hard commit_id</span></span><br><span class="line">git reset --hard 33cb2b7ec310f5ed</span><br></pre></td></tr></table></figure>
+
+<p><strong>回到上一个 commit 版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再上一个</span></span><br><span class="line">git reset --hard HEAD^1</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看所有操作日志, 包含刚刚 reset 的 commit 日志</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_04.png" class="" title="git reflog">
+
+<p><strong>提交代码到代码库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于, origin 默认, 可省略, master 是分支, 也可以省略</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="多个远程仓库"><a href="#多个远程仓库" class="headerlink" title="多个远程仓库"></a>多个远程仓库</h2><p>假设我们需要推送到另一个远程仓库</p>
+<p><strong>关联远程仓库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitee 是给这个远程的一个命名, 和 origin 一样是一个远程的别称, origin 为默认</span></span><br><span class="line">git remote add gitee git@gitee.com:liguoyou/vue-demo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看远程</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p><strong>推送代码到码云这个远程仓库</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push gitee</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h2><p><strong>查看当前所有分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建一个分支 devel, 并切换到该分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git branch devel</span><br><span class="line"></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快捷操作, 创建分支的同时切换到该分支, -b 是 branch 的意思</span></span><br><span class="line">git checkout -b devel2</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除分支 devel2</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git branch -d devel2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 devel2 有内容修改没有合并, 则需要 -D 才能完成删除</span></span><br><span class="line">git branch -D devel2</span><br></pre></td></tr></table></figure>
+
+<p><strong>合并 devel 的内容到 master 分支上</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提交 devel 分支上的修改内容</span></span><br><span class="line">git commit -a -m <span class="string">'update test.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到 master</span></span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行合并</span></span><br><span class="line">git merge devel</span><br></pre></td></tr></table></figure>
+
+<p><strong>切换到 devel 分支, 并 push 到远程</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到 devel 分支</span></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>会提示你当前分支在远程没有对应的上游分支</p>
+<p><strong>设置上游分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --<span class="built_in">set</span>-upstream origin devel</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_05.png" class="" title="设置上游分支">
+
+
+<p><strong>如果发现 push 失败, 很有可能是因为其他人修改提交了代码, 你需要先拉取最新的代码下来, 合并之后再提交</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="打版本标签"><a href="#打版本标签" class="headerlink" title="打版本标签"></a>打版本标签</h2><p><strong>添加标签</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打标签</span></span><br><span class="line">git tag 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># add一个标签 -a,  并写 message -m</span></span><br><span class="line">git tag -a 1.1.0 -m <span class="string">"v 1.1.0"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看标签</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure>
+
+<p><strong>同步标签到远程</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者, 注意是两个 -</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_06.png" class="" title="打版本标签">
+
+<p>暂时这么多.</p>
+
+                                                                        
+                                    </div>
+                                    <!-- 注释 - 分享按钮 -->
+                                    <!-- <footer class="article-footer">
+                                        <a data-url="http://liguoyou.gitee.io/your/2020/05/31/summary-of-git/" data-id="ckavbuhdu0004x0on9b9n6jh1" class="article-share-link">
+                                            分享
+                                        </a>
+                                        
+                                    </footer> -->
+
+    </div>
+
+    
+        
+  <nav class="article-nav">
+    
+    
+      <a href="/your/2020/05/31/301-moved-permanently/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">301 Moved Permanently (from disk cache)</div>
+      </a>
+    
+  </nav>
+
+
+            
+
+                
+                    
+                        
+  <div class="gitalk" id="gitalk-container"></div>
+  <p style="color: #999; font-size: 12px; text-align: center;">
+    第三方评论系统 -- Gitalk: 偶尔可能出现加载失败的情况, 您可以选择刷新或者前往 
+    <a href="https://github.com/liguoyou/your/issues" target="_blank">issues</a>
+    提交和查看评论
+  </p>
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '2e731d2b04096a7c71ab',
+      clientSecret: '41e2e15eb8edebd8efd5a6da558a44d60f33468a',
+      repo: 'your',
+      owner: 'liguoyou',
+      admin: ['liguoyou'],
+      // id: location.pathname,      // Ensure uniqueness and length less than 50
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      pagerDirection: 'last'
+    })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+                            
+
+</article>
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+    <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2020 种子的信仰</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean" target="_blank" rel="noopener">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/your/"><img src="/your/images/logo.png" alt="种子的信仰"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/">首页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/archives">时间轴</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/your/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="请输入关键词...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+
+<script src="/your/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/your/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/your/js/lazyload.min.js"></script>
+
+
+<script src="/your/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  
+<script src="/your/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/your/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script src="/your/js/ocean.js"></script>
+
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-05-31T15:27:57.312Z</updated>
+  <updated>2020-05-31T17:02:27.411Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Git 常用操作命令总结</title>
+    <link href="http://liguoyou.gitee.io/your/2020/05/31/summary-of-git/"/>
+    <id>http://liguoyou.gitee.io/your/2020/05/31/summary-of-git/</id>
+    <published>2020-05-31T15:38:41.000Z</published>
+    <updated>2020-05-31T17:02:27.411Z</updated>
+    
+    <summary type="html">
+    
+      Git 常用操作命令总结, 远程仓库管理 git push, git remote -v, 分支操作 git checkout -b devel, 打标签 git tag, 记录回滚 git reset --hard commit_id 等
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>301 Moved Permanently (from disk cache)</title>
@@ -34,11 +51,11 @@
   </entry>
   
   <entry>
-    <title>yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效</title>
+    <title>yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</title>
     <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/</id>
     <published>2020-05-28T16:07:52.000Z</published>
-    <updated>2020-05-31T15:20:13.297Z</updated>
+    <updated>2020-05-31T15:32:26.138Z</updated>
     
     <summary type="html">
     
@@ -55,7 +72,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/</id>
     <published>2020-05-28T16:04:28.000Z</published>
-    <updated>2020-05-31T15:28:48.425Z</updated>
+    <updated>2020-05-31T17:16:58.371Z</updated>
     
     <summary type="html">
     

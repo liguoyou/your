@@ -92,7 +92,7 @@
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235831345.png" class="" title="hexo d">
 
 <p><strong>但是, 我想把整个本地的仓库 push 上去怎么做呢</strong></p>
-<p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="">更多关于 git 的操作</a>)</p>
+<p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="/your/2020/05/31/summary-of-git/" title="更多git操作">更多git操作</a>)</p>
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527224538977.png" class="" title="git push">
 
 <p>然后<strong>设置部署目录为 public</strong> 即可</p>
@@ -103,7 +103,144 @@
 ]]></content>
   </entry>
   <entry>
-    <title>yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效</title>
+    <title>Git 常用操作命令总结</title>
+    <url>/your/2020/05/31/summary-of-git/</url>
+    <content><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景:"></a>场景:</h2><p>小 G 去了一家公司, 公司使用了 git 作为源代码的管理工具</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>第一步先下载一个敲命令的工具: Git Bash</p>
+<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧:"></a>使用技巧:</h2><p>键盘 <strong>上箭头</strong> 和 <strong>下箭头</strong> 可以快速切换到历史命令</p>
+<p>在对应的目录右键, 选择 Git Bash Here, 即可直接在当前目录下打开命令界面</p>
+<img src="/your/2020/05/31/summary-of-git/git_01.png" class="" title="右键, 选择 Git Bash Here">
+
+<hr>
+<h2 id="准备工作-获取项目源代码"><a href="#准备工作-获取项目源代码" class="headerlink" title="准备工作: 获取项目源代码"></a>准备工作: 获取项目源代码</h2><p><strong>生成 SSH 公钥, 发给 Git 服务器的管理员, 获得代码授权</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成 SSH 公钥</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"xxxxx@xxxxx.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看公钥, 全部复制粘贴</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置 Git 使用者信息</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"GuoYou.Li"</span></span><br><span class="line">git config --global user.email GuoYou.Li@foxmail.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>注:</strong> 执行了上面的命令之后, 以后的每个项目的每次 Git 提交时, 都是使用了 这两条信息来说明是谁提交了更新</p>
+<p><strong>克隆项目到本地指定的文件夹内</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git clone 你的项目地址</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:liguoyou/vue-demo.git</span><br></pre></td></tr></table></figure>
+
+<p>进入文件夹: cd 项目文件夹名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> vue-demo</span><br></pre></td></tr></table></figure>
+
+<p><strong>注:</strong> cd .. 返回上一层; cd ../../ 返回两层; cd view/home 进入文件夹</p>
+<p><strong>npm 安装依赖包</strong></p>
+<p>更推荐使用 <code>yarn</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line"><span class="comment"># cnpm install (如果你安装了淘宝镜像, 速度会更快些)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行项目 (具体命令还需要查看 package.json 里面的 scripts)</span></span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_02.png" class="" title="git reflog">
+
+<p><strong>注:</strong> Ctrl + c 可以结束项目运行</p>
+<hr>
+<h2 id="项目开发过程的-Git-使用"><a href="#项目开发过程的-Git-使用" class="headerlink" title="项目开发过程的 Git 使用"></a>项目开发过程的 Git 使用</h2><p><strong>流程</strong></p>
+<p>远程库&lt;<code>git pull</code>&gt; 工作区 &lt;<code>git add</code>&gt; 暂存区 &lt;<code>git commit</code>&gt; 版本区&lt;<code>git push</code>&gt; 远程库</p>
+<p><strong>查看当前状态</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p><strong>把修改的文件提交到暂存区</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git add 文件名</span></span><br><span class="line">git add vue.config.js</span><br></pre></td></tr></table></figure>
+
+<p><strong>把修改的所有文件提交到暂存区</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<p><strong>把暂存区的内容提交到版本区, -m 为 message 的意思</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git commit -m 备注信息</span></span><br><span class="line">git commit -m <span class="string">'create vue.config.js'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>也可以一步直接提交暂存区和版本区 -a 为 add 的意思</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新增的文件第一次提交, 不能使用</span></span><br><span class="line">git commit -a -m <span class="string">'这里填写修改的备注信息'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看提交的历史记录</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_03.png" class="" title="查看提交的历史记录">
+
+<p><strong>注:</strong> 回车可以往下查看更多记录, 输入 q 可以退出当前 log 界面</p>
+<p><strong>回滚指定版本, 先从 git log 中找到要回滚的 commit id</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git reset --hard commit_id</span></span><br><span class="line">git reset --hard 33cb2b7ec310f5ed</span><br></pre></td></tr></table></figure>
+
+<p><strong>回到上一个 commit 版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再上一个</span></span><br><span class="line">git reset --hard HEAD^1</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看所有操作日志, 包含刚刚 reset 的 commit 日志</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_04.png" class="" title="git reflog">
+
+<p><strong>提交代码到代码库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于, origin 默认, 可省略, master 是分支, 也可以省略</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="多个远程仓库"><a href="#多个远程仓库" class="headerlink" title="多个远程仓库"></a>多个远程仓库</h2><p>假设我们需要推送到另一个远程仓库</p>
+<p><strong>关联远程仓库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># gitee 是给这个远程的一个命名, 和 origin 一样是一个远程的别称, origin 为默认</span></span><br><span class="line">git remote add gitee git@gitee.com:liguoyou/vue-demo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看远程</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p><strong>推送代码到码云这个远程仓库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push gitee</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h2><p><strong>查看当前所有分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建一个分支 devel, 并切换到该分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch devel</span><br><span class="line"></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快捷操作, 创建分支的同时切换到该分支, -b 是 branch 的意思</span></span><br><span class="line">git checkout -b devel2</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除分支 devel2</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d devel2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 devel2 有内容修改没有合并, 则需要 -D 才能完成删除</span></span><br><span class="line">git branch -D devel2</span><br></pre></td></tr></table></figure>
+
+<p><strong>合并 devel 的内容到 master 分支上</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 提交 devel 分支上的修改内容</span></span><br><span class="line">git commit -a -m <span class="string">'update test.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到 master</span></span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行合并</span></span><br><span class="line">git merge devel</span><br></pre></td></tr></table></figure>
+
+<p><strong>切换到 devel 分支, 并 push 到远程</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到 devel 分支</span></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>会提示你当前分支在远程没有对应的上游分支</p>
+<p><strong>设置上游分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --<span class="built_in">set</span>-upstream origin devel</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_05.png" class="" title="设置上游分支">
+
+
+<p><strong>如果发现 push 失败, 很有可能是因为其他人修改提交了代码, 你需要先拉取最新的代码下来, 合并之后再提交</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="打版本标签"><a href="#打版本标签" class="headerlink" title="打版本标签"></a>打版本标签</h2><p><strong>添加标签</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打标签</span></span><br><span class="line">git tag 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># add一个标签 -a,  并写 message -m</span></span><br><span class="line">git tag -a 1.1.0 -m <span class="string">"v 1.1.0"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看标签</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure>
+
+<p><strong>同步标签到远程</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者, 注意是两个 -</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_06.png" class="" title="打版本标签">
+
+<p>暂时这么多.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>301 Moved Permanently (from disk cache)</title>
+    <url>/your/2020/05/31/301-moved-permanently/</url>
+    <content><![CDATA[<p>不得不记录下这个奇葩的遭遇,</p>
+<p>本来一切好好的, 然后我把 vue.config.js 的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
+<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情, 获取导航的接口, 居然发生了 301 重定向, 到了生产环境 api 地址</p>
+<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找和后端沟通, baidu 了也没找到解决方案,</p>
+<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
+<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
+
+<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
+<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
+<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
+<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome浏览器清除301缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</title>
     <url>/your/2020/05/29/yarn-global-add-package/</url>
     <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等</p>
@@ -135,25 +272,6 @@
 <li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
 </ol>
 <p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>301 Moved Permanently (from disk cache)</title>
-    <url>/your/2020/05/31/301-moved-permanently/</url>
-    <content><![CDATA[<p>不得不记录下这个奇葩的遭遇,</p>
-<p>本来一切好好的, 然后我把 vue.config.js 的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
-<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情, 获取导航的接口, 居然发生了 301 重定向, 到了生产环境 api 地址</p>
-<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找和后端沟通, baidu 了也没找到解决方案,</p>
-<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
-<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
-
-<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
-<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
-<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
-<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome浏览器清除301缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
 ]]></content>
   </entry>
 </search>
