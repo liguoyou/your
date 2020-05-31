@@ -241,7 +241,7 @@ deploy:
 **每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)**
 
 **参考**
-https://hexo.io/zh-cn/docs/ hexo 官方文档, 真的很详细
-https://zhwangart.github.io/2018/11/30/Ocean/ Ocean 中文文档
-https://segmentfault.com/a/1190000018662692
-https://www.jianshu.com/p/5014133ba61a
+[Hexo 官方文档, 真的很详细](https://hexo.io/zh-cn/docs/)
+[Ocean 中文文档](https://zhwangart.github.io/2018/11/30/Ocean/)
+[基于Gitee+Hexo搭建个人博客 - segmentfault](https://segmentfault.com/a/1190000018662692)
+[使用Gitee+Hexo搭建个人博客 - 简书](https://www.jianshu.com/p/5014133ba61a)

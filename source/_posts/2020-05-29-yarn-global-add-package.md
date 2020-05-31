@@ -38,9 +38,12 @@ excerpt: 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但�
 
 {% asset_img image_03.png hexo init 失败 %}
 
-然后我发现我的安装文件在 `C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin` 中,
+上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址: 
+```
+C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin
+```
 
-尝试将刚刚新增的环境变量地址修改成这个, ok, 重启终端成功了(**win7 可能需要重启电脑!!**)
+ok, 重启终端成功了(**win7 可能需要重启电脑!!**)
 
 {% asset_img 20200531155353.jpg "修改环境变量地址" %}
 
@@ -51,4 +54,4 @@ excerpt: 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但�
 2. 可能是安装 yarn 的时候缺少了某个操作步骤造成的
 
 **参考**
-https://blog.csdn.net/weixin_41643133/article/details/83829235
+[yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN](https://blog.csdn.net/weixin_41643133/article/details/83829235)
