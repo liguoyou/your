@@ -40,7 +40,10 @@ excerpt: 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但�
 
 然后我发现我的安装文件在 `C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin` 中,
 
-尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(**win7 可能需要重启电脑!!**)
+尝试将刚刚新增的环境变量地址修改成这个, ok, 重启终端成功了(**win7 可能需要重启电脑!!**)
+
+{% asset_img 20200531155353.jpg "修改环境变量地址" %}
+
 
 ## 原因
 
