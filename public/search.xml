@@ -3,23 +3,19 @@
   <entry>
     <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
     <url>/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理器</em></p>
-<p><strong>1. 全局安装 Hexo</strong> 本文使用的是 <code>yarn</code></p>
-<p><code>yarn global add hexo-cli</code></p>
-<p>或者</p>
-<p><code>npm install -g hexo-cli</code></p>
-<p><strong>2. 初始化文件夹</strong></p>
-<p>创建文件夹 hexo, 在 hexo 中打开 git Bash, 执行:</p>
+    <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理工具</em></p>
+<h3 id="1-全局安装-Hexo"><a href="#1-全局安装-Hexo" class="headerlink" title="1. 全局安装 Hexo"></a>1. 全局安装 Hexo</h3><p>本文使用的是 <code>yarn</code></p>
+<p><code>yarn global add hexo-cli</code>  或者 <code>npm install -g hexo-cli</code></p>
+<h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 hexo, 在 hexo 中打开 git Bash, 执行:</p>
 <p><code>hexo init</code> <em>网速不好的话, 这里可能需要点时间</em></p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526204940892.png" class="" title="hexo init 成功">
 
 <p>init 后目录如下, 关于目录及文件的说明请查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档(中文)</a></p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526205207269.png" class="" title="hexo init 生成的目录">
 
-<p><strong>3. 编译&amp;运行</strong></p>
-<p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
+<h3 id="3-编译-amp-运行"><a href="#3-编译-amp-运行" class="headerlink" title="3. 编译&amp;运行"></a>3. 编译&amp;运行</h3><p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
 <p>执行 <code>yarn build</code> 进行编译, 再执行 <code>yarn server</code> 可以运行服务</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526210826688.png" class="" title="height:300 编译&amp;运行">
+<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526210826688.png" class="" title="编译&amp;运行">
 
 <p>当然, 更便捷的操作是执行</p>
 <p><code>hexo generate</code> &amp;&amp; <code>hexo server</code></p>
@@ -27,7 +23,7 @@
 <p><code>hexo g</code> &amp;&amp; <code>hexo s</code></p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
 
-<p><strong>4. 首次运行如图</strong> 默认主题 landscape</p>
+<h3 id="4-首次运行如图"><a href="#4-首次运行如图" class="headerlink" title="4. 首次运行如图"></a>4. 首次运行如图</h3><p>默认主题 landscape</p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526210938239.png" class="" title="首次运行">
 
 <h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><h3 id="一-选择主题"><a href="#一-选择主题" class="headerlink" title="一. 选择主题"></a>一. 选择主题</h3><p>本文选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
@@ -44,7 +40,7 @@
 <p>在 <code>\themes\ocean\layout\_partial\after-footer.ejs</code> 中配置</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不管是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.search)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"><span class="comment"># 还是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.local_search.enable)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'/js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p>然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..</p>
-<p><strong>然后</strong></p>
+<p><strong>然后</strong> 直接找到加载 js 的地方修改路径</p>
 <figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># $.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">$.getScript(<span class="string">'js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"search.xml"</span>,</span><br></pre></td></tr></table></figure>
 
 <p>首页可以了! 内页还是不行啊, 一看请求失败的链接, 居然把路径拼在了整个地址的最后, 好无奈:</p>
@@ -55,7 +51,7 @@
 <p>在文件路径前面添加根路径<code>/your/</code> (_config.yml 中的 <code>root: /your/</code>)</p>
 <figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># $.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">$.getScript(<span class="string">'/your/js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"/your/search.xml"</span>,</span><br></pre></td></tr></table></figure>
 
-<p>就<strong>ok</strong>了! 切记, 遇事冷静思考, 不要烦躁.</p>
+<p>就<strong>ok</strong>了!</p>
 <h4 id="2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示"><a href="#2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示" class="headerlink" title="(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示"></a>(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示</h4><p>图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加<a href="https://hexo.io/zh-cn/docs/helpers#url-for" target="_blank" rel="noopener">辅助函数 url_for</a>就可以顺利解决: </p>
 <p><strong>修改以下文件</strong></p>
 <figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\sidebar.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.brand</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
@@ -65,19 +61,17 @@
 <figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\ocean.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 有五处 --&gt;</span></span><br><span class="line">theme.ocean.path</span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line">url_for(theme.ocean.path)</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.ocean.brand</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.ocean.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="3-关于很多的问题"><a href="#3-关于很多的问题" class="headerlink" title="(3) 关于很多的问题"></a>(3) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
+<p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
 <h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> 新的主题:</p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526221210487.png" class="" title="新主题">
 
-<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><p><strong>1. 准备工作</strong></p>
-<p>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526235114597.png" class="" title="创建仓库及开启服务">
+<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526235114597.png" class="" title="创建仓库及开启服务">
 
-<p>(2) 配置 <code>_config.yml</code></p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liguoyou.gitee.io/your/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/your/</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-配置-config-yml"><a href="#2-配置-config-yml" class="headerlink" title="(2) 配置 _config.yml"></a>(2) 配置 <code>_config.yml</code></h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liguoyou.gitee.io/your/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/your/</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@gitee.com:liguoyou/your.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
-<p>(3) 安装自动部署发布工具<br><code>yarn add hexo-deployer-git</code></p>
+<h3 id="3-安装自动部署发布工具"><a href="#3-安装自动部署发布工具" class="headerlink" title="(3) 安装自动部署发布工具"></a>(3) 安装自动部署发布工具</h3><p><code>yarn add hexo-deployer-git</code></p>
 <p>发布博客</p>
 <p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></p>
 <p>进入 Gitee Pages 点击更新按钮, 等待部署完成即可</p>
@@ -93,23 +87,17 @@
 <p>然后设置部署目录为 public 即可</p>
 <img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200527000632686.png" class="" title="设置部署目录为 public">
 
-<p><strong>参考</strong></p>
-<p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> 官方文档, 参数很详细</p>
-<p><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">https://zhwangart.github.io/2018/11/30/Ocean/</a></p>
-<p><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018662692</a></p>
-<p><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">https://www.jianshu.com/p/5014133ba61a</a></p>
+<p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
+<p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> hexo 官方文档, 真的很详细<br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">https://zhwangart.github.io/2018/11/30/Ocean/</a> Ocean 中文文档<br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018662692</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">https://www.jianshu.com/p/5014133ba61a</a></p>
 ]]></content>
   </entry>
   <entry>
     <title>yarn 全局安装（yarn global add [package]）后，命令不生效</title>
     <url>/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</url>
-    <content><![CDATA[<p><strong>背景</strong></p>
-<p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
-<p><strong>问题描述</strong></p>
-<p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
 <p><code>yarn global add hexo-cli</code></p>
-<p><strong>解决过程</strong></p>
-<p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
 <p>(1) 找到 yarn 的全局安装目录 <code>yarn global bin</code></p>
 <img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_01.png" class="" title="yarn global bin">
 
@@ -123,14 +111,12 @@
 <img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_03.png" class="" title="hexo init 失败">
 
 <p>然后我发现我的安装文件在 <code>C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</code> 中,</p>
-<p>尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(win7 可能需要重启电脑!!)</p>
-<p><strong>原因</strong></p>
-<ol>
+<p>尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
 <li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
-<li>可能是安装 yarn 的时候造成的</li>
+<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
 </ol>
-<p><strong>参考</strong></p>
-<p><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41643133/article/details/83829235</a></p>
+<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41643133/article/details/83829235</a></p>
 ]]></content>
   </entry>
 </search>

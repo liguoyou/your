@@ -64,6 +64,8 @@
 
                         
                             
+    <div class="tocbot"></div>
+
 
 
 
@@ -77,13 +79,10 @@
                                             
 
                                                 
-                                                                    <p><strong>背景</strong></p>
-<p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
-<p><strong>问题描述</strong></p>
-<p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
+                                                                    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
 <p><code>yarn global add hexo-cli</code></p>
-<p><strong>解决过程</strong></p>
-<p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
 <p>(1) 找到 yarn 的全局安装目录 <code>yarn global bin</code></p>
 <img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_01.png" class="" title="yarn global bin">
 
@@ -97,14 +96,12 @@
 <img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_03.png" class="" title="hexo init 失败">
 
 <p>然后我发现我的安装文件在 <code>C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</code> 中,</p>
-<p>尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(win7 可能需要重启电脑!!)</p>
-<p><strong>原因</strong></p>
-<ol>
+<p>尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
 <li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
-<li>可能是安装 yarn 的时候造成的</li>
+<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
 </ol>
-<p><strong>参考</strong></p>
-<p><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41643133/article/details/83829235</a></p>
+<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41643133/article/details/83829235</a></p>
 
                                                                         
                                     </div>

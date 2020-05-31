@@ -2,7 +2,7 @@
   <div class="article-albums">
     <ul class="article-albums-photos" id="basicExample">
       <% post.albums.forEach(function(photo){ %>
-
+233
         <li class="article-albums-item" data-scroll-reveal>
           <a class="article-albums-img fancybox" data-fancybox="images" data-caption="<%- photo[1] %>" href="<%- url_for(photo[0]) %>" rel="gallery_<%= post._id %>" title="<%- photo[1] %>">
             <img class="lazy" data-original="<%- url_for(photo[0]) %>" itemprop="image" alt="<%- photo[1] %>">
