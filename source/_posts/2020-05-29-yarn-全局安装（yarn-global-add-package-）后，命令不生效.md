@@ -6,17 +6,17 @@ excerpt: 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但�
 ---
 
 
-**背景**
+## 背景
 
 最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn
 
-**问题描述**
+## 问题描述
 
 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但是使用命令却不生效...
 
 `yarn global add hexo-cli`
 
-**解决过程**
+## 解决过程
 
 第一个感觉就是环境变量问题了, 本文是 win10 下的截图
 
@@ -40,13 +40,12 @@ excerpt: 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但�
 
 然后我发现我的安装文件在 `C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin` 中,
 
-尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(win7 可能需要重启电脑!!)
+尝试将刚刚的环境变量地址修改成这个, ok, 重启终端成功了(**win7 可能需要重启电脑!!**)
 
-**原因**
+## 原因
 
 1. 可能是从 npm/cnpm 切换为 yarn 某个环节不对
-2. 可能是安装 yarn 的时候造成的
+2. 可能是安装 yarn 的时候缺少了某个操作步骤造成的
 
 **参考**
-
 https://blog.csdn.net/weixin_41643133/article/details/83829235
