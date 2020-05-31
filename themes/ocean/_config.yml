@@ -6,6 +6,9 @@ menu:
   关于: /about
 rss: /atom.xml
 
+# 语言
+language: zh-CN
+
 # Miscellaneous
 favicon: /favicon.ico
 brand: /images/logo.png
