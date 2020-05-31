@@ -173,7 +173,11 @@ url_for(theme.ocean.path)
 <%- url_for(theme.ocean.brand) %>
 {% endcodeblock %}
 
-#### (3) 关于很多的问题
+#### (3) 修改文件, 比如修改样式部署之后不生效?
+
+`hexo clean && hexo g` 试试
+
+#### (4) 关于很多的问题
 
 直接查看作者的这篇文章 [关于 Ocean 使用中的问题](https://zhwangart.github.io/2019/07/02/Ocean-Issues/), 以及阅读 [Hexo 的文档](https://hexo.io/zh-cn/docs/), 非常详细...
 

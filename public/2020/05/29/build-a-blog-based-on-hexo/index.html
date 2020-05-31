@@ -136,7 +136,8 @@
 
 <figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\ocean.ejs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 有五处 --&gt;</span></span><br><span class="line">theme.ocean.path</span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line">url_for(theme.ocean.path)</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.ocean.brand</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.ocean.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="3-关于很多的问题"><a href="#3-关于很多的问题" class="headerlink" title="(3) 关于很多的问题"></a>(3) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
+<h4 id="3-修改文件-比如修改样式部署之后不生效"><a href="#3-修改文件-比如修改样式部署之后不生效" class="headerlink" title="(3) 修改文件, 比如修改样式部署之后不生效?"></a>(3) 修改文件, 比如修改样式部署之后不生效?</h4><p><code>hexo clean &amp;&amp; hexo g</code> 试试</p>
+<h4 id="4-关于很多的问题"><a href="#4-关于很多的问题" class="headerlink" title="(4) 关于很多的问题"></a>(4) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
 <p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
 <h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> 新的主题:</p>
 <img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526221210487.png" class="" title="新主题">
@@ -168,12 +169,13 @@
 
                                                                         
                                     </div>
-                                    <footer class="article-footer">
-                                        <a data-url="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/" data-id="ckav38pwm0002bgon3rxs7lji" class="article-share-link">
-                                            Share
+                                    <!-- 注释 - 分享按钮 -->
+                                    <!-- <footer class="article-footer">
+                                        <a data-url="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/" data-id="ckav3lu5y0000hgon9m4m95kc" class="article-share-link">
+                                            分享
                                         </a>
                                         
-                                    </footer>
+                                    </footer> -->
 
     </div>
 
@@ -182,7 +184,7 @@
   <nav class="article-nav">
     
       <a href="/your/2020/05/29/yarn-global-add-package/" class="article-nav-link">
-        <strong class="article-nav-caption">Newer</strong>
+        <strong class="article-nav-caption">前一篇</strong>
         <div class="article-nav-title">
           
             yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效
@@ -276,9 +278,9 @@
       </li>
     
     <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="Search">
+      <a class="nav-item-link nav-item-search" title="搜索">
         <i class="fe fe-search"></i>
-        Search
+        搜索
       </a>
     </li>
   </ul>
