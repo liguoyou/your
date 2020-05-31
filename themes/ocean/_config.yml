@@ -14,7 +14,7 @@ brand: /images/logo.png
 # Because I put videos in multiple formats on the same path, I just labeled the path here.
 ocean:
   overlay: true
-  path: images/ocean/
+  path: /images/
   brand: /images/logo-white.png
 
 # Content
