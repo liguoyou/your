@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>yarn 全局安装（yarn global add [package]）后，命令不生效</title>
+    <url>/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
+<p><code>yarn global add hexo-cli</code></p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
+<p>(1) 找到 yarn 的全局安装目录 <code>yarn global bin</code></p>
+<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_01.png" class="" title="yarn global bin">
+
+<p>(2) 将该目录地址拷贝至环境变量-系统变量-path 中:</p>
+<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_02.png" class="" title="将该目录地址拷贝至环境变量-系统变量-path">
+
+<p>(3) 重启终端 <code>git bash</code>, 执行命令, <strong>应该</strong>就可以了.</p>
+<p><strong>好吧, 我的还不可以</strong></p>
+<p>卸载全局依赖包 <code>yarn global remove hexo</code> , 再重新安装 <code>yarn global add hexo</code></p>
+<p><strong>还是不行</strong></p>
+<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_03.png" class="" title="hexo init 失败">
+
+<p>然后我发现我的安装文件在 <code>C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</code> 中,</p>
+<p>尝试将刚刚新增的环境变量地址修改成这个, ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
+<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/20200531155353.jpg" class="" title="修改环境变量地址">
+
+
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
+<li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
+<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
+</ol>
+<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41643133/article/details/83829235</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
     <url>/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理工具</em></p>
@@ -89,37 +120,6 @@
 
 <p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
 <p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> hexo 官方文档, 真的很详细<br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">https://zhwangart.github.io/2018/11/30/Ocean/</a> Ocean 中文文档<br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018662692</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">https://www.jianshu.com/p/5014133ba61a</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>yarn 全局安装（yarn global add [package]）后，命令不生效</title>
-    <url>/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/</url>
-    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等, 安装成功, 但是使用命令却不生效…</p>
-<p><code>yarn global add hexo-cli</code></p>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
-<p>(1) 找到 yarn 的全局安装目录 <code>yarn global bin</code></p>
-<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_01.png" class="" title="yarn global bin">
-
-<p>(2) 将该目录地址拷贝至环境变量-系统变量-path 中:</p>
-<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_02.png" class="" title="将该目录地址拷贝至环境变量-系统变量-path">
-
-<p>(3) 重启终端 <code>git bash</code>, 执行命令, <strong>应该</strong>就可以了.</p>
-<p><strong>好吧, 我的还不可以</strong></p>
-<p>卸载全局依赖包 <code>yarn global remove hexo</code> , 再重新安装 <code>yarn global add hexo</code></p>
-<p><strong>还是不行</strong></p>
-<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/image_03.png" class="" title="hexo init 失败">
-
-<p>然后我发现我的安装文件在 <code>C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</code> 中,</p>
-<p>尝试将刚刚新增的环境变量地址修改成这个, ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
-<img src="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/20200531155353.jpg" class="" title="修改环境变量地址">
-
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
-<li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
-<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
-</ol>
-<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41643133/article/details/83829235</a></p>
 ]]></content>
   </entry>
 </search>
