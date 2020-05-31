@@ -31,12 +31,12 @@ fancybox: true
 
 # Gitalk
 gitalk:
-  enable: false # true
-  clientID: # GitHub Application Client ID
-  clientSecret: # Client Secret
-  repo: # Repository name
-  owner: # GitHub ID
-  admin: # GitHub ID
+  enable: true # false
+  clientID: 2e731d2b04096a7c71ab # GitHub Application Client ID
+  clientSecret: 41e2e15eb8edebd8efd5a6da558a44d60f33468a # Client Secret
+  repo: your # Repository name
+  owner: liguoyou # GitHub ID
+  admin: liguoyou # GitHub ID
 
 # Valine
 valine:
