@@ -1,5 +1,5 @@
 ---
-title: "yarn 全局安装（yarn global add [package]）后，命令不生效"
+title: "yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效"
 date: 2020-05-29 00:07:52
 tags:
 excerpt: 使用 yarn 全局安装 `@vue/cli`, `hexo-cli` 等, 安装成功, 但是使用命令却不生效, 一般是环境变量配置问题

@@ -34,7 +34,7 @@
 <body>
 <main class="content">
   <section class="outer">
-  <article id="post-基于-Hexo-搭建-Gitee-个人静态博客" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  <article id="post-build-a-blog-based-on-hexo" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
 
     <div class="article-inner">
         
@@ -55,7 +55,7 @@
 
                 
                     <div class="article-meta">
-                        <a href="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" class="article-date">
+                        <a href="/your/2020/05/29/build-a-blog-based-on-hexo/" class="article-date">
   <time datetime="2020-05-28T16:04:28.000Z" itemprop="datePublished">2020-05-29</time>
 </a>
                             
@@ -84,23 +84,23 @@
 <p><code>yarn global add hexo-cli</code>  或者 <code>npm install -g hexo-cli</code></p>
 <h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 hexo, 在 hexo 中打开 git Bash, 执行:</p>
 <p><code>hexo init</code> <em>网速不好的话, 这里可能需要点时间</em></p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526204940892.png" class="" title="hexo init 成功">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526204940892.png" class="" title="hexo init 成功">
 
 <p>init 后目录如下, 关于目录及文件的说明请查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档(中文)</a></p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526205207269.png" class="" title="hexo init 生成的目录">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526205207269.png" class="" title="hexo init 生成的目录">
 
 <h3 id="3-编译-amp-运行"><a href="#3-编译-amp-运行" class="headerlink" title="3. 编译&amp;运行"></a>3. 编译&amp;运行</h3><p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
 <p>执行 <code>yarn build</code> 进行编译, 再执行 <code>yarn server</code> 可以运行服务</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526210826688.png" class="" title="编译&amp;运行">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210826688.png" class="" title="编译&amp;运行">
 
 <p>当然, 更便捷的操作是执行</p>
 <p><code>hexo generate</code> &amp;&amp; <code>hexo server</code></p>
 <p>简写</p>
 <p><code>hexo g</code> &amp;&amp; <code>hexo s</code></p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
 
 <h3 id="4-首次运行如图"><a href="#4-首次运行如图" class="headerlink" title="4. 首次运行如图"></a>4. 首次运行如图</h3><p>默认主题 landscape</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526210938239.png" class="" title="首次运行">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210938239.png" class="" title="首次运行">
 
 <h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><h3 id="一-选择主题"><a href="#一-选择主题" class="headerlink" title="一. 选择主题"></a>一. 选择主题</h3><p>本文选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
 <p>在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方的主题</a>里面选择一个你喜欢的主题, 按照主题的<a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">文档</a>来就好</p>
@@ -139,9 +139,9 @@
 <h4 id="3-关于很多的问题"><a href="#3-关于很多的问题" class="headerlink" title="(3) 关于很多的问题"></a>(3) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
 <p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
 <h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><p><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> 新的主题:</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526221210487.png" class="" title="新主题">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526221210487.png" class="" title="新主题">
 
-<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526235114597.png" class="" title="创建仓库及开启服务">
+<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235114597.png" class="" title="创建仓库及开启服务">
 
 <h3 id="2-配置-config-yml"><a href="#2-配置-config-yml" class="headerlink" title="(2) 配置 _config.yml"></a>(2) 配置 <code>_config.yml</code></h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liguoyou.gitee.io/your/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/your/</span></span><br></pre></td></tr></table></figure>
 
@@ -154,14 +154,14 @@
 <p><strong>值得注意的是</strong></p>
 <p>执行<code>hexo d</code>之后, 会将编译完成后的 public 文件中的所有文件 push 至仓库中</p>
 <p>如图:</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200526235831345.png" class="" title="hexo d">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235831345.png" class="" title="hexo d">
 
 <p><strong>但是, 我想把整个本地的仓库 push 上去怎么做呢</strong></p>
 <p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="">更多关于 git 的操作</a>)</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200527224538977.png" class="" title="git push">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527224538977.png" class="" title="git push">
 
 <p>然后设置部署目录为 public 即可</p>
-<img src="/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/image-20200527000632686.png" class="" title="设置部署目录为 public">
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527000632686.png" class="" title="设置部署目录为 public">
 
 <p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
 <p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> hexo 官方文档, 真的很详细<br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">https://zhwangart.github.io/2018/11/30/Ocean/</a> Ocean 中文文档<br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">https://segmentfault.com/a/1190000018662692</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">https://www.jianshu.com/p/5014133ba61a</a></p>
@@ -169,7 +169,7 @@
                                                                         
                                     </div>
                                     <footer class="article-footer">
-                                        <a data-url="http://liguoyou.gitee.io/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" data-id="ckauxh3rf0002xwonga0a87lv" class="article-share-link">
+                                        <a data-url="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/" data-id="ckav0pxsn0000y0on6zjp3nzl" class="article-share-link">
                                             Share
                                         </a>
                                         
@@ -181,11 +181,11 @@
         
   <nav class="article-nav">
     
-      <a href="/your/2020/05/29/yarn-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%EF%BC%88yarn-global-add-package-%EF%BC%89%E5%90%8E%EF%BC%8C%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9F%E6%95%88/" class="article-nav-link">
+      <a href="/your/2020/05/29/yarn-global-add-package/" class="article-nav-link">
         <strong class="article-nav-caption">Newer</strong>
         <div class="article-nav-title">
           
-            yarn 全局安装（yarn global add [package]）后，命令不生效
+            yarn 全局安装（yarn global add [package]）成功后，执行[package]命令不生效
           
         </div>
       </a>
