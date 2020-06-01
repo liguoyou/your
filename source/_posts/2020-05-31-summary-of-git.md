@@ -108,7 +108,7 @@ git add .
 git commit -m 'create vue.config.js'
 ```
 
-**也可以一步直接提交暂存区和版本区 -a 为 add 的意思**
+**也可以一步直接提交暂存区和版本区, -a 为 add 的意思**
 
 ```bash
 # 新增的文件第一次提交, 不能使用
