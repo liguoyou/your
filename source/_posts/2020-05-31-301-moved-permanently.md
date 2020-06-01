@@ -2,7 +2,7 @@
 title: 301 Moved Permanently (from disk cache)
 date: 2020-05-31 23:10:42
 tags:
-excerpt: 301 Moved Permanently (from disk cache) 清除浏览器的 301 换缓存
+excerpt: 301 Moved Permanently (from disk cache) 清除浏览器的301缓存
 ---
 
 不得不记录下这个奇葩的遭遇,

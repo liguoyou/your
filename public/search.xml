@@ -101,6 +101,9 @@
 <p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
 <p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档, 真的很详细</a><br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">Ocean 中文文档 - zhwangart</a><br><a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题 - zhwangart</a><br><a href="https://zhwangart.github.io/2018/12/06/Gitalk/" target="_blank" rel="noopener">Gitalk 的使用 - zhwangart</a><br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">基于Gitee+Hexo搭建个人博客 - segmentfault</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">使用Gitee+Hexo搭建个人博客 - 简书</a></p>
 ]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>Git 常用操作命令总结</title>
@@ -148,7 +151,7 @@
 <p><strong>把暂存区的内容提交到版本区, -m 为 message 的意思</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git commit -m 备注信息</span></span><br><span class="line">git commit -m <span class="string">'create vue.config.js'</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>也可以一步直接提交暂存区和版本区 -a 为 add 的意思</strong></p>
+<p><strong>也可以一步直接提交暂存区和版本区, -a 为 add 的意思</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新增的文件第一次提交, 不能使用</span></span><br><span class="line">git commit -a -m <span class="string">'这里填写修改的备注信息'</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>查看提交的历史记录</strong></p>
@@ -219,6 +222,13 @@
 
 <p>暂时这么多.</p>
 ]]></content>
+      <categories>
+        <category>工具类</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
   </entry>
   <entry>
     <title>301 Moved Permanently (from disk cache)</title>
@@ -273,5 +283,12 @@
 </ol>
 <p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
 ]]></content>
+      <categories>
+        <category>工具类</category>
+        <category>Yarn</category>
+      </categories>
+      <tags>
+        <tag>Yarn</tag>
+      </tags>
   </entry>
 </search>

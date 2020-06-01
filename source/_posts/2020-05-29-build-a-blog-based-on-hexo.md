@@ -2,6 +2,7 @@
 title: 基于 Hexo 搭建 Gitee 个人静态博客
 date: 2020-05-29 00:04:28
 tags:
+- Hexo
 top: true
 excerpt: 基于 Hexo 搭建静态博客的过程记录及问题解决方案, 本文选择的是 Ocean 主题
 ---

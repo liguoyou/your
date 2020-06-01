@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-05-31T17:02:27.411Z</updated>
+  <updated>2020-06-01T16:19:32.291Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/31/summary-of-git/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/31/summary-of-git/</id>
     <published>2020-05-31T15:38:41.000Z</published>
-    <updated>2020-05-31T17:02:27.411Z</updated>
+    <updated>2020-06-01T16:19:32.291Z</updated>
     
     <summary type="html">
     
@@ -30,6 +30,12 @@
     </summary>
     
     
+      <category term="工具类" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    
+      <category term="Git" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/Git/"/>
+    
+    
+      <category term="Git" scheme="http://liguoyou.gitee.io/your/tags/Git/"/>
     
   </entry>
   
@@ -38,11 +44,11 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/</id>
     <published>2020-05-31T15:10:42.000Z</published>
-    <updated>2020-05-31T15:27:57.312Z</updated>
+    <updated>2020-06-01T16:21:40.586Z</updated>
     
     <summary type="html">
     
-      301 Moved Permanently (from disk cache) 清除浏览器的 301 换缓存
+      301 Moved Permanently (from disk cache) 清除浏览器的301缓存
     
     </summary>
     
@@ -55,7 +61,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/</id>
     <published>2020-05-28T16:07:52.000Z</published>
-    <updated>2020-05-31T15:32:26.138Z</updated>
+    <updated>2020-06-01T16:19:51.872Z</updated>
     
     <summary type="html">
     
@@ -64,6 +70,12 @@
     </summary>
     
     
+      <category term="工具类" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    
+      <category term="Yarn" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/Yarn/"/>
+    
+    
+      <category term="Yarn" scheme="http://liguoyou.gitee.io/your/tags/Yarn/"/>
     
   </entry>
   
@@ -72,7 +84,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/</id>
     <published>2020-05-28T16:04:28.000Z</published>
-    <updated>2020-05-31T17:16:58.371Z</updated>
+    <updated>2020-06-01T16:20:35.729Z</updated>
     
     <summary type="html">
     
@@ -81,6 +93,8 @@
     </summary>
     
     
+    
+      <category term="Hexo" scheme="http://liguoyou.gitee.io/your/tags/Hexo/"/>
     
   </entry>
   

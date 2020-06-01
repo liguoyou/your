@@ -3,6 +3,8 @@ menu:
   首页: /
   时间轴: /archives
   相册: /gallery
+  分类: /categories
+  标签: /tags
   关于: /about
 rss: /atom.xml
 

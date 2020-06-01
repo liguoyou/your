@@ -1,7 +1,10 @@
 ---
 title: Git 常用操作命令总结
 date: 2020-05-31 23:38:41
-tags:
+tags: 
+- Git
+categories:
+- [工具类, Git]
 excerpt: Git 常用操作命令总结, 远程仓库管理 git push, git remote -v, 分支操作 git checkout -b devel, 打标签 git tag, 记录回滚 git reset --hard commit_id 等
 ---
 
