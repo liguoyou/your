@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="前端,Vue.js,JavaScript,Node.js,小程序">
+  
+  
+    <meta name="description" content="GuoYou.Li(李国有)的博客, 用于做学习过程中的笔记、总结以及知识分享">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Element table 组件实现行合并(span-method) |
+    
+    种子的信仰</title>
+  
+    <link rel="shortcut icon" href="/your/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/your/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/your/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/your/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/your/atom.xml" title="种子的信仰" type="application/atom+xml">
+</head>
+
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-el-table-object-span-method" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h1 class="article-title" itemprop="name">
+      Element table 组件实现行合并(span-method)
+    </h1>
+  
+  
+
+
+
+
+            </header>
+            
+
+                
+                    <div class="article-meta">
+                        <a href="/your/2020/06/03/el-table-object-span-method/" class="article-date">
+  <time datetime="2020-06-02T16:37:29.000Z" itemprop="datePublished">2020-06-03</time>
+</a>
+                            
+  <div class="article-category">
+    <a class="article-category-link" href="/your/categories/UI%E7%BB%84%E4%BB%B6%E5%BA%93/">UI组件库</a> / <a class="article-category-link" href="/your/categories/UI%E7%BB%84%E4%BB%B6%E5%BA%93/Element/">Element</a>
+  </div>
+
+                    </div>
+                    
+
+                        
+                            
+    <div class="tocbot"></div>
+
+
+
+
+
+                                
+
+                                    <div class="article-entry" itemprop="articleBody">
+                                        
+
+
+                                            
+
+                                                
+                                                                    <p><strong>官网文档说明：</strong></p>
+<blockquote><p>span-method 合并行或列的计算方法 Function({ row, column, rowIndex, columnIndex })</p>
+<p>方法的参数是一个对象，里面包含当前行 row、当前列 column、当前行号 rowIndex、当前列号 columnIndex 四个属性。该函数可以返回一个包含两个元素的数组，第一个元素代表 rowspan，第二个元素代表 colspan。 也可以返回一个键名为 rowspan 和 colspan 的对象。</p>
+<footer><strong>https://element.eleme.cn/#/zh-CN/component/table</strong></footer></blockquote>
+
+<h2 id="实现案例-1-理解参数"><a href="#实现案例-1-理解参数" class="headerlink" title="实现案例 1: 理解参数"></a>实现案例 1: 理解参数</h2><p><strong>实现效果</strong></p>
+<img src="/your/2020/06/03/el-table-object-span-method/20200603215741.png" class="" title="实现案例1效果图">
+
+<p><strong>html 模板</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:span-method</span>=<span class="string">"objectSpanMethod"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">border</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"width: 300px;"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"id"</span> <span class="attr">label</span>=<span class="string">"ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"姓名"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"sex"</span> <span class="attr">label</span>=<span class="string">"性别"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>表格数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    tableData: [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"1"</span>,</span><br><span class="line">        name: <span class="string">"李国有"</span>,</span><br><span class="line">        sex: <span class="string">"男"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"2"</span>,</span><br><span class="line">        name: <span class="string">"李国友"</span>,</span><br><span class="line">        sex: <span class="string">"男"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"3"</span>,</span><br><span class="line">        name: <span class="string">"李友国"</span>,</span><br><span class="line">        sex: <span class="string">"未知"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"4"</span>,</span><br><span class="line">        name: <span class="string">"油果"</span>,</span><br><span class="line">        sex: <span class="string">"女"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"5"</span>,</span><br><span class="line">        name: <span class="string">"有国"</span>,</span><br><span class="line">        sex: <span class="string">"女"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现方法及注解(看注释)</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  <span class="comment">// 合并的计算方法</span></span><br><span class="line">  objectSpanMethod(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">    <span class="comment">// 当列索引是2(第三列), 需要设置要合并的列/行</span></span><br><span class="line">    <span class="keyword">if</span> (columnIndex === <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (rowIndex === <span class="number">0</span> || rowIndex === <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="comment">// 当行索引是0(第一行), 或者当行索引是3(第四行), 均向下合并1行(共两行), 合并0列(共一列)</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          rowspan: <span class="number">2</span>,</span><br><span class="line">          colspan: <span class="number">1</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rowIndex === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// 当行索引是2(第三行), 不作合并</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 1表示不合并</span></span><br><span class="line">          rowspan: <span class="number">1</span>,</span><br><span class="line">          colspan: <span class="number">1</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 其他行</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 0表示已被合并, 直接不显示</span></span><br><span class="line">          rowspan: <span class="number">0</span>,</span><br><span class="line">          colspan: <span class="number">0</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现案例-2-动态设置合并行列"><a href="#实现案例-2-动态设置合并行列" class="headerlink" title="实现案例 2: 动态设置合并行列"></a>实现案例 2: 动态设置合并行列</h2><p><strong>效果图</strong></p>
+<img src="/your/2020/06/03/el-table-object-span-method/20200603230321.png" class="" title="实现案例1效果图">
+
+<p><strong>html 模板</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:span-method</span>=<span class="string">"objectSpanMethod"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">border</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"width: 600px;"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"id"</span> <span class="attr">label</span>=<span class="string">"订单号"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"商品名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"price"</span> <span class="attr">label</span>=<span class="string">"价格"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"num"</span> <span class="attr">label</span>=<span class="string">"数量"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+
+<p><strong>订单原始数据 -&gt; 表格数据</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vue data</span></span><br><span class="line">data () &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 表格数据</span></span><br><span class="line">    tableData: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">created() &#123;</span><br><span class="line">  <span class="keyword">this</span>.init()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  init() &#123;</span><br><span class="line">    <span class="comment">// 订单数据</span></span><br><span class="line">    <span class="keyword">const</span> orderData = [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">1</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"华为1"</span>,</span><br><span class="line">            price: <span class="number">3000</span>,</span><br><span class="line">            num: <span class="number">2</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"苹果1"</span>,</span><br><span class="line">            price: <span class="number">4000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"RedMi3"</span>,</span><br><span class="line">            price: <span class="number">4000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">2</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"魅族1"</span>,</span><br><span class="line">            price: <span class="number">2000</span>,</span><br><span class="line">            num: <span class="number">2</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">3</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"OPPO"</span>,</span><br><span class="line">            price: <span class="number">3000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"VIVO"</span>,</span><br><span class="line">            price: <span class="number">2000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 数据重组</span></span><br><span class="line">    orderData.forEach(<span class="function">(<span class="params">order</span>) =&gt;</span> &#123;</span><br><span class="line">      order.childrens.forEach(<span class="function">(<span class="params">prod, i</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.tableData.push(&#123;</span><br><span class="line">          id: order.id,</span><br><span class="line">          name: prod.name,</span><br><span class="line">          price: prod.price,</span><br><span class="line">          num: prod.num,</span><br><span class="line">          length: i === <span class="number">0</span> ? order.childrens.length : <span class="number">0</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重组后的数据 this.tableData</span></span><br><span class="line">    <span class="comment">// [</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"华为1","price":3000,"num":2,"length":3&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"苹果1","price":4000,"num":1,"length":0&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"RedMi3","price":4000,"num":1,"length":0&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":2,"name":"魅族1","price":2000,"num":2,"length":1&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":3,"name":"OPPO","price":3000,"num":1,"length":2&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":3,"name":"VIVO","price":2000,"num":1,"length":0&#125;</span></span><br><span class="line">    <span class="comment">// ]</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合并的计算方法</span></span><br><span class="line">  objectSpanMethod2(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">    <span class="comment">// 合并第一列: 订单号</span></span><br><span class="line">    <span class="keyword">if</span> (columnIndex === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        rowspan: row.length, <span class="comment">// , 通过 length 来判断需要合并的行数</span></span><br><span class="line">        colspan: <span class="number">1</span>, <span class="comment">// 列不合并</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>列合并也是同样的操作, 实际情况中行合并的需求比较常见</p>
+<p>通过对 row, column, rowIndex, columnIndex, rowspan, colspan 的灵活设置, 可以实现更多复杂的操作</p>
+<p><strong>参考</strong></p>
+<p><a href="https://blog.csdn.net/qq_29468573/article/details/80742646" target="_blank" rel="noopener">element-ui table :span-method（行合并）- CSDN</a></p>
+
+                                                                        
+                                    </div>
+                                    <!-- 注释 - 分享按钮 -->
+                                    <!-- <footer class="article-footer">
+                                        <a data-url="http://liguoyou.gitee.io/your/2020/06/03/el-table-object-span-method/" data-id="ckaziah0k000j9gong6n9f3kd" class="article-share-link">
+                                            分享
+                                        </a>
+                                        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/Element/" rel="tag">Element</a></li></ul>
+
+                                    </footer> -->
+
+    </div>
+
+    
+        
+  <nav class="article-nav">
+    
+    
+      <a href="/your/2020/05/31/summary-of-git/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">Git 常用操作命令总结</div>
+      </a>
+    
+  </nav>
+
+
+            
+
+                
+                    
+                        
+  <div class="gitalk" id="gitalk-container"></div>
+  <p style="color: #999; font-size: 12px; text-align: center;">
+    第三方评论系统 -- Gitalk: 偶尔可能出现加载失败的情况, 您可以选择刷新或者前往 
+    <a href="https://github.com/liguoyou/your/issues" target="_blank">issues</a>
+    提交和查看评论
+  </p>
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '2e731d2b04096a7c71ab',
+      clientSecret: '41e2e15eb8edebd8efd5a6da558a44d60f33468a',
+      repo: 'your',
+      owner: 'liguoyou',
+      admin: ['liguoyou'],
+      // id: location.pathname,      // Ensure uniqueness and length less than 50
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      pagerDirection: 'last'
+    })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+                            
+
+</article>
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+    <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2020 种子的信仰</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean" target="_blank" rel="noopener">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/your/"><img src="/your/images/logo.png" alt="种子的信仰"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/">首页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/archives">时间轴</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/categories">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/tags">标签</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/your/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="请输入关键词...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+
+<script src="/your/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/your/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/your/js/lazyload.min.js"></script>
+
+
+<script src="/your/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  
+<script src="/your/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/your/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script src="/your/js/ocean.js"></script>
+
+
+</body>
+</html>
