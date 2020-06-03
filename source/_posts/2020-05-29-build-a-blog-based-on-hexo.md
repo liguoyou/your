@@ -2,10 +2,9 @@
 title: 基于 Hexo 搭建 Gitee 个人静态博客
 date: 2020-05-29 00:04:28
 tags:
-- Hexo
+  - Hexo
 categories:
-- [工具类, Hexo]
-top: true
+  - [工具类, Hexo]
 excerpt: 基于 Hexo 搭建静态博客的过程记录及问题解决方案, 本文选择的是 Ocean 主题
 ---
 
@@ -25,7 +24,7 @@ npm install -g hexo-cli
 
 ### 2. 初始化文件夹
 
-创建文件夹 ~~hexo~~ your (**后面我把文件夹名改成了 your, 保持和访问的根目录一致**), 
+创建文件夹 ~~hexo~~ your (**后面我把文件夹名改成了 your, 保持和访问的根目录一致**),
 
 在 ~~hexo~~ your 中打开 git Bash, 执行:
 
@@ -94,6 +93,7 @@ hexo g && hexo s
 `yarn add hexo-generator-searchdb`
 
 在 `./_config.yml` 中添加配置 (注意: 这不是 ocean 中的)
+
 ```bash
 # 本地检索 hexo-generator-searchdb
 search:
@@ -101,14 +101,15 @@ search:
   field: post
   content: true
 ```
-{% endblockquote %}
 
+{% endblockquote %}
 
 然后就报错 Cannot GET /js/search.js 404!!
 
 **首先**, 按照 [关于搜索问题 sevilen 同学给了一个详细的步骤](https://github.com/zhwangart/gitalk/issues/7)
 
 在 `\themes\ocean\layout\_partial\after-footer.ejs` 中配置
+
 ```bash
 # 不管是这个
 <% if (theme.search){ %>
@@ -119,19 +120,27 @@ search:
   <%- js('/js/search') %>
 <% } %>
 ```
+
 然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..
 
 **然后** 直接找到加载 js 的地方修改路径
 
 {% codeblock lang:bash themes\ocean\source\js\ocean.js %}
-# 原代码
-# $.getScript('/js/search.js',
-# 修改为
-$.getScript('js/search.js',
 
 # 原代码
-# searchFunc("/search.xml",
+
+# \$.getScript('/js/search.js',
+
 # 修改为
+
+\$.getScript('js/search.js',
+
+# 原代码
+
+# searchFunc("/search.xml",
+
+# 修改为
+
 searchFunc("search.xml",
 {% endcodeblock %}
 
@@ -141,20 +150,26 @@ searchFunc("search.xml",
 http://localhost:4000/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/js/search.js?_=1590852138728
 ```
 
-
 **最后使用了一种不是很好的办法解决了**
 
-在文件路径前面添加根路径`/your/` (_config.yml 中的 `root: /your/`)
+在文件路径前面添加根路径`/your/` (\_config.yml 中的 `root: /your/`)
 
 {% codeblock lang:bash themes\ocean\source\js\ocean.js %}
-# 原代码
-# $.getScript('/js/search.js',
-# 修改为
-$.getScript('/your/js/search.js',
 
 # 原代码
-# searchFunc("/search.xml",
+
+# \$.getScript('/js/search.js',
+
 # 修改为
+
+\$.getScript('/your/js/search.js',
+
+# 原代码
+
+# searchFunc("/search.xml",
+
+# 修改为
+
 searchFunc("/your/search.xml",
 {% endcodeblock %}
 
@@ -162,44 +177,58 @@ searchFunc("/your/search.xml",
 
 #### (2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示
 
-图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加[辅助函数 url_for](https://hexo.io/zh-cn/docs/helpers#url-for)就可以顺利解决: 
+图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加[辅助函数 url_for](https://hexo.io/zh-cn/docs/helpers#url-for)就可以顺利解决:
 
 **修改以下文件**
 
 {% codeblock lang:html themes\ocean\layout\_partial\sidebar.ejs %}
+
 <!-- 原代码 -->
+
 <%- theme.brand %>
 
 <!-- 修改为 -->
+
 <%- url_for(theme.brand) %>
 {% endcodeblock %}
 
 {% codeblock lang:html themes\ocean\layout\_partial\head.ejs %}
+
 <!-- 原代码 -->
+
 <%- theme.favicon %>
 
 <!-- 修改为 -->
+
 <%- url_for(theme.favicon) %>
 {% endcodeblock %}
 
 {% codeblock lang:html themes\ocean\layout\_partial\ocean.ejs %}
+
 <!-- 原代码 有五处 -->
+
 theme.ocean.path
+
 <!-- 修改为 -->
+
 url_for(theme.ocean.path)
 
 <!-- 原代码 -->
+
 <%- theme.ocean.brand %>
+
 <!-- 修改为 -->
+
 <%- url_for(theme.ocean.brand) %>
 {% endcodeblock %}
 
 #### (3) 修改文件, 比如修改样式部署之后不生效?
 
 一般是缓存文件问题, 试试:
+
 ```bash
 hexo clean && hexo g
-``` 
+```
 
 #### (4) 关于很多的问题
 
@@ -269,7 +298,6 @@ hexo d
 
 那就将编译好的整个仓库的内容提交(`git push`)上去, ({% post_link summary-of-git "更多git操作" %})
 
-
 {% asset_img image-20200527224538977.png "git push" %}
 
 然后**设置部署目录为 public** 即可
@@ -283,5 +311,5 @@ hexo d
 [Ocean 中文文档 - zhwangart](https://zhwangart.github.io/2018/11/30/Ocean/)
 [关于 Ocean 使用中的问题 - zhwangart](https://zhwangart.github.io/2019/07/02/Ocean-Issues/)
 [Gitalk 的使用 - zhwangart](https://zhwangart.github.io/2018/12/06/Gitalk/)
-[基于Gitee+Hexo搭建个人博客 - segmentfault](https://segmentfault.com/a/1190000018662692)
-[使用Gitee+Hexo搭建个人博客 - 简书](https://www.jianshu.com/p/5014133ba61a)
+[基于 Gitee+Hexo 搭建个人博客 - segmentfault](https://segmentfault.com/a/1190000018662692)
+[使用 Gitee+Hexo 搭建个人博客 - 简书](https://www.jianshu.com/p/5014133ba61a)

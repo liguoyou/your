@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-06-03T15:21:02.976Z</updated>
+  <updated>2020-06-03T16:05:27.251Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,23 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的计划</title>
+    <link href="http://liguoyou.gitee.io/your/2020/06/03/plan/"/>
+    <id>http://liguoyou.gitee.io/your/2020/06/03/plan/</id>
+    <published>2020-06-03T15:31:20.000Z</published>
+    <updated>2020-06-03T16:05:27.251Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里的是一个计划列表, 包括已完成和未完成的所有计划…&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Element table 组件实现行合并(span-method)</title>
@@ -111,7 +128,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/</id>
     <published>2020-05-28T16:04:28.000Z</published>
-    <updated>2020-06-02T14:05:59.974Z</updated>
+    <updated>2020-06-03T15:32:54.935Z</updated>
     
     <summary type="html">
     
