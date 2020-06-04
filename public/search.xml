@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>我的计划</title>
+    <title>计划列表</title>
     <url>/your/2020/06/03/plan/</url>
     <content><![CDATA[<p>这里的是一个计划列表, 包括已完成和未完成的所有计划…</p>
 <a id="more"></a>
@@ -29,6 +29,7 @@
 <li><input disabled="" type="checkbox"> Webpack 常用配置方案</li>
 <li><input disabled="" type="checkbox"> EsLint 配置方案</li>
 <li><input disabled="" type="checkbox"> 单元测试</li>
+<li><input disabled="" type="checkbox"> removeEventListener 取消监听事件不起作用(失效)的原因</li>
 <li><input disabled="" type="checkbox"> …</li>
 </ul>
 ]]></content>
