@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="前端,Vue.js,JavaScript,Node.js,小程序">
+  
+  
+    <meta name="description" content="GuoYou.Li(李国有)的博客, 用于做学习过程中的笔记、总结以及知识分享">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    JS中的构造函数、原型与原型链 |
+    
+    种子的信仰</title>
+  
+    <link rel="shortcut icon" href="/your/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/your/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/your/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/your/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/your/atom.xml" title="种子的信仰" type="application/atom+xml">
+</head>
+
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-prototype" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h1 class="article-title" itemprop="name">
+      JS中的构造函数、原型与原型链
+    </h1>
+  
+  
+
+
+
+
+            </header>
+            
+
+                
+                    <div class="article-meta">
+                        <a href="/your/2020/06/05/prototype/" class="article-date">
+  <time datetime="2020-06-05T14:05:08.000Z" itemprop="datePublished">2020-06-05</time>
+</a>
+                            
+  <div class="article-category">
+    <a class="article-category-link" href="/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+  </div>
+
+                    </div>
+                    
+
+                        
+                            
+    <div class="tocbot"></div>
+
+
+
+
+
+                                
+
+                                    <div class="article-entry" itemprop="articleBody">
+                                        
+
+
+                                            
+
+                                                
+                                                                    <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.showInfo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">" "</span> + <span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zhangsan = <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="number">23</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="comment">// class Person &#123;</span></span><br><span class="line"><span class="comment">//   constructor(name, age) &#123;</span></span><br><span class="line"><span class="comment">//     this.name = name;</span></span><br><span class="line"><span class="comment">//     this.age = age;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   showInfo () &#123;</span></span><br><span class="line"><span class="comment">//     console.log(this.name + " " + this.age);</span></span><br><span class="line"><span class="comment">//   &#125;;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="什么是构造函数？"><a href="#什么是构造函数？" class="headerlink" title="什么是构造函数？"></a>什么是构造函数？</h3><p>上面的 <code>Person</code> 就是构造函数,</p>
+<blockquote>
+<p><strong>constructor</strong> 是一种用于创建和初始化 class 创建的对象的特殊方法。<br>—— MDN web docs</p>
+</blockquote>
+<h3 id="构造函数的特点"><a href="#构造函数的特点" class="headerlink" title="构造函数的特点"></a>构造函数的特点</h3><blockquote><ul>
+<li><p>构造函数的函数名的第一个字母通常大写。</p>
+</li>
+<li><p>函数体内使用 <code>this</code> 关键字，代表所要生成的对象实例。</p>
+</li>
+<li><p>生成对象的时候，必须使用 <code>new</code> 命令来调用构造函数。</p>
+</li>
+</ul>
+</blockquote>
+
+<h3 id="new-命令的作用"><a href="#new-命令的作用" class="headerlink" title="new 命令的作用"></a>new 命令的作用</h3><blockquote><p>new 命令的作用，就是执行一个构造函数，并且返回一个对象实例</p>
+<p>new 一个对象的过程</p>
+<ul>
+<li><p>创建一个空对象，作为将要返回的对象实例。</p>
+</li>
+<li><p>将空对象的原型指向了构造函数的 <code>prototype</code> 属性。</p>
+</li>
+<li><p>将空对象赋值给构造函数内部的 <code>this</code> 关键字。</p>
+</li>
+<li><p>开始执行构造函数内部的代码。</p>
+</li>
+</ul>
+</blockquote>
+
+<p>最后返回 <code>this</code> 赋值给 zhangsan</p>
+<p>再看这些：</p>
+<ul>
+<li><p><code>const o = {}</code> 是 <code>const o = new Object()</code> 的语法糖</p>
+</li>
+<li><p><code>const a = []</code> 是 <code>const a = new Array()</code> 的语法糖</p>
+</li>
+<li><p><code>function Fn () {}</code> 是 <code>const Fn = new Function ()</code> 的语法糖</p>
+</li>
+</ul>
+<p>也就是说，<code>Object</code>、<code>Array</code>、<code>Function</code> 就是构造函数，而 o, a, Fn 就是它们的一个实例</p>
+<p><strong>那么这里, zhangsan 就是 <code>new Person</code> 后得到的一个对象实例</strong>:</p>
+<img src="/your/2020/06/05/prototype/prototype_01.png" class="" title="zhangsan">
+
+<p>从输出的结果上可以看到:<br>hangsan 拥有了 <code>name</code> 和 <code>age</code> 属性, 在原型<code>__proto__</code>上还有一个 <code>showInfo</code> 的方法</p>
+<p>下面看看了解一下原型的规则</p>
+<h2 id="原型规则"><a href="#原型规则" class="headerlink" title="原型规则"></a>原型规则</h2><p>(1) 所有的引用类型(数组、对象、函数)，都具有对象特性，即可自由扩展属性，<code>null</code> 除外。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">obj.a = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line">arr.b = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">fn.c = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nObj = <span class="literal">null</span>;</span><br><span class="line">nObj.d = <span class="number">100</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+
+<p>(2) 所有的引用类型（数组、对象、函数），都有一个 <code>__proto__</code> 属性，属性值是一个普通的对象。</p>
+<p>(3) 所有的函数，都有一个 <code>prototype</code> 属性，属性值也是一个普通的对象。</p>
+<p><em>约定 <code>__proto__</code> 为隐式原型，<code>prototype</code> 为显式原型</em></p>
+<p>(4) 所有的引用类型(数组、对象、函数)，<code>__proto__</code> 属性值指向它的构造函数的 <code>prototype</code> 属性值，</p>
+<p>在代码例子中，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 项目中不推荐直接使用 XX.__proto__</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>(5) 当试图得到一个对象的某个属性，如果这个对象本身没有这个属性，那么它就会去它的 <code>__proto__</code>, 即它的构造函数的 <code>prototype</code> 属性值中去寻找。</p>
+<p>这点对应代码例子中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用了 zhangsan.__proto__ (即 Person.prototype) 的 showInfo 方法</span></span><br><span class="line">zhangsan.showInfo(); <span class="comment">// 张三 23</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了 zhangsan.__proto__.__proto__ 即(Object) 的 toString 方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.toString()); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><img src="/your/2020/06/05/prototype/prototype_02.png" class="" title="原型链">
+<p><em>图片来源于慕课网 并经过修改处理</em></p>
+<p><strong>注解:</strong></p>
+<p>如同上面所说,</p>
+<p>将 zhangsan 的原型指向了构造函数(<code>Person</code>)的 <code>prototype</code> 属性。</p>
+<p>而更深一层, 构造函数(<code>Person</code>)的原型又指向了 构造函数(<code>Object</code>) 的 <code>prototype</code> 属性, 一直到 null</p>
+<h2 id="相关补充"><a href="#相关补充" class="headerlink" title="相关补充"></a>相关补充</h2><h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>注： 可以使用 hasOwnProperty() 方法来判断是否是自身的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">zhangsan.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"正在吃..."</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了自身的 eat 方法</span></span><br><span class="line">zhangsan.eat(); <span class="comment">// 正在吃...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 eat 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"eat"</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 showInfo 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"showInfo"</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>用于判断引用类型属于哪个构造函数的方法</p>
+<p>instanceof 的判断逻辑: 通过 <code>__proto__</code> 一层一个层往上找,</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>以上为学习笔记</p>
+<p><strong>参考</strong><br><a href="https://juejin.im/entry/584a1c98ac502e006c5d63b8" target="_blank" rel="noopener">JavaScript 中的构造函数 - 掘金</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>Object.prototype.__proto__</code> - MDN</a><br><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网</a></p>
+
+                                                                        
+                                    </div>
+                                    <footer class="article-footer">
+                                        <!-- 注释 - 分享按钮 -->
+                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/06/05/prototype/" data-id="ckb2h1u26000f8kon81s16qqp" class="article-share-link">
+                                            分享
+                                        </a> -->
+                                        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+
+                                    </footer>
+
+    </div>
+
+    
+        
+  <nav class="article-nav">
+    
+    
+      <a href="/your/2020/06/03/plan/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">计划列表</div>
+      </a>
+    
+  </nav>
+
+
+            
+
+                
+                    
+                        
+  <div class="gitalk" id="gitalk-container"></div>
+  <p style="color: #999; font-size: 12px; text-align: center;">
+    第三方评论系统 -- Gitalk: 偶尔可能出现加载失败的情况, 您可以选择刷新或者前往 
+    <a href="https://github.com/liguoyou/your/issues" target="_blank">issues</a>
+    提交和查看评论
+  </p>
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '2e731d2b04096a7c71ab',
+      clientSecret: '41e2e15eb8edebd8efd5a6da558a44d60f33468a',
+      repo: 'your',
+      owner: 'liguoyou',
+      admin: ['liguoyou'],
+      // id: location.pathname,      // Ensure uniqueness and length less than 50
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      pagerDirection: 'last'
+    })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+                            
+
+</article>
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+    <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2020 种子的信仰</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean" target="_blank" rel="noopener">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/your/"><img src="/your/images/logo.png" alt="种子的信仰"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/">首页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/archives">时间轴</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/categories">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/tags">标签</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/your/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="请输入关键词...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+
+<script src="/your/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/your/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/your/js/lazyload.min.js"></script>
+
+
+<script src="/your/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  
+<script src="/your/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/your/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script src="/your/js/ocean.js"></script>
+
+
+</body>
+</html>
