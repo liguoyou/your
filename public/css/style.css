@@ -1431,6 +1431,7 @@ img {
   padding-left: 0;
   margin-left: 0;
   margin: 0;
+  padding: 0.6rem 0;
 }
 .article-tag-list:before {
   content: "\f153";
@@ -1818,7 +1819,7 @@ a.toc-link {
   border-radius: 6px;
 }
 .articles .article {
-  padding: 4.5rem 0;
+  padding: 2.5rem 0;
 }
 .articles .article:not(:last-child) {
   border-bottom: 0.1rem #e6e6e6 solid;
