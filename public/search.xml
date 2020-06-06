@@ -30,6 +30,32 @@
 <li><input disabled="" type="checkbox"> EsLint 配置方案</li>
 <li><input disabled="" type="checkbox"> 单元测试</li>
 <li><input disabled="" type="checkbox"> removeEventListener 取消监听事件不起作用(失效)的原因</li>
+<li><input disabled="" type="checkbox"> Node.js 相关<ul>
+<li><input disabled="" type="checkbox"> Sequelize ORM 框架</li>
+<li><input disabled="" type="checkbox"> …</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Vue.js 相关<ul>
+<li><input disabled="" type="checkbox"> …</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> React 相关<ul>
+<li><input disabled="" type="checkbox"> React-Native</li>
+<li><input disabled="" type="checkbox"> …</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 小程序相关<ul>
+<li><input disabled="" type="checkbox"> …</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> UI 组件相关<ul>
+<li><input disabled="" type="checkbox"> …</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> 多端框架相关<ul>
+<li><input disabled="" type="checkbox"> …</li>
+</ul>
+</li>
 <li><input disabled="" type="checkbox"> …</li>
 </ul>
 ]]></content>
@@ -81,8 +107,8 @@
 <p><strong>那么这里, zhangsan 就是 <code>new Person</code> 后得到的一个对象实例</strong>:</p>
 <img src="/your/2020/06/05/prototype/prototype_01.png" class="" title="zhangsan">
 
-<p>从输出的结果上可以看到:<br>hangsan 拥有了 <code>name</code> 和 <code>age</code> 属性, 在原型<code>__proto__</code>上还有一个 <code>showInfo</code> 的方法</p>
-<p>下面看看了解一下原型的规则</p>
+<p>从输出的结果上可以看到:<br>zhangsan 拥有了 <code>name</code> 和 <code>age</code> 属性, 在原型<code>__proto__</code>上还有一个 <code>showInfo</code> 的方法</p>
+<p>下面看看了解一下原型<code>__proto__</code>的规则</p>
 <h2 id="原型规则"><a href="#原型规则" class="headerlink" title="原型规则"></a>原型规则</h2><p>(1) 所有的引用类型(数组、对象、函数)，都具有对象特性，即可自由扩展属性，<code>null</code> 除外。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">obj.a = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line">arr.b = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">fn.c = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nObj = <span class="literal">null</span>;</span><br><span class="line">nObj.d = <span class="number">100</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
 
@@ -94,7 +120,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 项目中不推荐直接使用 XX.__proto__</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <p>(5) 当试图得到一个对象的某个属性，如果这个对象本身没有这个属性，那么它就会去它的 <code>__proto__</code>, 即它的构造函数的 <code>prototype</code> 属性值中去寻找。</p>
-<p>这点对应代码例子中</p>
+<p>代码例子:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用了 zhangsan.__proto__ (即 Person.prototype) 的 showInfo 方法</span></span><br><span class="line">zhangsan.showInfo(); <span class="comment">// 张三 23</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了 zhangsan.__proto__.__proto__ 即(Object) 的 toString 方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.toString()); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><img src="/your/2020/06/05/prototype/prototype_02.png" class="" title="原型链">
@@ -103,22 +129,27 @@
 <p>如同上面所说,</p>
 <p>将 zhangsan 的原型指向了构造函数(<code>Person</code>)的 <code>prototype</code> 属性。</p>
 <p>而更深一层, 构造函数(<code>Person</code>)的原型又指向了 构造函数(<code>Object</code>) 的 <code>prototype</code> 属性, 一直到 null</p>
-<h2 id="相关补充"><a href="#相关补充" class="headerlink" title="相关补充"></a>相关补充</h2><h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>注： 可以使用 hasOwnProperty() 方法来判断是否是自身的属性</p>
+<h2 id="相关补充"><a href="#相关补充" class="headerlink" title="相关补充"></a>相关补充</h2><h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>可以使用 <code>hasOwnProperty()</code> 方法来判断是否是自身的属性</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">zhangsan.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"正在吃..."</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了自身的 eat 方法</span></span><br><span class="line">zhangsan.eat(); <span class="comment">// 正在吃...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 eat 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"eat"</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 showInfo 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"showInfo"</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>用于判断引用类型属于哪个构造函数的方法</p>
-<p>instanceof 的判断逻辑: 通过 <code>__proto__</code> 一层一个层往上找,</p>
+<p><code>instanceof</code> 的判断逻辑: 通过 <code>__proto__</code> 一层一个层往上找,</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <p>以上为学习笔记</p>
-<p><strong>参考</strong><br><a href="https://juejin.im/entry/584a1c98ac502e006c5d63b8" target="_blank" rel="noopener">JavaScript 中的构造函数 - 掘金</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>Object.prototype.__proto__</code> - MDN</a><br><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网</a></p>
+<p><strong>参考</strong><br><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网</a><br><a href="https://juejin.im/entry/584a1c98ac502e006c5d63b8" target="_blank" rel="noopener">JavaScript 中的构造函数 - 掘金</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>Object.prototype.__proto__</code> - MDN</a></p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
         <tag>JavaScript</tag>
-        <tag>学习笔记</tag>
+        <tag>构造函数</tag>
+        <tag>原型</tag>
+        <tag>原型链</tag>
+        <tag>hasOwnProperty</tag>
+        <tag>instanceof</tag>
       </tags>
   </entry>
   <entry>
@@ -158,11 +189,13 @@
 <p><a href="https://blog.csdn.net/qq_29468573/article/details/80742646" target="_blank" rel="noopener">element-ui table :span-method（行合并）- CSDN</a></p>
 ]]></content>
       <categories>
-        <category>UI组件库</category>
-        <category>Element</category>
+        <category>问题解决</category>
+        <category>Element-ui</category>
       </categories>
       <tags>
         <tag>Element</tag>
+        <tag>UI组件库</tag>
+        <tag>span-method</tag>
       </tags>
   </entry>
   <entry>
@@ -264,7 +297,6 @@
 
 <img src="/your/2020/05/31/summary-of-git/git_05.png" class="" title="设置上游分支">
 
-
 <p><strong>如果发现 push 失败, 很有可能是因为其他人修改提交了代码, 你需要先拉取最新的代码下来, 合并之后再提交</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
 
@@ -283,7 +315,7 @@
 <p>暂时这么多.</p>
 ]]></content>
       <categories>
-        <category>工具类</category>
+        <category>知识总结</category>
         <category>Git</category>
       </categories>
       <tags>
@@ -298,7 +330,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
-<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了301重定向到了生产环境 api 地址</p>
+<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了 301 重定向到了生产环境 api 地址</p>
 <p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找答案和后端沟通, baidu 了也没找到解决方案</p>
 <p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
 <img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
@@ -306,13 +338,15 @@
 <p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
 <p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
 <p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
-<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome浏览器清除301缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
+<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome 浏览器清除 301 缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
 ]]></content>
       <categories>
-        <category>奇葩问题</category>
+        <category>问题解决</category>
+        <category>缓存</category>
       </categories>
       <tags>
-        <tag>缓存</tag>
+        <tag>301</tag>
+        <tag>浏览器缓存</tag>
       </tags>
   </entry>
   <entry>
@@ -324,7 +358,7 @@
 
 <p>安装成功, 但是使用命令却不生效…</p>
 <h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
-<p>(1) 找到 yarn 的全局安装目录 </p>
+<p>(1) 找到 yarn 的全局安装目录</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global bin</span><br></pre></td></tr></table></figure>
 
 <img src="/your/2020/05/29/yarn-global-add-package/image_01.png" class="" title="yarn global bin">
@@ -336,12 +370,11 @@
 <p><strong>好吧, 我的还不可以</strong></p>
 <img src="/your/2020/05/29/yarn-global-add-package/image_03.png" class="" title="hexo init 失败">
 
-<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址: </p>
+<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</span><br></pre></td></tr></table></figure>
 
 <p>ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
 <img src="/your/2020/05/29/yarn-global-add-package/20200531155353.jpg" class="" title="修改环境变量地址">
-
 
 <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
 <li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
@@ -350,7 +383,7 @@
 <p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
 ]]></content>
       <categories>
-        <category>工具类</category>
+        <category>问题解决</category>
         <category>Yarn</category>
       </categories>
       <tags>
@@ -463,11 +496,13 @@
 <p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档, 真的很详细</a><br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">Ocean 中文文档 - zhwangart</a><br><a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题 - zhwangart</a><br><a href="https://zhwangart.github.io/2018/12/06/Gitalk/" target="_blank" rel="noopener">Gitalk 的使用 - zhwangart</a><br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">基于 Gitee+Hexo 搭建个人博客 - segmentfault</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">使用 Gitee+Hexo 搭建个人博客 - 简书</a></p>
 ]]></content>
       <categories>
-        <category>工具类</category>
+        <category>学习笔记</category>
         <category>Hexo</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
+        <tag>Ocean</tag>
+        <tag>静态博客</tag>
       </tags>
   </entry>
 </search>

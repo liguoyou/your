@@ -3,10 +3,14 @@ title: JS中的构造函数、原型与原型链
 date: 2020-06-05 22:05:08
 tags:
   - JavaScript
-  - 学习笔记
+  - 构造函数
+  - 原型
+  - 原型链
+  - hasOwnProperty
+  - instanceof
 categories:
-  - 学习笔记
-excerpt: JS中的构造函数、原型与原型链, 什么是构造函数? 原型? hasOwnProperty 以及 instanceof 的用法
+  - [学习笔记, JavaScript]
+excerpt: JS中的构造函数、原型与原型链, 什么是构造函数? hasOwnProperty 以及 instanceof 的用法
 ---
 
 ## 构造函数
@@ -91,9 +95,9 @@ new 一个对象的过程
 {% asset_img prototype_01.png zhangsan %}
 
 从输出的结果上可以看到:
-hangsan 拥有了 `name` 和 `age` 属性, 在原型`__proto__`上还有一个 `showInfo` 的方法
+zhangsan 拥有了 `name` 和 `age` 属性, 在原型`__proto__`上还有一个 `showInfo` 的方法
 
-下面看看了解一下原型的规则
+下面看看了解一下原型`__proto__`的规则
 
 ## 原型规则
 
@@ -130,7 +134,7 @@ console.log(zhangsan.__proto__ === Person.prototype); // true
 
 (5) 当试图得到一个对象的某个属性，如果这个对象本身没有这个属性，那么它就会去它的 `__proto__`, 即它的构造函数的 `prototype` 属性值中去寻找。
 
-这点对应代码例子中
+代码例子:
 
 ```js
 // 调用了 zhangsan.__proto__ (即 Person.prototype) 的 showInfo 方法
@@ -157,7 +161,7 @@ _图片来源于慕课网 并经过修改处理_
 
 ### hasOwnProperty
 
-注： 可以使用 hasOwnProperty() 方法来判断是否是自身的属性
+可以使用 `hasOwnProperty()` 方法来判断是否是自身的属性
 
 ```js
 zhangsan.eat = function () {
@@ -178,7 +182,7 @@ console.log(zhangsan.hasOwnProperty("showInfo")); // false
 
 用于判断引用类型属于哪个构造函数的方法
 
-instanceof 的判断逻辑: 通过 `__proto__` 一层一个层往上找,
+`instanceof` 的判断逻辑: 通过 `__proto__` 一层一个层往上找,
 
 ```js
 const obj = {};
@@ -196,6 +200,6 @@ console.log(fn instanceof Object); // true
 以上为学习笔记
 
 **参考**
+[慕课网](https://coding.imooc.com/class/115.html)
 [JavaScript 中的构造函数 - 掘金](https://juejin.im/entry/584a1c98ac502e006c5d63b8)
 [`Object.prototype.__proto__` - MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)
-[慕课网](https://coding.imooc.com/class/115.html)

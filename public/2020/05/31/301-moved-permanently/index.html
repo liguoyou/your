@@ -60,7 +60,7 @@
 </a>
                             
   <div class="article-category">
-    <a class="article-category-link" href="/your/categories/%E5%A5%87%E8%91%A9%E9%97%AE%E9%A2%98/">奇葩问题</a>
+    <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a> / <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/%E7%BC%93%E5%AD%98/">缓存</a>
   </div>
 
                     </div>
@@ -86,7 +86,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
-<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了301重定向到了生产环境 api 地址</p>
+<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了 301 重定向到了生产环境 api 地址</p>
 <p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找答案和后端沟通, baidu 了也没找到解决方案</p>
 <p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
 <img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
@@ -94,17 +94,17 @@
 <p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
 <p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
 <p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
-<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome浏览器清除301缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
+<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome 浏览器清除 301 缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
 
                                                                         
                                     </div>
                                     <footer class="article-footer">
                                         <!-- 注释 - 分享按钮 -->
-                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/" data-id="ckb2h1u1p00038kon0w9cbjpb" class="article-share-link">
+                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/" data-id="ckb3q7kiy0005vwongk046rlc" class="article-share-link">
                                             分享
                                         </a> -->
                                         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E7%BC%93%E5%AD%98/" rel="tag">缓存</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/301/" rel="tag">301</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/" rel="tag">浏览器缓存</a></li></ul>
 
                                     </footer>
 

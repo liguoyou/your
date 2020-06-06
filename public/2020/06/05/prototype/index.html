@@ -60,7 +60,7 @@
 </a>
                             
   <div class="article-category">
-    <a class="article-category-link" href="/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+    <a class="article-category-link" href="/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a> / <a class="article-category-link" href="/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/">JavaScript</a>
   </div>
 
                     </div>
@@ -127,8 +127,8 @@
 <p><strong>那么这里, zhangsan 就是 <code>new Person</code> 后得到的一个对象实例</strong>:</p>
 <img src="/your/2020/06/05/prototype/prototype_01.png" class="" title="zhangsan">
 
-<p>从输出的结果上可以看到:<br>hangsan 拥有了 <code>name</code> 和 <code>age</code> 属性, 在原型<code>__proto__</code>上还有一个 <code>showInfo</code> 的方法</p>
-<p>下面看看了解一下原型的规则</p>
+<p>从输出的结果上可以看到:<br>zhangsan 拥有了 <code>name</code> 和 <code>age</code> 属性, 在原型<code>__proto__</code>上还有一个 <code>showInfo</code> 的方法</p>
+<p>下面看看了解一下原型<code>__proto__</code>的规则</p>
 <h2 id="原型规则"><a href="#原型规则" class="headerlink" title="原型规则"></a>原型规则</h2><p>(1) 所有的引用类型(数组、对象、函数)，都具有对象特性，即可自由扩展属性，<code>null</code> 除外。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">obj.a = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line">arr.b = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">fn.c = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nObj = <span class="literal">null</span>;</span><br><span class="line">nObj.d = <span class="number">100</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
 
@@ -140,7 +140,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 项目中不推荐直接使用 XX.__proto__</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <p>(5) 当试图得到一个对象的某个属性，如果这个对象本身没有这个属性，那么它就会去它的 <code>__proto__</code>, 即它的构造函数的 <code>prototype</code> 属性值中去寻找。</p>
-<p>这点对应代码例子中</p>
+<p>代码例子:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用了 zhangsan.__proto__ (即 Person.prototype) 的 showInfo 方法</span></span><br><span class="line">zhangsan.showInfo(); <span class="comment">// 张三 23</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了 zhangsan.__proto__.__proto__ 即(Object) 的 toString 方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.toString()); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><img src="/your/2020/06/05/prototype/prototype_02.png" class="" title="原型链">
@@ -149,25 +149,25 @@
 <p>如同上面所说,</p>
 <p>将 zhangsan 的原型指向了构造函数(<code>Person</code>)的 <code>prototype</code> 属性。</p>
 <p>而更深一层, 构造函数(<code>Person</code>)的原型又指向了 构造函数(<code>Object</code>) 的 <code>prototype</code> 属性, 一直到 null</p>
-<h2 id="相关补充"><a href="#相关补充" class="headerlink" title="相关补充"></a>相关补充</h2><h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>注： 可以使用 hasOwnProperty() 方法来判断是否是自身的属性</p>
+<h2 id="相关补充"><a href="#相关补充" class="headerlink" title="相关补充"></a>相关补充</h2><h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>可以使用 <code>hasOwnProperty()</code> 方法来判断是否是自身的属性</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">zhangsan.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"正在吃..."</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了自身的 eat 方法</span></span><br><span class="line">zhangsan.eat(); <span class="comment">// 正在吃...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 eat 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"eat"</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 showInfo 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"showInfo"</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>用于判断引用类型属于哪个构造函数的方法</p>
-<p>instanceof 的判断逻辑: 通过 <code>__proto__</code> 一层一个层往上找,</p>
+<p><code>instanceof</code> 的判断逻辑: 通过 <code>__proto__</code> 一层一个层往上找,</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <p>以上为学习笔记</p>
-<p><strong>参考</strong><br><a href="https://juejin.im/entry/584a1c98ac502e006c5d63b8" target="_blank" rel="noopener">JavaScript 中的构造函数 - 掘金</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>Object.prototype.__proto__</code> - MDN</a><br><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网</a></p>
+<p><strong>参考</strong><br><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网</a><br><a href="https://juejin.im/entry/584a1c98ac502e006c5d63b8" target="_blank" rel="noopener">JavaScript 中的构造函数 - 掘金</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>Object.prototype.__proto__</code> - MDN</a></p>
 
                                                                         
                                     </div>
                                     <footer class="article-footer">
                                         <!-- 注释 - 分享按钮 -->
-                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/06/05/prototype/" data-id="ckb2h1u26000f8kon81s16qqp" class="article-share-link">
+                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/06/05/prototype/" data-id="ckb3q7kj6000evwon89y18b6y" class="article-share-link">
                                             分享
                                         </a> -->
                                         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/JavaScript/" rel="tag">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/hasOwnProperty/" rel="tag">hasOwnProperty</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/instanceof/" rel="tag">instanceof</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E5%8E%9F%E5%9E%8B/" rel="tag">原型</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="tag">原型链</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" rel="tag">构造函数</a></li></ul>
 
                                     </footer>
 

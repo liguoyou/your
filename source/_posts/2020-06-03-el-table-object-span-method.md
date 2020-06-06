@@ -3,8 +3,10 @@ title: Element table 组件实现行合并(span-method)
 date: 2020-06-03 00:37:29
 tags:
   - Element
+  - UI组件库
+  - span-method
 categories:
-  - [UI组件库, Element]
+  - [问题解决, Element-ui]
 excerpt: el-table 组件实现行合并(span-method)详解...
 ---
 

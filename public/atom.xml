@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-06-05T17:15:52.074Z</updated>
+  <updated>2020-06-06T14:09:05.379Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -21,21 +21,31 @@
     <link href="http://liguoyou.gitee.io/your/2020/06/05/prototype/"/>
     <id>http://liguoyou.gitee.io/your/2020/06/05/prototype/</id>
     <published>2020-06-05T14:05:08.000Z</published>
-    <updated>2020-06-05T17:15:52.074Z</updated>
+    <updated>2020-06-06T14:09:05.379Z</updated>
     
     <summary type="html">
     
-      JS中的构造函数、原型与原型链, 什么是构造函数? 原型? hasOwnProperty 以及 instanceof 的用法
+      JS中的构造函数、原型与原型链, 什么是构造函数? hasOwnProperty 以及 instanceof 的用法
     
     </summary>
     
     
       <category term="学习笔记" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
+      <category term="JavaScript" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/"/>
+    
     
       <category term="JavaScript" scheme="http://liguoyou.gitee.io/your/tags/JavaScript/"/>
     
-      <category term="学习笔记" scheme="http://liguoyou.gitee.io/your/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="构造函数" scheme="http://liguoyou.gitee.io/your/tags/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="原型" scheme="http://liguoyou.gitee.io/your/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="原型链" scheme="http://liguoyou.gitee.io/your/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+    
+      <category term="hasOwnProperty" scheme="http://liguoyou.gitee.io/your/tags/hasOwnProperty/"/>
+    
+      <category term="instanceof" scheme="http://liguoyou.gitee.io/your/tags/instanceof/"/>
     
   </entry>
   
@@ -44,7 +54,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/06/03/plan/"/>
     <id>http://liguoyou.gitee.io/your/2020/06/03/plan/</id>
     <published>2020-06-03T15:31:20.000Z</published>
-    <updated>2020-06-05T17:17:15.766Z</updated>
+    <updated>2020-06-06T14:20:07.936Z</updated>
     
     <summary type="html">
     
@@ -61,7 +71,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/06/03/el-table-object-span-method/"/>
     <id>http://liguoyou.gitee.io/your/2020/06/03/el-table-object-span-method/</id>
     <published>2020-06-02T16:37:29.000Z</published>
-    <updated>2020-06-03T15:21:02.976Z</updated>
+    <updated>2020-06-06T14:12:24.271Z</updated>
     
     <summary type="html">
     
@@ -70,12 +80,16 @@
     </summary>
     
     
-      <category term="UI组件库" scheme="http://liguoyou.gitee.io/your/categories/UI%E7%BB%84%E4%BB%B6%E5%BA%93/"/>
+      <category term="问题解决" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     
-      <category term="Element" scheme="http://liguoyou.gitee.io/your/categories/UI%E7%BB%84%E4%BB%B6%E5%BA%93/Element/"/>
+      <category term="Element-ui" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/Element-ui/"/>
     
     
       <category term="Element" scheme="http://liguoyou.gitee.io/your/tags/Element/"/>
+    
+      <category term="UI组件库" scheme="http://liguoyou.gitee.io/your/tags/UI%E7%BB%84%E4%BB%B6%E5%BA%93/"/>
+    
+      <category term="span-method" scheme="http://liguoyou.gitee.io/your/tags/span-method/"/>
     
   </entry>
   
@@ -84,7 +98,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/31/summary-of-git/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/31/summary-of-git/</id>
     <published>2020-05-31T15:38:41.000Z</published>
-    <updated>2020-06-02T14:09:47.879Z</updated>
+    <updated>2020-06-06T14:13:16.749Z</updated>
     
     <summary type="html">
     
@@ -93,9 +107,9 @@
     </summary>
     
     
-      <category term="工具类" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+      <category term="知识总结" scheme="http://liguoyou.gitee.io/your/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
     
-      <category term="Git" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/Git/"/>
+      <category term="Git" scheme="http://liguoyou.gitee.io/your/categories/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/Git/"/>
     
     
       <category term="Git" scheme="http://liguoyou.gitee.io/your/tags/Git/"/>
@@ -107,7 +121,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/</id>
     <published>2020-05-31T15:10:42.000Z</published>
-    <updated>2020-06-02T14:10:05.900Z</updated>
+    <updated>2020-06-06T14:14:32.061Z</updated>
     
     <summary type="html">
     
@@ -116,10 +130,14 @@
     </summary>
     
     
-      <category term="奇葩问题" scheme="http://liguoyou.gitee.io/your/categories/%E5%A5%87%E8%91%A9%E9%97%AE%E9%A2%98/"/>
+      <category term="问题解决" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+      <category term="缓存" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/%E7%BC%93%E5%AD%98/"/>
     
     
-      <category term="缓存" scheme="http://liguoyou.gitee.io/your/tags/%E7%BC%93%E5%AD%98/"/>
+      <category term="301" scheme="http://liguoyou.gitee.io/your/tags/301/"/>
+    
+      <category term="浏览器缓存" scheme="http://liguoyou.gitee.io/your/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/"/>
     
   </entry>
   
@@ -128,7 +146,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/</id>
     <published>2020-05-28T16:07:52.000Z</published>
-    <updated>2020-06-01T16:19:51.872Z</updated>
+    <updated>2020-06-06T14:15:28.550Z</updated>
     
     <summary type="html">
     
@@ -137,9 +155,9 @@
     </summary>
     
     
-      <category term="工具类" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+      <category term="问题解决" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     
-      <category term="Yarn" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/Yarn/"/>
+      <category term="Yarn" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/Yarn/"/>
     
     
       <category term="Yarn" scheme="http://liguoyou.gitee.io/your/tags/Yarn/"/>
@@ -151,7 +169,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/build-a-blog-based-on-hexo/</id>
     <published>2020-05-28T16:04:28.000Z</published>
-    <updated>2020-06-03T15:32:54.935Z</updated>
+    <updated>2020-06-06T14:16:36.778Z</updated>
     
     <summary type="html">
     
@@ -160,12 +178,16 @@
     </summary>
     
     
-      <category term="工具类" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+      <category term="学习笔记" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="Hexo" scheme="http://liguoyou.gitee.io/your/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/Hexo/"/>
+      <category term="Hexo" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Hexo/"/>
     
     
       <category term="Hexo" scheme="http://liguoyou.gitee.io/your/tags/Hexo/"/>
+    
+      <category term="Ocean" scheme="http://liguoyou.gitee.io/your/tags/Ocean/"/>
+    
+      <category term="静态博客" scheme="http://liguoyou.gitee.io/your/tags/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
