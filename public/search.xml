@@ -1,6 +1,444 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
+    <url>/your/2020/05/29/build-a-blog-based-on-hexo/</url>
+    <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理工具</em></p>
+<h3 id="1-全局安装-Hexo"><a href="#1-全局安装-Hexo" class="headerlink" title="1. 全局安装 Hexo"></a>1. 全局安装 Hexo</h3><p>本文使用的是 <code>yarn</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 <del>hexo</del> your (<strong>后面我把文件夹名改成了 your, 保持和访问的根目录一致</strong>),</p>
+<p>在 <del>hexo</del> your 中打开 git Bash, 执行:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 网速不好的话, 这里可能需要点时间</span></span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526204940892.png" class="" title="init 成功">
+
+<p>init 后目录如下, 关于目录及文件的说明请查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档(中文)</a></p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526205207269.png" class="" title="init 生成的目录">
+
+<h3 id="3-编译-amp-运行"><a href="#3-编译-amp-运行" class="headerlink" title="3. 编译&amp;运行"></a>3. 编译&amp;运行</h3><p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">yarn build</span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">yarn server</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210826688.png" class="" title="编译&amp;运行">
+
+<p>当然, 更便捷的操作是执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+
+<p>简写</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
+
+<h3 id="4-首次运行如图"><a href="#4-首次运行如图" class="headerlink" title="4. 首次运行如图"></a>4. 首次运行如图</h3><p>默认主题 landscape</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210938239.png" class="" title="首次运行">
+
+<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><h3 id="一-选择主题"><a href="#一-选择主题" class="headerlink" title="一. 选择主题"></a>一. 选择主题</h3><p>本文选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
+<p>在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方的主题</a>里面选择一个你喜欢的主题, 按照主题的<a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">文档</a>来就好</p>
+<p>下载好慢….等等等…</p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题:"></a>遇到的问题:</h3><h4 id="1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程"><a href="#1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程" class="headerlink" title="(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:"></a>(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:</h4><blockquote><p>一开始按照作者的文档操作配置</p>
+<p>安装插件依赖<br><code>yarn add hexo-generator-searchdb</code></p>
+<p>在 <code>./_config.yml</code> 中添加配置 (注意: 这不是 ocean 中的)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本地检索 hexo-generator-searchdb</span></span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+
+<p>然后就报错 Cannot GET /js/search.js 404!!</p>
+<p><strong>首先</strong>, 按照 <a href="https://github.com/zhwangart/gitalk/issues/7" target="_blank" rel="noopener">关于搜索问题 sevilen 同学给了一个详细的步骤</a></p>
+<p>在 <code>\themes\ocean\layout\_partial\after-footer.ejs</code> 中配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不管是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.search)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"><span class="comment"># 还是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.local_search.enable)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'/js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..</p>
+<p><strong>然后</strong> 直接找到加载 js 的地方修改路径</p>
+<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">\$.getScript(<span class="string">'js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">searchFunc(<span class="string">"search.xml"</span>,</span><br></pre></td></tr></table></figure>
+
+<p>首页可以了! 内页还是不行啊, 一看请求失败的链接, 居然把路径拼在了整个地址的最后, 好无奈:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;your&#x2F;2020&#x2F;05&#x2F;29&#x2F;%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2&#x2F;js&#x2F;search.js?_&#x3D;1590852138728</span><br></pre></td></tr></table></figure>
+
+<p><strong>最后使用了一种不是很好的办法解决了</strong></p>
+<p>在文件路径前面添加根路径<code>/your/</code> (_config.yml 中的 <code>root: /your/</code>)</p>
+<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">\$.getScript(<span class="string">'/your/js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">searchFunc(<span class="string">"/your/search.xml"</span>,</span><br></pre></td></tr></table></figure>
+
+<p>就<strong>ok</strong>了!</p>
+<h4 id="2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示"><a href="#2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示" class="headerlink" title="(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示"></a>(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示</h4><p>图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加<a href="https://hexo.io/zh-cn/docs/helpers#url-for" target="_blank" rel="noopener">辅助函数 url_for</a>就可以顺利解决:</p>
+<p><strong>修改以下文件</strong></p>
+<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\sidebar.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.brand</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\head.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.favicon</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.favicon</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\ocean.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 有五处 --&gt;</span></span><br><span class="line"></span><br><span class="line">theme.ocean.path</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line">url_for(theme.ocean.path)</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.ocean.brand</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.ocean.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-修改文件-比如修改样式部署之后不生效"><a href="#3-修改文件-比如修改样式部署之后不生效" class="headerlink" title="(3) 修改文件, 比如修改样式部署之后不生效?"></a>(3) 修改文件, 比如修改样式部署之后不生效?</h4><p>一般是缓存文件问题, 试试:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-关于很多的问题"><a href="#4-关于很多的问题" class="headerlink" title="(4) 关于很多的问题"></a>(4) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
+<p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
+<h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<p>新的主题:</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526221210487.png" class="" title="新主题">
+
+<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235114597.png" class="" title="创建仓库及开启服务">
+
+<h3 id="2-配置-config-yml"><a href="#2-配置-config-yml" class="headerlink" title="(2) 配置 _config.yml"></a>(2) 配置 <code>_config.yml</code></h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liguoyou.gitee.io/your/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/your/</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@gitee.com:liguoyou/your.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装自动部署发布工具"><a href="#3-安装自动部署发布工具" class="headerlink" title="(3) 安装自动部署发布工具"></a>(3) 安装自动部署发布工具</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+<p>发布博客</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<p>进入 Gitee Pages 点击更新按钮, 等待部署完成即可</p>
+<p><strong>值得注意的是</strong></p>
+<p>如果你只想把编译完成后的 public 文件中的所有文件 push 至仓库中:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>如图:</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235831345.png" class="" title="hexo d">
+
+<p><strong>但是, 我想把整个本地的仓库 push 上去怎么做呢</strong></p>
+<p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="/your/2020/05/31/summary-of-git/" title="更多git操作">更多git操作</a>)</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527224538977.png" class="" title="git push">
+
+<p>然后<strong>设置部署目录为 public</strong> 即可</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527000632686.png" class="" title="设置部署目录为 public">
+
+<p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
+<p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档, 真的很详细</a><br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">Ocean 中文文档 - zhwangart</a><br><a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题 - zhwangart</a><br><a href="https://zhwangart.github.io/2018/12/06/Gitalk/" target="_blank" rel="noopener">Gitalk 的使用 - zhwangart</a><br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">基于 Gitee+Hexo 搭建个人博客 - segmentfault</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">使用 Gitee+Hexo 搭建个人博客 - 简书</a></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Ocean</tag>
+        <tag>静态博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>301 Moved Permanently (from disk cache)</title>
+    <url>/your/2020/05/31/301-moved-permanently/</url>
+    <content><![CDATA[<p>不得不记录下这个奇葩的遭遇,</p>
+<p>本来一切好好的, 然后我把 vue.config.js 的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
+<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了 301 重定向到了生产环境 api 地址</p>
+<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找答案和后端沟通, baidu 了也没找到解决方案</p>
+<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
+<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
+
+<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
+<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
+<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
+<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome 浏览器清除 301 缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+        <category>缓存</category>
+      </categories>
+      <tags>
+        <tag>301</tag>
+        <tag>浏览器缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</title>
+    <url>/your/2020/05/29/yarn-global-add-package/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装成功, 但是使用命令却不生效…</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
+<p>(1) 找到 yarn 的全局安装目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global bin</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/29/yarn-global-add-package/image_01.png" class="" title="yarn global bin">
+
+<p>(2) 将该目录地址拷贝至系统属性-环境变量-系统变量-path 中:</p>
+<img src="/your/2020/05/29/yarn-global-add-package/image_02.png" class="" title="将该目录地址拷贝至系统属性-环境变量-系统变量-path">
+
+<p>(3) 重启终端, <strong>应该</strong>就可以了.</p>
+<p><strong>好吧, 我的还不可以</strong></p>
+<img src="/your/2020/05/29/yarn-global-add-package/image_03.png" class="" title="hexo init 失败">
+
+<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</span><br></pre></td></tr></table></figure>
+
+<p>ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
+<img src="/your/2020/05/29/yarn-global-add-package/20200531155353.jpg" class="" title="修改环境变量地址">
+
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
+<li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
+<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
+</ol>
+<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+        <category>Yarn</category>
+      </categories>
+      <tags>
+        <tag>Yarn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 常用操作命令总结</title>
+    <url>/your/2020/05/31/summary-of-git/</url>
+    <content><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景:"></a>场景:</h2><p>小 G 去了一家公司, 公司使用了 git 作为源代码的管理工具</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>第一步先下载一个敲命令的工具: Git Bash</p>
+<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧:"></a>使用技巧:</h2><p>键盘 <strong>上箭头</strong> 和 <strong>下箭头</strong> 可以快速切换到历史命令</p>
+<p>在对应的目录右键, 选择 Git Bash Here, 即可直接在当前目录下打开命令界面</p>
+<img src="/your/2020/05/31/summary-of-git/git_01.png" class="" title="右键, 选择 Git Bash Here">
+
+<hr>
+<h2 id="准备工作-获取项目源代码"><a href="#准备工作-获取项目源代码" class="headerlink" title="准备工作: 获取项目源代码"></a>准备工作: 获取项目源代码</h2><p><strong>生成 SSH 公钥, 发给 Git 服务器的管理员, 获得代码授权</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成 SSH 公钥</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"xxxxx@xxxxx.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看公钥, 全部复制粘贴</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置 Git 使用者信息</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"GuoYou.Li"</span></span><br><span class="line">git config --global user.email GuoYou.Li@foxmail.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>注:</strong> 执行了上面的命令之后, 以后的每个项目的每次 Git 提交时, 都是使用了 这两条信息来说明是谁提交了更新</p>
+<p><strong>克隆项目到本地指定的文件夹内</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git clone 你的项目地址</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:liguoyou/vue-demo.git</span><br></pre></td></tr></table></figure>
+
+<p>进入文件夹: cd 项目文件夹名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> vue-demo</span><br></pre></td></tr></table></figure>
+
+<p><strong>注:</strong> cd .. 返回上一层; cd ../../ 返回两层; cd view/home 进入文件夹</p>
+<p><strong>npm 安装依赖包</strong></p>
+<p>更推荐使用 <code>yarn</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line"><span class="comment"># cnpm install (如果你安装了淘宝镜像, 速度会更快些)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行项目 (具体命令还需要查看 package.json 里面的 scripts)</span></span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_02.png" class="" title="git reflog">
+
+<p><strong>注:</strong> Ctrl + c 可以结束项目运行</p>
+<hr>
+<h2 id="项目开发过程的-Git-使用"><a href="#项目开发过程的-Git-使用" class="headerlink" title="项目开发过程的 Git 使用"></a>项目开发过程的 Git 使用</h2><p><strong>流程</strong></p>
+<p>远程库&lt;<code>git pull</code>&gt; 工作区 &lt;<code>git add</code>&gt; 暂存区 &lt;<code>git commit</code>&gt; 版本区&lt;<code>git push</code>&gt; 远程库</p>
+<p><strong>查看当前状态</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p><strong>把修改的文件提交到暂存区</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git add 文件名</span></span><br><span class="line">git add vue.config.js</span><br></pre></td></tr></table></figure>
+
+<p><strong>把修改的所有文件提交到暂存区</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+
+<p><strong>把暂存区的内容提交到版本区, -m 为 message 的意思</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git commit -m 备注信息</span></span><br><span class="line">git commit -m <span class="string">'create vue.config.js'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>也可以一步直接提交暂存区和版本区, -a 为 add 的意思</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新增的文件第一次提交, 不能使用</span></span><br><span class="line">git commit -a -m <span class="string">'这里填写修改的备注信息'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看提交的历史记录</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_03.png" class="" title="查看提交的历史记录">
+
+<p><strong>注:</strong> 回车可以往下查看更多记录, 输入 q 可以退出当前 log 界面</p>
+<p><strong>回滚指定版本, 先从 git log 中找到要回滚的 commit id</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git reset --hard commit_id</span></span><br><span class="line">git reset --hard 33cb2b7ec310f5ed</span><br></pre></td></tr></table></figure>
+
+<p><strong>回到上一个 commit 版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再上一个</span></span><br><span class="line">git reset --hard HEAD^1</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看所有操作日志, 包含刚刚 reset 的 commit 日志</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_04.png" class="" title="git reflog">
+
+<p><strong>提交代码到代码库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于, origin 默认, 可省略, master 是分支, 也可以省略</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="多个远程仓库"><a href="#多个远程仓库" class="headerlink" title="多个远程仓库"></a>多个远程仓库</h2><p>假设我们需要推送到另一个远程仓库</p>
+<p><strong>关联远程仓库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># gitee 是给这个远程的一个命名, 和 origin 一样是一个远程的别称, origin 为默认</span></span><br><span class="line">git remote add gitee git@gitee.com:liguoyou/vue-demo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看远程</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p><strong>推送代码到码云这个远程仓库</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push gitee</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h2><p><strong>查看当前所有分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+
+<p><strong>创建一个分支 devel, 并切换到该分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch devel</span><br><span class="line"></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快捷操作, 创建分支的同时切换到该分支, -b 是 branch 的意思</span></span><br><span class="line">git checkout -b devel2</span><br></pre></td></tr></table></figure>
+
+<p><strong>删除分支 devel2</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d devel2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 devel2 有内容修改没有合并, 则需要 -D 才能完成删除</span></span><br><span class="line">git branch -D devel2</span><br></pre></td></tr></table></figure>
+
+<p><strong>合并 devel 的内容到 master 分支上</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 提交 devel 分支上的修改内容</span></span><br><span class="line">git commit -a -m <span class="string">'update test.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到 master</span></span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行合并</span></span><br><span class="line">git merge devel</span><br></pre></td></tr></table></figure>
+
+<p><strong>切换到 devel 分支, 并 push 到远程</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到 devel 分支</span></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p>会提示你当前分支在远程没有对应的上游分支</p>
+<p><strong>设置上游分支</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --<span class="built_in">set</span>-upstream origin devel</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_05.png" class="" title="设置上游分支">
+
+<p><strong>如果发现 push 失败, 很有可能是因为其他人修改提交了代码, 你需要先拉取最新的代码下来, 合并之后再提交</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="打版本标签"><a href="#打版本标签" class="headerlink" title="打版本标签"></a>打版本标签</h2><p><strong>添加标签</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打标签</span></span><br><span class="line">git tag 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># add一个标签 -a,  并写 message -m</span></span><br><span class="line">git tag -a 1.1.0 -m <span class="string">"v 1.1.0"</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看标签</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure>
+
+<p><strong>同步标签到远程</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者, 注意是两个 -</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/31/summary-of-git/git_06.png" class="" title="打版本标签">
+
+<p>暂时这么多.</p>
+]]></content>
+      <categories>
+        <category>知识总结</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Element table 组件实现行合并(span-method)</title>
+    <url>/your/2020/06/03/el-table-object-span-method/</url>
+    <content><![CDATA[<p><strong>官网文档说明：</strong></p>
+<blockquote><p>span-method 合并行或列的计算方法 Function({ row, column, rowIndex, columnIndex })</p>
+<p>方法的参数是一个对象，里面包含当前行 row、当前列 column、当前行号 rowIndex、当前列号 columnIndex 四个属性。该函数可以返回一个包含两个元素的数组，第一个元素代表 rowspan，第二个元素代表 colspan。 也可以返回一个键名为 rowspan 和 colspan 的对象。</p>
+<footer><strong>https://element.eleme.cn/#/zh-CN/component/table</strong></footer></blockquote>
+
+<h2 id="实现案例-1-理解参数"><a href="#实现案例-1-理解参数" class="headerlink" title="实现案例 1: 理解参数"></a>实现案例 1: 理解参数</h2><p><strong>实现效果</strong></p>
+<img src="/your/2020/06/03/el-table-object-span-method/20200603215741.png" class="" title="实现案例1效果图">
+
+<p><strong>html 模板</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:span-method</span>=<span class="string">"objectSpanMethod"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">border</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"width: 300px;"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"id"</span> <span class="attr">label</span>=<span class="string">"ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"姓名"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"sex"</span> <span class="attr">label</span>=<span class="string">"性别"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>表格数据</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    tableData: [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"1"</span>,</span><br><span class="line">        name: <span class="string">"李国有"</span>,</span><br><span class="line">        sex: <span class="string">"男"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"2"</span>,</span><br><span class="line">        name: <span class="string">"李国友"</span>,</span><br><span class="line">        sex: <span class="string">"男"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"3"</span>,</span><br><span class="line">        name: <span class="string">"李友国"</span>,</span><br><span class="line">        sex: <span class="string">"未知"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"4"</span>,</span><br><span class="line">        name: <span class="string">"油果"</span>,</span><br><span class="line">        sex: <span class="string">"女"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"5"</span>,</span><br><span class="line">        name: <span class="string">"有国"</span>,</span><br><span class="line">        sex: <span class="string">"女"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现方法及注解(看注释)</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  <span class="comment">// 合并的计算方法</span></span><br><span class="line">  objectSpanMethod(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">    <span class="comment">// 当列索引是2(第三列), 需要设置要合并的列/行</span></span><br><span class="line">    <span class="keyword">if</span> (columnIndex === <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (rowIndex === <span class="number">0</span> || rowIndex === <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="comment">// 当行索引是0(第一行), 或者当行索引是3(第四行), 均向下合并1行(共两行), 合并0列(共一列)</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          rowspan: <span class="number">2</span>,</span><br><span class="line">          colspan: <span class="number">1</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rowIndex === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// 当行索引是2(第三行), 不作合并</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 1表示不合并</span></span><br><span class="line">          rowspan: <span class="number">1</span>,</span><br><span class="line">          colspan: <span class="number">1</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 其他行</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 0表示已被合并, 直接不显示</span></span><br><span class="line">          rowspan: <span class="number">0</span>,</span><br><span class="line">          colspan: <span class="number">0</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现案例-2-动态设置合并行列"><a href="#实现案例-2-动态设置合并行列" class="headerlink" title="实现案例 2: 动态设置合并行列"></a>实现案例 2: 动态设置合并行列</h2><p><strong>效果图</strong></p>
+<img src="/your/2020/06/03/el-table-object-span-method/20200603230321.png" class="" title="实现案例1效果图">
+
+<p><strong>html 模板</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:span-method</span>=<span class="string">"objectSpanMethod"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">border</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"width: 600px;"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"id"</span> <span class="attr">label</span>=<span class="string">"订单号"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"商品名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"price"</span> <span class="attr">label</span>=<span class="string">"价格"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"num"</span> <span class="attr">label</span>=<span class="string">"数量"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+
+<p><strong>订单原始数据 -&gt; 表格数据</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vue data</span></span><br><span class="line">data () &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 表格数据</span></span><br><span class="line">    tableData: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">created() &#123;</span><br><span class="line">  <span class="keyword">this</span>.init()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  init() &#123;</span><br><span class="line">    <span class="comment">// 订单数据</span></span><br><span class="line">    <span class="keyword">const</span> orderData = [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">1</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"华为1"</span>,</span><br><span class="line">            price: <span class="number">3000</span>,</span><br><span class="line">            num: <span class="number">2</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"苹果1"</span>,</span><br><span class="line">            price: <span class="number">4000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"RedMi3"</span>,</span><br><span class="line">            price: <span class="number">4000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">2</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"魅族1"</span>,</span><br><span class="line">            price: <span class="number">2000</span>,</span><br><span class="line">            num: <span class="number">2</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">3</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"OPPO"</span>,</span><br><span class="line">            price: <span class="number">3000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"VIVO"</span>,</span><br><span class="line">            price: <span class="number">2000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 数据重组</span></span><br><span class="line">    orderData.forEach(<span class="function">(<span class="params">order</span>) =&gt;</span> &#123;</span><br><span class="line">      order.childrens.forEach(<span class="function">(<span class="params">prod, i</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.tableData.push(&#123;</span><br><span class="line">          id: order.id,</span><br><span class="line">          name: prod.name,</span><br><span class="line">          price: prod.price,</span><br><span class="line">          num: prod.num,</span><br><span class="line">          length: i === <span class="number">0</span> ? order.childrens.length : <span class="number">0</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重组后的数据 this.tableData</span></span><br><span class="line">    <span class="comment">// [</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"华为1","price":3000,"num":2,"length":3&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"苹果1","price":4000,"num":1,"length":0&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"RedMi3","price":4000,"num":1,"length":0&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":2,"name":"魅族1","price":2000,"num":2,"length":1&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":3,"name":"OPPO","price":3000,"num":1,"length":2&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":3,"name":"VIVO","price":2000,"num":1,"length":0&#125;</span></span><br><span class="line">    <span class="comment">// ]</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合并的计算方法</span></span><br><span class="line">  objectSpanMethod2(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">    <span class="comment">// 合并第一列: 订单号</span></span><br><span class="line">    <span class="keyword">if</span> (columnIndex === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        rowspan: row.length, <span class="comment">// , 通过 length 来判断需要合并的行数</span></span><br><span class="line">        colspan: <span class="number">1</span>, <span class="comment">// 列不合并</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>列合并也是同样的操作, 实际情况中行合并的需求比较常见</p>
+<p>通过对 row, column, rowIndex, columnIndex, rowspan, colspan 的灵活设置, 可以实现更多复杂的操作</p>
+<p><strong>参考</strong></p>
+<p><a href="https://blog.csdn.net/qq_29468573/article/details/80742646" target="_blank" rel="noopener">element-ui table :span-method（行合并）- CSDN</a></p>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+        <category>Element-ui</category>
+      </categories>
+      <tags>
+        <tag>Element</tag>
+        <tag>UI组件库</tag>
+        <tag>span-method</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单的了解 HTTP 协议</title>
+    <url>/your/2020/06/06/http/</url>
+    <content><![CDATA[<blockquote>
+<p>Web 使用一种名为 HTTP（HyperText Transfer Protocol，超文本传输协议）的协议作为规范，完成从客户端到服务器等一系列运作流程。而协议是指规则的约定。可以说，Web 是建立在 HTTP 协议上通信的。</p>
+</blockquote>
+<h2 id="HTTP-协议的主要特点"><a href="#HTTP-协议的主要特点" class="headerlink" title="HTTP 协议的主要特点"></a>HTTP 协议的主要特点</h2><h3 id="1-简单快速"><a href="#1-简单快速" class="headerlink" title="1.简单快速"></a>1.简单快速</h3><p>客户向服务器请求服务时，只需传送请求方法和路径。请求方法常用的有 GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于 HTTP 协议简单，使得 HTTP 服务器的程序规模小，因而通信速度很快。</p>
+<h3 id="2-灵活"><a href="#2-灵活" class="headerlink" title="2.灵活"></a>2.灵活</h3><p>HTTP 允许传输任意类型的数据对象。正在传输的类型由 Content-Type（Content-Type 是 HTTP 包中用来表示内容类型的标识）加以标记</p>
+<h3 id="3-无连接"><a href="#3-无连接" class="headerlink" title="3.无连接"></a>3.无连接</h3><p>无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</p>
+<p>早期这么做的原因是 HTTP 协议产生于互联网，因此服务器需要处理同时面向全世界数十万、上百万客户端的网页访问，但每个客户端（即浏览器）与服务器之间交换数据的间歇性较大（即传输具有突发性、瞬时性），并且网页浏览的联想性、发散性导致两次传送的数据关联性很低，<strong>大部分通道实际上会很空闲、无端占用资源。</strong>因此 HTTP 的设计者有意利用这种特点将协议设计为<strong>请求时建连接、请求完释放连接，以尽快将资源释放出来服务其他客户端。</strong></p>
+<p>随着时间的推移，网页变得越来越复杂，里面可能嵌入了很多图片，这时候每次访问图片都需要建立一次 TCP 连接就显得很低效。后来，<strong>Keep-Alive</strong> 被提出用来解决这效率低的问题。</p>
+<p>Keep-Alive 功能使客户端到服务器端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive 功能避免了建立或者重新建立连接。市场上的大部分 Web 服务器，包括 iPlanet、IIS 和 Apache，都支持 HTTP Keep-Alive。对于提供静态内容的网站来说，这个功能通常很有用。但是，对于负担较重的网站来说，这里存在另外一个问题：虽然为客户保留打开的连接有一定的好处，但它同样影响了性能，因为在处理暂停期间，本来可以释放的资源仍旧被占用。当 Web 服务器和应用服务器在同一台机器上运行时，Keep-Alive 功能对资源利用的影响尤其突出。</p>
+<p>这样一来，<strong>客户端和服务器之间的 HTTP 连接就会被保持，不会断开（超过 Keep-Alive 规定的时间，意外断电等情况除外）</strong>，当客户端发送另外一个请求时，就使用这条已经建立的连接。</p>
+<h3 id="4-无状态"><a href="#4-无状态" class="headerlink" title="4.无状态"></a>4.无状态</h3><p>无状态是指协议对于事务处理没有记忆能力，服务器不知道客户端是什么状态。即我们给服务器发送 HTTP 请求之后，服务器根据请求，会给我们发送数据过来，但是，发送完，不会记录任何信息。</p>
+<p>客户端与服务器进行动态交互的 Web 应用程序出现之后，HTTP 无状态的特性严重阻碍了这些应用程序的实现，毕竟交互是需要承前启后的，简单的购物车程序也要知道用户到底在之前选择了什么商品。于是，两种用于保持 HTTP 连接状态的技术就应运而生了，一个是 Cookie，而另一个则是 Session。</p>
+<h3 id="5-支持客户-服务器模式"><a href="#5-支持客户-服务器模式" class="headerlink" title="5.支持客户/服务器模式"></a>5.支持客户/服务器模式</h3><h2 id="HTTP-报文的组成部分"><a href="#HTTP-报文的组成部分" class="headerlink" title="HTTP 报文的组成部分"></a>HTTP 报文的组成部分</h2><h3 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h3><ul>
+<li>请求行</li>
+<li>请求头</li>
+<li>空行</li>
+<li>请求体</li>
+</ul>
+<h3 id="响应报文"><a href="#响应报文" class="headerlink" title="响应报文"></a>响应报文</h3><ul>
+<li>状态行</li>
+<li>响应行</li>
+<li>空行</li>
+<li>响应体</li>
+</ul>
+<h2 id="HTTP-方法"><a href="#HTTP-方法" class="headerlink" title="HTTP 方法"></a>HTTP 方法</h2><ol>
+<li>GET 获取资源</li>
+<li>POST 传输资源</li>
+<li>PUT 更新资源</li>
+<li>DELETE 删除资源</li>
+<li>HEAD 获取报文首部</li>
+</ol>
+<h3 id="POST-和-GET-的区别"><a href="#POST-和-GET-的区别" class="headerlink" title="POST 和 GET 的区别"></a>POST 和 GET 的区别</h3><ul>
+<li>GET 在浏览器回退时是无害的，而 POST 会再次提交请求</li>
+<li>GET 产生的 URL 地址可以被收藏</li>
+<li>GET 请求只能进行 url 编码，而 POST 支持多种编码方式</li>
+<li>GET 请求会被浏览器主动缓存</li>
+<li>GET 请求在 URL 中传送的参数是有长度限制的</li>
+<li>对参数的数据类型，GET 只接受 ASCLL 字符，而 POST 没有限制</li>
+<li>GET 比 POST 更不安全，因为参数直接暴露在 URL 上，所以不能用来传递敏感信息</li>
+<li>GET 参数通过 URL 传递，而 POST 放在 Request body 中</li>
+</ul>
+<h2 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h2><p><strong>常见状态码：</strong></p>
+<p>100~199：表示成功接收请求，要求客户端继续提交下一次请求才能完成整个处理过程。</p>
+<p>200~299：表示成功接收请求并已完成整个处理过程。常见 200<br>200：OK 客户端请求成功<br>206: Partial Content 客户发送了一个带有 Range 头的 GET 请求，服务器完成了它</p>
+<p>300~399：为完成请求，客户需进一步细化请求。<br>302：请求的资源已经移动一个新地址、<br>304：客户端有缓存的文档，并发出了一条件性的请求，服务端告诉客户，原来缓存的文档还可以继续使用</p>
+<p>400~499：客户端的请求有错误<br>400：客户端请求有语法错误，不能被服务器所理解<br>401：请求未经授权，这个状态码必须和 WWW-Authenticate 报头域一起使用<br>403：对被请求页面的访问被禁止<br>404：请求资源不存在</p>
+<p>500~599：服务器端出现错误<br>500：服务器发生不可预期的错误，<br>503：请求未完成，服务器临时过载或当机，一段时间后可能恢复正常</p>
+<h2 id="什么是持久连接"><a href="#什么是持久连接" class="headerlink" title="什么是持久连接"></a>什么是持久连接</h2><p>HTTP 协议采用”请求-应答”模式，当使用普通模式，即非 KeepAlive 模式时，每个请求/应答客户和服务器都要新建一个连接，完成之后立即断开连接 （无连接的特点）</p>
+<p>当使用 KeepAlive 模式，（又称持久连接，连接重用）时，Keep-Alive 功能是客户端到服务端的连接持续有效，当出现对服务器的后继请求时，KeepAlive 功能避免了建立或者重新建立连接</p>
+<h2 id="什么是管线化"><a href="#什么是管线化" class="headerlink" title="什么是管线化"></a>什么是管线化</h2><p>管线化机制须通过永久连接完成，仅 HTTP/1.1 支持此技术（HTTP/1.0 不支持）</p>
+<p>在使用持久连接的情况下，某个连接消息的传递类似于</p>
+<p>请求 1 -&gt; 响应 1 -&gt; 请求 2 -&gt; 响应 2</p>
+<p>管线化：某个连接上的消息变成了类似这样</p>
+<p>请求 1 -&gt; 请求 2 -&gt; 请求 3 -&gt; 响应 1 -&gt; 响应 2 -&gt; 响应 3</p>
+<p><strong>那么持久连接和管线化的区别在于：</strong></p>
+<ul>
+<li><p>持久连接的一个缺点是请求和响应式是顺序执行的，只有在请求 1 的响应收到之后，才会发送请求 2，而管线化不需要等待上一次请求得到响应就可以进行下一次请求。实现并行发送请求。</p>
+</li>
+<li><p>只有 GET 和 HEAD 要求可以进行管线化，而 POST 则有所限制</p>
+</li>
+<li><p>初次创建连接时也不应启动管线机制，因为对方（服务器）不一定支持 HTTP/1.1 版本的协议。</p>
+</li>
+<li><p>HTTP1.1 要求服务器端支持管线化，但并不要求服务器端也对响应进行管线化处理，只是要求对于管线化的请求不失败，而且现在很多服务器端和代理程序对管线化的支持并不好，现代浏览器 Chrome 和 Firefox 默认并未开启管线化支持。</p>
+</li>
+</ul>
+<p>以上为学习笔记，</p>
+<p><strong>参考</strong></p>
+<p><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网的课程</a><br><a href="https://www.cnblogs.com/xuxinstyle/p/9813654.html" target="_blank" rel="noopener">深入理解 http 协议的特点 - 博客园</a></p>
+<p><strong>收藏</strong> (待读)</p>
+<p><a href="https://juejin.im/post/5cd0438c6fb9a031ec6d3ab2" target="_blank" rel="noopener">前端基础篇之 HTTP 协议 - 掘金</a></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>http</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+        <tag>状态码</tag>
+        <tag>持久连接</tag>
+        <tag>keepAlive</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计划列表</title>
     <url>/your/2020/06/03/plan/</url>
     <content><![CDATA[<p><strong>这里的是一个计划列表, 包括已完成和未完成的所有计划…</strong></p>
@@ -150,359 +588,6 @@
         <tag>原型链</tag>
         <tag>hasOwnProperty</tag>
         <tag>instanceof</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Element table 组件实现行合并(span-method)</title>
-    <url>/your/2020/06/03/el-table-object-span-method/</url>
-    <content><![CDATA[<p><strong>官网文档说明：</strong></p>
-<blockquote><p>span-method 合并行或列的计算方法 Function({ row, column, rowIndex, columnIndex })</p>
-<p>方法的参数是一个对象，里面包含当前行 row、当前列 column、当前行号 rowIndex、当前列号 columnIndex 四个属性。该函数可以返回一个包含两个元素的数组，第一个元素代表 rowspan，第二个元素代表 colspan。 也可以返回一个键名为 rowspan 和 colspan 的对象。</p>
-<footer><strong>https://element.eleme.cn/#/zh-CN/component/table</strong></footer></blockquote>
-
-<h2 id="实现案例-1-理解参数"><a href="#实现案例-1-理解参数" class="headerlink" title="实现案例 1: 理解参数"></a>实现案例 1: 理解参数</h2><p><strong>实现效果</strong></p>
-<img src="/your/2020/06/03/el-table-object-span-method/20200603215741.png" class="" title="实现案例1效果图">
-
-<p><strong>html 模板</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:span-method</span>=<span class="string">"objectSpanMethod"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">border</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"width: 300px;"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"id"</span> <span class="attr">label</span>=<span class="string">"ID"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"姓名"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"sex"</span> <span class="attr">label</span>=<span class="string">"性别"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>表格数据</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    tableData: [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"1"</span>,</span><br><span class="line">        name: <span class="string">"李国有"</span>,</span><br><span class="line">        sex: <span class="string">"男"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"2"</span>,</span><br><span class="line">        name: <span class="string">"李国友"</span>,</span><br><span class="line">        sex: <span class="string">"男"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"3"</span>,</span><br><span class="line">        name: <span class="string">"李友国"</span>,</span><br><span class="line">        sex: <span class="string">"未知"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"4"</span>,</span><br><span class="line">        name: <span class="string">"油果"</span>,</span><br><span class="line">        sex: <span class="string">"女"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="string">"5"</span>,</span><br><span class="line">        name: <span class="string">"有国"</span>,</span><br><span class="line">        sex: <span class="string">"女"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">    ];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>实现方法及注解(看注释)</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  <span class="comment">// 合并的计算方法</span></span><br><span class="line">  objectSpanMethod(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">    <span class="comment">// 当列索引是2(第三列), 需要设置要合并的列/行</span></span><br><span class="line">    <span class="keyword">if</span> (columnIndex === <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (rowIndex === <span class="number">0</span> || rowIndex === <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="comment">// 当行索引是0(第一行), 或者当行索引是3(第四行), 均向下合并1行(共两行), 合并0列(共一列)</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          rowspan: <span class="number">2</span>,</span><br><span class="line">          colspan: <span class="number">1</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (rowIndex === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="comment">// 当行索引是2(第三行), 不作合并</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 1表示不合并</span></span><br><span class="line">          rowspan: <span class="number">1</span>,</span><br><span class="line">          colspan: <span class="number">1</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 其他行</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          <span class="comment">// 0表示已被合并, 直接不显示</span></span><br><span class="line">          rowspan: <span class="number">0</span>,</span><br><span class="line">          colspan: <span class="number">0</span>,</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<h2 id="实现案例-2-动态设置合并行列"><a href="#实现案例-2-动态设置合并行列" class="headerlink" title="实现案例 2: 动态设置合并行列"></a>实现案例 2: 动态设置合并行列</h2><p><strong>效果图</strong></p>
-<img src="/your/2020/06/03/el-table-object-span-method/20200603230321.png" class="" title="实现案例1效果图">
-
-<p><strong>html 模板</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:data</span>=<span class="string">"tableData"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:span-method</span>=<span class="string">"objectSpanMethod"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">border</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"width: 600px;"</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"id"</span> <span class="attr">label</span>=<span class="string">"订单号"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"商品名称"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"price"</span> <span class="attr">label</span>=<span class="string">"价格"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"num"</span> <span class="attr">label</span>=<span class="string">"数量"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">```</span><br></pre></td></tr></table></figure>
-
-<p><strong>订单原始数据 -&gt; 表格数据</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// vue data</span></span><br><span class="line">data () &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 表格数据</span></span><br><span class="line">    tableData: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">created() &#123;</span><br><span class="line">  <span class="keyword">this</span>.init()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  init() &#123;</span><br><span class="line">    <span class="comment">// 订单数据</span></span><br><span class="line">    <span class="keyword">const</span> orderData = [</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">1</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"华为1"</span>,</span><br><span class="line">            price: <span class="number">3000</span>,</span><br><span class="line">            num: <span class="number">2</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"苹果1"</span>,</span><br><span class="line">            price: <span class="number">4000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"RedMi3"</span>,</span><br><span class="line">            price: <span class="number">4000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">2</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"魅族1"</span>,</span><br><span class="line">            price: <span class="number">2000</span>,</span><br><span class="line">            num: <span class="number">2</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        id: <span class="number">3</span>,</span><br><span class="line">        childrens: [</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"OPPO"</span>,</span><br><span class="line">            price: <span class="number">3000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            name: <span class="string">"VIVO"</span>,</span><br><span class="line">            price: <span class="number">2000</span>,</span><br><span class="line">            num: <span class="number">1</span>,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 数据重组</span></span><br><span class="line">    orderData.forEach(<span class="function">(<span class="params">order</span>) =&gt;</span> &#123;</span><br><span class="line">      order.childrens.forEach(<span class="function">(<span class="params">prod, i</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.tableData.push(&#123;</span><br><span class="line">          id: order.id,</span><br><span class="line">          name: prod.name,</span><br><span class="line">          price: prod.price,</span><br><span class="line">          num: prod.num,</span><br><span class="line">          length: i === <span class="number">0</span> ? order.childrens.length : <span class="number">0</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重组后的数据 this.tableData</span></span><br><span class="line">    <span class="comment">// [</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"华为1","price":3000,"num":2,"length":3&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"苹果1","price":4000,"num":1,"length":0&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":1,"name":"RedMi3","price":4000,"num":1,"length":0&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":2,"name":"魅族1","price":2000,"num":2,"length":1&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":3,"name":"OPPO","price":3000,"num":1,"length":2&#125;,</span></span><br><span class="line">    <span class="comment">//   &#123;"id":3,"name":"VIVO","price":2000,"num":1,"length":0&#125;</span></span><br><span class="line">    <span class="comment">// ]</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 合并的计算方法</span></span><br><span class="line">  objectSpanMethod2(&#123; row, column, rowIndex, columnIndex &#125;) &#123;</span><br><span class="line">    <span class="comment">// 合并第一列: 订单号</span></span><br><span class="line">    <span class="keyword">if</span> (columnIndex === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        rowspan: row.length, <span class="comment">// , 通过 length 来判断需要合并的行数</span></span><br><span class="line">        colspan: <span class="number">1</span>, <span class="comment">// 列不合并</span></span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>列合并也是同样的操作, 实际情况中行合并的需求比较常见</p>
-<p>通过对 row, column, rowIndex, columnIndex, rowspan, colspan 的灵活设置, 可以实现更多复杂的操作</p>
-<p><strong>参考</strong></p>
-<p><a href="https://blog.csdn.net/qq_29468573/article/details/80742646" target="_blank" rel="noopener">element-ui table :span-method（行合并）- CSDN</a></p>
-]]></content>
-      <categories>
-        <category>问题解决</category>
-        <category>Element-ui</category>
-      </categories>
-      <tags>
-        <tag>Element</tag>
-        <tag>UI组件库</tag>
-        <tag>span-method</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 常用操作命令总结</title>
-    <url>/your/2020/05/31/summary-of-git/</url>
-    <content><![CDATA[<h2 id="场景"><a href="#场景" class="headerlink" title="场景:"></a>场景:</h2><p>小 G 去了一家公司, 公司使用了 git 作为源代码的管理工具</p>
-<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>第一步先下载一个敲命令的工具: Git Bash</p>
-<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧:"></a>使用技巧:</h2><p>键盘 <strong>上箭头</strong> 和 <strong>下箭头</strong> 可以快速切换到历史命令</p>
-<p>在对应的目录右键, 选择 Git Bash Here, 即可直接在当前目录下打开命令界面</p>
-<img src="/your/2020/05/31/summary-of-git/git_01.png" class="" title="右键, 选择 Git Bash Here">
-
-<hr>
-<h2 id="准备工作-获取项目源代码"><a href="#准备工作-获取项目源代码" class="headerlink" title="准备工作: 获取项目源代码"></a>准备工作: 获取项目源代码</h2><p><strong>生成 SSH 公钥, 发给 Git 服务器的管理员, 获得代码授权</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成 SSH 公钥</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"xxxxx@xxxxx.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看公钥, 全部复制粘贴</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p><strong>配置 Git 使用者信息</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">"GuoYou.Li"</span></span><br><span class="line">git config --global user.email GuoYou.Li@foxmail.com</span><br></pre></td></tr></table></figure>
-
-<p><strong>注:</strong> 执行了上面的命令之后, 以后的每个项目的每次 Git 提交时, 都是使用了 这两条信息来说明是谁提交了更新</p>
-<p><strong>克隆项目到本地指定的文件夹内</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git clone 你的项目地址</span></span><br><span class="line">git <span class="built_in">clone</span> git@github.com:liguoyou/vue-demo.git</span><br></pre></td></tr></table></figure>
-
-<p>进入文件夹: cd 项目文件夹名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> vue-demo</span><br></pre></td></tr></table></figure>
-
-<p><strong>注:</strong> cd .. 返回上一层; cd ../../ 返回两层; cd view/home 进入文件夹</p>
-<p><strong>npm 安装依赖包</strong></p>
-<p>更推荐使用 <code>yarn</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install</span><br><span class="line"><span class="comment"># cnpm install (如果你安装了淘宝镜像, 速度会更快些)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行项目 (具体命令还需要查看 package.json 里面的 scripts)</span></span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/31/summary-of-git/git_02.png" class="" title="git reflog">
-
-<p><strong>注:</strong> Ctrl + c 可以结束项目运行</p>
-<hr>
-<h2 id="项目开发过程的-Git-使用"><a href="#项目开发过程的-Git-使用" class="headerlink" title="项目开发过程的 Git 使用"></a>项目开发过程的 Git 使用</h2><p><strong>流程</strong></p>
-<p>远程库&lt;<code>git pull</code>&gt; 工作区 &lt;<code>git add</code>&gt; 暂存区 &lt;<code>git commit</code>&gt; 版本区&lt;<code>git push</code>&gt; 远程库</p>
-<p><strong>查看当前状态</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
-
-<p><strong>把修改的文件提交到暂存区</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git add 文件名</span></span><br><span class="line">git add vue.config.js</span><br></pre></td></tr></table></figure>
-
-<p><strong>把修改的所有文件提交到暂存区</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-
-<p><strong>把暂存区的内容提交到版本区, -m 为 message 的意思</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git commit -m 备注信息</span></span><br><span class="line">git commit -m <span class="string">'create vue.config.js'</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>也可以一步直接提交暂存区和版本区, -a 为 add 的意思</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新增的文件第一次提交, 不能使用</span></span><br><span class="line">git commit -a -m <span class="string">'这里填写修改的备注信息'</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>查看提交的历史记录</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/31/summary-of-git/git_03.png" class="" title="查看提交的历史记录">
-
-<p><strong>注:</strong> 回车可以往下查看更多记录, 输入 q 可以退出当前 log 界面</p>
-<p><strong>回滚指定版本, 先从 git log 中找到要回滚的 commit id</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git reset --hard commit_id</span></span><br><span class="line">git reset --hard 33cb2b7ec310f5ed</span><br></pre></td></tr></table></figure>
-
-<p><strong>回到上一个 commit 版本</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再上一个</span></span><br><span class="line">git reset --hard HEAD^1</span><br></pre></td></tr></table></figure>
-
-<p><strong>查看所有操作日志, 包含刚刚 reset 的 commit 日志</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/31/summary-of-git/git_04.png" class="" title="git reflog">
-
-<p><strong>提交代码到代码库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于, origin 默认, 可省略, master 是分支, 也可以省略</span></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="多个远程仓库"><a href="#多个远程仓库" class="headerlink" title="多个远程仓库"></a>多个远程仓库</h2><p>假设我们需要推送到另一个远程仓库</p>
-<p><strong>关联远程仓库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># gitee 是给这个远程的一个命名, 和 origin 一样是一个远程的别称, origin 为默认</span></span><br><span class="line">git remote add gitee git@gitee.com:liguoyou/vue-demo.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看远程</span></span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-
-<p><strong>推送代码到码云这个远程仓库</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push gitee</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="分支相关"><a href="#分支相关" class="headerlink" title="分支相关"></a>分支相关</h2><p><strong>查看当前所有分支</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
-
-<p><strong>创建一个分支 devel, 并切换到该分支</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch devel</span><br><span class="line"></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快捷操作, 创建分支的同时切换到该分支, -b 是 branch 的意思</span></span><br><span class="line">git checkout -b devel2</span><br></pre></td></tr></table></figure>
-
-<p><strong>删除分支 devel2</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git branch -d devel2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果 devel2 有内容修改没有合并, 则需要 -D 才能完成删除</span></span><br><span class="line">git branch -D devel2</span><br></pre></td></tr></table></figure>
-
-<p><strong>合并 devel 的内容到 master 分支上</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 提交 devel 分支上的修改内容</span></span><br><span class="line">git commit -a -m <span class="string">'update test.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到 master</span></span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行合并</span></span><br><span class="line">git merge devel</span><br></pre></td></tr></table></figure>
-
-<p><strong>切换到 devel 分支, 并 push 到远程</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到 devel 分支</span></span><br><span class="line">git checkout devel</span><br><span class="line"></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<p>会提示你当前分支在远程没有对应的上游分支</p>
-<p><strong>设置上游分支</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push --<span class="built_in">set</span>-upstream origin devel</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/31/summary-of-git/git_05.png" class="" title="设置上游分支">
-
-<p><strong>如果发现 push 失败, 很有可能是因为其他人修改提交了代码, 你需要先拉取最新的代码下来, 合并之后再提交</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="打版本标签"><a href="#打版本标签" class="headerlink" title="打版本标签"></a>打版本标签</h2><p><strong>添加标签</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打标签</span></span><br><span class="line">git tag 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># add一个标签 -a,  并写 message -m</span></span><br><span class="line">git tag -a 1.1.0 -m <span class="string">"v 1.1.0"</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>查看标签</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure>
-
-<p><strong>同步标签到远程</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git push 1.0.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者, 注意是两个 -</span></span><br><span class="line">git push --tags</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/31/summary-of-git/git_06.png" class="" title="打版本标签">
-
-<p>暂时这么多.</p>
-]]></content>
-      <categories>
-        <category>知识总结</category>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>301 Moved Permanently (from disk cache)</title>
-    <url>/your/2020/05/31/301-moved-permanently/</url>
-    <content><![CDATA[<p>不得不记录下这个奇葩的遭遇,</p>
-<p>本来一切好好的, 然后我把 vue.config.js 的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
-<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了 301 重定向到了生产环境 api 地址</p>
-<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找答案和后端沟通, baidu 了也没找到解决方案</p>
-<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
-<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
-
-<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
-<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
-<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
-<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome 浏览器清除 301 缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
-]]></content>
-      <categories>
-        <category>问题解决</category>
-        <category>缓存</category>
-      </categories>
-      <tags>
-        <tag>301</tag>
-        <tag>浏览器缓存</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</title>
-    <url>/your/2020/05/29/yarn-global-add-package/</url>
-    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p>安装成功, 但是使用命令却不生效…</p>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
-<p>(1) 找到 yarn 的全局安装目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global bin</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/29/yarn-global-add-package/image_01.png" class="" title="yarn global bin">
-
-<p>(2) 将该目录地址拷贝至系统属性-环境变量-系统变量-path 中:</p>
-<img src="/your/2020/05/29/yarn-global-add-package/image_02.png" class="" title="将该目录地址拷贝至系统属性-环境变量-系统变量-path">
-
-<p>(3) 重启终端, <strong>应该</strong>就可以了.</p>
-<p><strong>好吧, 我的还不可以</strong></p>
-<img src="/your/2020/05/29/yarn-global-add-package/image_03.png" class="" title="hexo init 失败">
-
-<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</span><br></pre></td></tr></table></figure>
-
-<p>ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
-<img src="/your/2020/05/29/yarn-global-add-package/20200531155353.jpg" class="" title="修改环境变量地址">
-
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
-<li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
-<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
-</ol>
-<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
-]]></content>
-      <categories>
-        <category>问题解决</category>
-        <category>Yarn</category>
-      </categories>
-      <tags>
-        <tag>Yarn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
-    <url>/your/2020/05/29/build-a-blog-based-on-hexo/</url>
-    <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理工具</em></p>
-<h3 id="1-全局安装-Hexo"><a href="#1-全局安装-Hexo" class="headerlink" title="1. 全局安装 Hexo"></a>1. 全局安装 Hexo</h3><p>本文使用的是 <code>yarn</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 <del>hexo</del> your (<strong>后面我把文件夹名改成了 your, 保持和访问的根目录一致</strong>),</p>
-<p>在 <del>hexo</del> your 中打开 git Bash, 执行:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 网速不好的话, 这里可能需要点时间</span></span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526204940892.png" class="" title="init 成功">
-
-<p>init 后目录如下, 关于目录及文件的说明请查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档(中文)</a></p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526205207269.png" class="" title="init 生成的目录">
-
-<h3 id="3-编译-amp-运行"><a href="#3-编译-amp-运行" class="headerlink" title="3. 编译&amp;运行"></a>3. 编译&amp;运行</h3><p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">yarn build</span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">yarn server</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210826688.png" class="" title="编译&amp;运行">
-
-<p>当然, 更便捷的操作是执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
-
-<p>简写</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
-
-<h3 id="4-首次运行如图"><a href="#4-首次运行如图" class="headerlink" title="4. 首次运行如图"></a>4. 首次运行如图</h3><p>默认主题 landscape</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210938239.png" class="" title="首次运行">
-
-<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><h3 id="一-选择主题"><a href="#一-选择主题" class="headerlink" title="一. 选择主题"></a>一. 选择主题</h3><p>本文选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
-<p>在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方的主题</a>里面选择一个你喜欢的主题, 按照主题的<a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">文档</a>来就好</p>
-<p>下载好慢….等等等…</p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题:"></a>遇到的问题:</h3><h4 id="1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程"><a href="#1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程" class="headerlink" title="(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:"></a>(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:</h4><blockquote><p>一开始按照作者的文档操作配置</p>
-<p>安装插件依赖<br><code>yarn add hexo-generator-searchdb</code></p>
-<p>在 <code>./_config.yml</code> 中添加配置 (注意: 这不是 ocean 中的)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本地检索 hexo-generator-searchdb</span></span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-
-<p>然后就报错 Cannot GET /js/search.js 404!!</p>
-<p><strong>首先</strong>, 按照 <a href="https://github.com/zhwangart/gitalk/issues/7" target="_blank" rel="noopener">关于搜索问题 sevilen 同学给了一个详细的步骤</a></p>
-<p>在 <code>\themes\ocean\layout\_partial\after-footer.ejs</code> 中配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不管是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.search)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"><span class="comment"># 还是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.local_search.enable)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'/js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..</p>
-<p><strong>然后</strong> 直接找到加载 js 的地方修改路径</p>
-<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">\$.getScript(<span class="string">'js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">searchFunc(<span class="string">"search.xml"</span>,</span><br></pre></td></tr></table></figure>
-
-<p>首页可以了! 内页还是不行啊, 一看请求失败的链接, 居然把路径拼在了整个地址的最后, 好无奈:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;your&#x2F;2020&#x2F;05&#x2F;29&#x2F;%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2&#x2F;js&#x2F;search.js?_&#x3D;1590852138728</span><br></pre></td></tr></table></figure>
-
-<p><strong>最后使用了一种不是很好的办法解决了</strong></p>
-<p>在文件路径前面添加根路径<code>/your/</code> (_config.yml 中的 <code>root: /your/</code>)</p>
-<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">\$.getScript(<span class="string">'/your/js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line"></span><br><span class="line">searchFunc(<span class="string">"/your/search.xml"</span>,</span><br></pre></td></tr></table></figure>
-
-<p>就<strong>ok</strong>了!</p>
-<h4 id="2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示"><a href="#2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示" class="headerlink" title="(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示"></a>(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示</h4><p>图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加<a href="https://hexo.io/zh-cn/docs/helpers#url-for" target="_blank" rel="noopener">辅助函数 url_for</a>就可以顺利解决:</p>
-<p><strong>修改以下文件</strong></p>
-<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\sidebar.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.brand</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\head.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.favicon</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.favicon</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\ocean.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 有五处 --&gt;</span></span><br><span class="line"></span><br><span class="line">theme.ocean.path</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line">url_for(theme.ocean.path)</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.ocean.brand</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.ocean.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-修改文件-比如修改样式部署之后不生效"><a href="#3-修改文件-比如修改样式部署之后不生效" class="headerlink" title="(3) 修改文件, 比如修改样式部署之后不生效?"></a>(3) 修改文件, 比如修改样式部署之后不生效?</h4><p>一般是缓存文件问题, 试试:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-关于很多的问题"><a href="#4-关于很多的问题" class="headerlink" title="(4) 关于很多的问题"></a>(4) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
-<p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
-<h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-
-<p>新的主题:</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526221210487.png" class="" title="新主题">
-
-<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235114597.png" class="" title="创建仓库及开启服务">
-
-<h3 id="2-配置-config-yml"><a href="#2-配置-config-yml" class="headerlink" title="(2) 配置 _config.yml"></a>(2) 配置 <code>_config.yml</code></h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liguoyou.gitee.io/your/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/your/</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@gitee.com:liguoyou/your.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-安装自动部署发布工具"><a href="#3-安装自动部署发布工具" class="headerlink" title="(3) 安装自动部署发布工具"></a>(3) 安装自动部署发布工具</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<p>发布博客</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p>进入 Gitee Pages 点击更新按钮, 等待部署完成即可</p>
-<p><strong>值得注意的是</strong></p>
-<p>如果你只想把编译完成后的 public 文件中的所有文件 push 至仓库中:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>如图:</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235831345.png" class="" title="hexo d">
-
-<p><strong>但是, 我想把整个本地的仓库 push 上去怎么做呢</strong></p>
-<p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="/your/2020/05/31/summary-of-git/" title="更多git操作">更多git操作</a>)</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527224538977.png" class="" title="git push">
-
-<p>然后<strong>设置部署目录为 public</strong> 即可</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527000632686.png" class="" title="设置部署目录为 public">
-
-<p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
-<p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档, 真的很详细</a><br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">Ocean 中文文档 - zhwangart</a><br><a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题 - zhwangart</a><br><a href="https://zhwangart.github.io/2018/12/06/Gitalk/" target="_blank" rel="noopener">Gitalk 的使用 - zhwangart</a><br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">基于 Gitee+Hexo 搭建个人博客 - segmentfault</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">使用 Gitee+Hexo 搭建个人博客 - 简书</a></p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Ocean</tag>
-        <tag>静态博客</tag>
       </tags>
   </entry>
 </search>

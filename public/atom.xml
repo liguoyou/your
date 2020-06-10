@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-06-06T14:09:05.379Z</updated>
+  <updated>2020-06-10T16:06:28.263Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>简单的了解 HTTP 协议</title>
+    <link href="http://liguoyou.gitee.io/your/2020/06/06/http/"/>
+    <id>http://liguoyou.gitee.io/your/2020/06/06/http/</id>
+    <published>2020-06-06T15:16:20.000Z</published>
+    <updated>2020-06-10T16:06:28.263Z</updated>
+    
+    <summary type="html">
+    
+      HTTP 协议的简单了解：HTTP 协议的主要特点、Keep-Alive、HTTP 报文、http 状态码等...
+    
+    </summary>
+    
+    
+      <category term="学习笔记" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="http" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/http/"/>
+    
+    
+      <category term="http" scheme="http://liguoyou.gitee.io/your/tags/http/"/>
+    
+      <category term="状态码" scheme="http://liguoyou.gitee.io/your/tags/%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+    
+      <category term="持久连接" scheme="http://liguoyou.gitee.io/your/tags/%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5/"/>
+    
+      <category term="keepAlive" scheme="http://liguoyou.gitee.io/your/tags/keepAlive/"/>
+    
+  </entry>
   
   <entry>
     <title>JS中的构造函数、原型与原型链</title>
@@ -54,7 +83,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/06/03/plan/"/>
     <id>http://liguoyou.gitee.io/your/2020/06/03/plan/</id>
     <published>2020-06-03T15:31:20.000Z</published>
-    <updated>2020-06-06T14:20:07.936Z</updated>
+    <updated>2020-06-10T15:37:57.357Z</updated>
     
     <summary type="html">
     
