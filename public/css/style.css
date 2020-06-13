@@ -1139,17 +1139,42 @@ img {
   list-style: none;
   padding-left: 0;
   margin-left: 0;
-  margin-right: -0.5rem;
-  margin-left: -0.5rem;
 }
 .category-list > .category-list-item {
-  display: inline-block;
   padding: 0.5rem 1rem;
 }
 .category-list > .category-list-item:before {
   content: "\f18c";
   font-family: feathericon;
   margin-right: 0.5rem;
+}
+.category-list > .category-list-item > .category-list-link {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+.category-list > .category-list-item > .category-list-child {
+  list-style: none;
+  overflow: hidden;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.category-list > .category-list-item > .category-list-child > .category-list-item {
+  flex: none;
+  padding: 0.5rem;
+}
+.category-list > .category-list-item > .category-list-child > .category-list-item > .category-list-link {
+  display: block;
+  padding: 0.5rem 1.3rem;
+  background-color: #f2f2f2;
+  color: #666;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.category-list > .category-list-item > .category-list-child > .category-list-item > .category-list-link:hover {
+  background-color: #1e3c5a;
+  color: #fff;
 }
 .tag-list {
   list-style: none;
