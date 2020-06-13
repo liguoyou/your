@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-06-10T16:06:28.263Z</updated>
+  <updated>2020-06-13T15:42:05.119Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因</title>
+    <link href="http://liguoyou.gitee.io/your/2020/06/12/remove-event-listener/"/>
+    <id>http://liguoyou.gitee.io/your/2020/06/12/remove-event-listener/</id>
+    <published>2020-06-12T15:24:26.000Z</published>
+    <updated>2020-06-13T15:42:05.119Z</updated>
+    
+    <summary type="html">
+    
+      通过 addEventListener() 给 document 对象注册了 click 事件监听, 再通过 removeEventListener() 取消监听事件不起作用(失效)的原因
+    
+    </summary>
+    
+    
+      <category term="问题解决" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+      <category term="JavaScript" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/JavaScript/"/>
+    
+    
+      <category term="事件监听" scheme="http://liguoyou.gitee.io/your/tags/%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/"/>
+    
+      <category term="addEventListener" scheme="http://liguoyou.gitee.io/your/tags/addEventListener/"/>
+    
+      <category term="removeEventListener" scheme="http://liguoyou.gitee.io/your/tags/removeEventListener/"/>
+    
+  </entry>
   
   <entry>
     <title>简单的了解 HTTP 协议</title>
@@ -83,7 +110,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/06/03/plan/"/>
     <id>http://liguoyou.gitee.io/your/2020/06/03/plan/</id>
     <published>2020-06-03T15:31:20.000Z</published>
-    <updated>2020-06-10T15:37:57.357Z</updated>
+    <updated>2020-06-13T06:47:14.577Z</updated>
     
     <summary type="html">
     

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="前端,Vue.js,JavaScript,Node.js,小程序">
+  
+  
+    <meta name="description" content="GuoYou.Li(李国有)的博客, 用于做学习过程中的笔记、总结以及知识分享">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因 |
+    
+    种子的信仰</title>
+  
+    <link rel="shortcut icon" href="/your/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/your/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/your/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/your/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/your/atom.xml" title="种子的信仰" type="application/atom+xml">
+</head>
+
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-remove-event-listener" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+  
+    <h1 class="article-title" itemprop="name">
+      EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因
+    </h1>
+  
+  
+
+
+
+
+            </header>
+            
+
+                
+                    <div class="article-meta">
+                        <a href="/your/2020/06/12/remove-event-listener/" class="article-date">
+  <time datetime="2020-06-12T15:24:26.000Z" itemprop="datePublished">2020-06-12</time>
+</a>
+                            
+  <div class="article-category">
+    <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a> / <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/JavaScript/">JavaScript</a>
+  </div>
+
+                    </div>
+                    
+
+                        
+                            
+    <div class="tocbot"></div>
+
+
+
+
+
+                                
+
+                                    <div class="article-entry" itemprop="articleBody">
+                                        
+
+
+                                            
+
+                                                
+                                                                    <h2 id="问题产生的原因"><a href="#问题产生的原因" class="headerlink" title="问题产生的原因"></a>问题产生的原因</h2><p><strong>没有正确匹配到要删除的事件监听</strong></p>
+<h2 id="监听和取消事件"><a href="#监听和取消事件" class="headerlink" title="监听和取消事件"></a>监听和取消事件</h2><p><code>addEventListener()</code> 语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target.addEventListener(type, listener[, options])</span><br><span class="line">target.addEventListener(type, listener[, useCapture])</span><br></pre></td></tr></table></figure>
+
+<p><code>removeEventListener()</code> 语法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target.removeEventListener(type, listener[, options])</span><br><span class="line">target.removeEventListener(type, listener[, useCapture])</span><br></pre></td></tr></table></figure>
+
+<p><strong>参数说明</strong></p>
+<p><code>type</code>: 表示监听事件类型的字符串。</p>
+<p><code>listener</code>: 目标事件绑定的回调函数</p>
+<p><code>options</code>: 一个指定有关 <code>listener</code> 属性的可选参数对象</p>
+<p><code>useCapture</code>: 指定需要移除的 <code>EventListener</code> 函数是否为捕获监听器。<code>true</code> 表示“事件捕获”, 默认为 <code>false</code>, 表示“事件冒泡”</p>
+<h3 id="removeEventListener-移除成功需要满足"><a href="#removeEventListener-移除成功需要满足" class="headerlink" title="removeEventListener() 移除成功需要满足"></a><code>removeEventListener()</code> 移除成功需要满足</h3><ul>
+<li>需要移除的事件类型必须是一样的, 比如: <code>click</code></li>
+<li>需要从目标事件移除的 <code>EventListener</code> 函数必须和 <code>addEventListener</code> 中注册的是<strong>同一个</strong>, 也就是说<strong>引用地址是相同的</strong></li>
+<li>指定需要移除的 <code>EventListener</code> 函数的<code>useCapture</code> 和 <code>addEventListener</code> 中注册的相同的</li>
+</ul>
+<h3 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h3><ol>
+<li>设置 <code>useCapture</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">false</span>); <span class="comment">// 失败</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>); <span class="comment">// 成功</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>设置 <code>options</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">true</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意此时的 <code>useCapture</code> 默认为 <code>false</code>, 所以 <code>removeEventListener</code> 也应该设置 <code>useCapture</code> 为 false</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">true</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">capture</span>: <span class="literal">false</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">capture</span>: <span class="literal">true</span> &#125;); <span class="comment">// 失败</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">false</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">false</span>); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>); <span class="comment">// 失败</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><h3 id="1-使用了匿名函数"><a href="#1-使用了匿名函数" class="headerlink" title="1.使用了匿名函数"></a>1.使用了匿名函数</h3><p>这样写是<strong>无效</strong>的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="built_in">document</span>.addEventListener( <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="comment">// 这样写是无效的</span></span><br><span class="line">  <span class="built_in">document</span>.removeEventListener( <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>需要改成:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="built_in">document</span>.addEventListener( <span class="string">"click"</span>, <span class="keyword">this</span>.callBack, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="built_in">document</span>.removeEventListener( <span class="string">"click"</span>, <span class="keyword">this</span>.callBack, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  callBack() &#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-忽略了函数的引用地址"><a href="#2-忽略了函数的引用地址" class="headerlink" title="2.忽略了函数的引用地址"></a>2.忽略了函数的引用地址</h3><p>这样写是<strong>无效</strong>的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="keyword">this</span>.eventListener(<span class="string">"add"</span>)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="keyword">this</span>.eventListener(<span class="string">"remove"</span>)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  eventListener(val) &#123;</span><br><span class="line">    <span class="keyword">const</span> callBackFn = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"函数表达式, click"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="string">"add"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, callBackFn)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="string">"remove"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.removeEventListener(<span class="string">"click"</span>, callBackFn)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>create()</code> 和 <code>destroyed()</code> 两次的调用分别初始化了一个函数 <code>callBackFn</code>, 这两个 <code>callBackFn</code> 存放在内存中的地址是不一样的, 是两个没有关系的函数, 所以 <code>removeEventListener()</code> 是不起作用(失效)的</p>
+<p>同理改成下面这样: 把 <code>callBackFn</code> 提取到一个公共方法中:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// code...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  eventListener(val) &#123;</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="string">"add"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, <span class="keyword">this</span>.callBackFn)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="string">"remove"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.removeEventListener(<span class="string">"click"</span>, <span class="keyword">this</span>.callBackFn)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  callBackFn() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"函数表达式, click"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>归根结底的原因是: <strong>没有正确匹配到要删除的事件监听</strong></p>
+<p><strong>参考</strong></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener">EventTarget.addEventListener - MDN web docs</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/removeEventListener" target="_blank" rel="noopener">EventTarget.removeEventListener - MDN web docs</a></p>
+
+                                                                        
+                                    </div>
+                                    <footer class="article-footer">
+                                        <!-- 注释 - 分享按钮 -->
+                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/06/12/remove-event-listener/" data-id="ckbdt6id2000pu0ond2oahriy" class="article-share-link">
+                                            分享
+                                        </a> -->
+                                        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/addEventListener/" rel="tag">addEventListener</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/removeEventListener/" rel="tag">removeEventListener</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" rel="tag">事件监听</a></li></ul>
+
+                                    </footer>
+
+    </div>
+
+    
+        
+  <nav class="article-nav">
+    
+    
+      <a href="/your/2020/06/06/http/" class="article-nav-link">
+        <strong class="article-nav-caption">后一篇</strong>
+        <div class="article-nav-title">简单的了解 HTTP 协议</div>
+      </a>
+    
+  </nav>
+
+
+            
+
+                
+                    
+                        
+  <div class="gitalk" id="gitalk-container"></div>
+  <p style="color: #999; font-size: 12px; text-align: center;">
+    第三方评论系统 -- Gitalk: 偶尔可能出现加载失败的情况, 您可以选择刷新或者前往 
+    <a href="https://github.com/liguoyou/your/issues" target="_blank">issues</a>
+    提交和查看评论
+  </p>
+  
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+  
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '2e731d2b04096a7c71ab',
+      clientSecret: '41e2e15eb8edebd8efd5a6da558a44d60f33468a',
+      repo: 'your',
+      owner: 'liguoyou',
+      admin: ['liguoyou'],
+      // id: location.pathname,      // Ensure uniqueness and length less than 50
+      id: md5(location.pathname),
+      distractionFreeMode: false,  // Facebook-like distraction free mode
+      pagerDirection: 'last'
+    })
+
+  gitalk.render('gitalk-container')
+  </script>
+
+                            
+
+</article>
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+    <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2020 种子的信仰</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean" target="_blank" rel="noopener">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/your/"><img src="/your/images/logo.png" alt="种子的信仰"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/">首页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/archives">时间轴</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/categories">分类</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/tags">标签</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/your/about">关于</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/your/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="请输入关键词...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+
+<script src="/your/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/your/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/your/js/lazyload.min.js"></script>
+
+
+<script src="/your/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  
+<script src="/your/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+  
+<script src="/your/js/tocbot.min.js"></script>
+
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  </script>
+
+
+<script src="/your/js/ocean.js"></script>
+
+
+</body>
+</html>
