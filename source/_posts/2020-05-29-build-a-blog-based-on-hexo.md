@@ -110,7 +110,7 @@ search:
 
 **首先**, 按照 [关于搜索问题 sevilen 同学给了一个详细的步骤](https://github.com/zhwangart/gitalk/issues/7)
 
-在 `\themes\ocean\layout\_partial\after-footer.ejs` 中配置
+在 `\themes\ocean\layout\_partial\after-footer.ejs` 中配置(**此方法不行**)
 
 ```bash
 # 不管是这个
@@ -125,53 +125,39 @@ search:
 
 然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..
 
-**然后** 直接找到加载 js 的地方修改路径
+然后 又试了下面的方法: 直接找到加载 js 的地方修改路径(**此方法不行**)
 
 {% codeblock lang:bash themes\ocean\source\js\ocean.js %}
-
 # 原代码
-
 # \$.getScript('/js/search.js',
-
 # 修改为
-
 \$.getScript('js/search.js',
 
 # 原代码
-
 # searchFunc("/search.xml",
-
 # 修改为
-
 searchFunc("search.xml",
 {% endcodeblock %}
 
 首页可以了! 内页还是不行啊, 一看请求失败的链接, 居然把路径拼在了整个地址的最后, 好无奈:
 
 ```
-http://localhost:4000/your/2020/05/29/%E5%9F%BA%E4%BA%8E-Hexo-%E6%90%AD%E5%BB%BA-Gitee-%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/js/search.js?_=1590852138728
+http://localhost:4000/your/2020/05/29/build-a-blog-based-on-hexo/js/search.js?_=1590852138728
 ```
 
 **最后使用了一种不是很好的办法解决了**
 
-在文件路径前面添加根路径`/your/` (\_config.yml 中的 `root: /your/`)
+在文件路径前面添加根路径`/your/` (这是在 \_config.yml 中的配置 `root: /your/`, 也就是我的博客根路径)
 
 {% codeblock lang:bash themes\ocean\source\js\ocean.js %}
-
 # 原代码
-
 # \$.getScript('/js/search.js',
-
 # 修改为
-
 \$.getScript('/your/js/search.js',
 
 # 原代码
-
 # searchFunc("/search.xml",
-
 # 修改为
-
 searchFunc("/your/search.xml",
 {% endcodeblock %}
 
@@ -182,45 +168,29 @@ searchFunc("/your/search.xml",
 图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加[辅助函数 url_for](https://hexo.io/zh-cn/docs/helpers#url-for)就可以顺利解决:
 
 **修改以下文件**
-
 {% codeblock lang:html themes\ocean\layout\_partial\sidebar.ejs %}
-
 <!-- 原代码 -->
-
 <%- theme.brand %>
-
 <!-- 修改为 -->
-
 <%- url_for(theme.brand) %>
 {% endcodeblock %}
 
 {% codeblock lang:html themes\ocean\layout\_partial\head.ejs %}
-
 <!-- 原代码 -->
-
 <%- theme.favicon %>
-
 <!-- 修改为 -->
-
 <%- url_for(theme.favicon) %>
 {% endcodeblock %}
 
 {% codeblock lang:html themes\ocean\layout\_partial\ocean.ejs %}
-
 <!-- 原代码 有五处 -->
-
 theme.ocean.path
-
 <!-- 修改为 -->
-
 url_for(theme.ocean.path)
 
 <!-- 原代码 -->
-
 <%- theme.ocean.brand %>
-
 <!-- 修改为 -->
-
 <%- url_for(theme.ocean.brand) %>
 {% endcodeblock %}
 
