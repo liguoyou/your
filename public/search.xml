@@ -28,7 +28,7 @@
 <li><input disabled="" type="checkbox"> Webpack 常用配置方案</li>
 <li><input disabled="" type="checkbox"> EsLint 配置方案</li>
 <li><input disabled="" type="checkbox"> 单元测试</li>
-<li><input disabled="" type="checkbox"> removeEventListener 取消监听事件不起作用(失效)的原因</li>
+<li><input checked="" disabled="" type="checkbox"> removeEventListener 取消监听事件不起作用(失效)的原因</li>
 <li><input disabled="" type="checkbox"> Node.js 相关<ul>
 <li><input disabled="" type="checkbox"> Sequelize ORM 框架</li>
 <li><input disabled="" type="checkbox"> …</li>
@@ -56,10 +56,37 @@
 <li><input disabled="" type="checkbox"> …</li>
 </ul>
 </li>
+<li><input disabled="" type="checkbox"> 做题<ul>
 <li><input disabled="" type="checkbox"> Leetcode 算法题记录</li>
-<li><input disabled="" type="checkbox"> …</li>
+<li><input disabled="" type="checkbox"> 面试题</li>
+</ul>
+</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>如何关闭 Github issues 中的邮件通知</title>
+    <url>/your/2020/06/27/close-issues-notifications/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当我们参与了 github 中某个仓库的问题讨论, 默认会订阅了所有问题的通知, 不管该提问与我是否有关, 都会发送邮件通知我, 有时候会觉得比较烦, 需要关闭掉该通知功能</p>
+<h2 id="关闭方法如图所示"><a href="#关闭方法如图所示" class="headerlink" title="关闭方法如图所示"></a>关闭方法如图所示</h2><img src="/your/2020/06/27/close-issues-notifications/20200627010706.png" class="" title="上方文章截图">
+
+<p>在 issues 的右侧, 找到 Notifications (通知设置) 的一个板块</p>
+<p>直接点击下面的按钮切换 Not subscribed (不订阅)/ Subscribed (订阅),</p>
+<p>或者在点击 Notifications 后出现的弹框中选择</p>
+<p><strong>Not subscribed 不订阅通知</strong></p>
+<p>Only receive notifications from this issue when you have participated or have been @mentioned.<br>只有在您参与或被@提及时才会收到此问题的通知。</p>
+<p><strong>Subscribed 订阅通知</strong></p>
+<p>Receive all notifications from this issue.<br>接收此问题的所有通知。</p>
+<p>特意申请小号测试, 有效</p>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+        <category>Github Issues</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+        <tag>Issues</tag>
+      </tags>
   </entry>
   <entry>
     <title>EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因</title>

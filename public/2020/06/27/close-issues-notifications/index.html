@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
-    301 Moved Permanently (from disk cache) |
+    如何关闭 Github issues 中的邮件通知 |
     
     种子的信仰</title>
   
@@ -34,7 +34,7 @@
 <body>
 <main class="content">
   <section class="outer">
-  <article id="post-301-moved-permanently" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+  <article id="post-close-issues-notifications" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
 
     <div class="article-inner">
         
@@ -42,7 +42,7 @@
                 
   
     <h1 class="article-title" itemprop="name">
-      301 Moved Permanently (from disk cache)
+      如何关闭 Github issues 中的邮件通知
     </h1>
   
   
@@ -55,12 +55,12 @@
 
                 
                     <div class="article-meta">
-                        <a href="/your/2020/05/31/301-moved-permanently/" class="article-date">
-  <time datetime="2020-05-31T15:10:42.000Z" itemprop="datePublished">2020-05-31</time>
+                        <a href="/your/2020/06/27/close-issues-notifications/" class="article-date">
+  <time datetime="2020-06-26T16:31:04.000Z" itemprop="datePublished">2020-06-27</time>
 </a>
                             
   <div class="article-category">
-    <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a> / <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/%E7%BC%93%E5%AD%98/">缓存</a>
+    <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a> / <a class="article-category-link" href="/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/Github-Issues/">Github Issues</a>
   </div>
 
                     </div>
@@ -81,30 +81,27 @@
                                             
 
                                                 
-                                                                    <p>不得不记录下这个奇葩的遭遇,</p>
-<p>本来一切好好的, 然后我把 vue.config.js 的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+                                                                    <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当我们参与了 github 中某个仓库的问题讨论, 默认会订阅了所有问题的通知, 不管该提问与我是否有关, 都会发送邮件通知我, 有时候会觉得比较烦, 需要关闭掉该通知功能</p>
+<h2 id="关闭方法如图所示"><a href="#关闭方法如图所示" class="headerlink" title="关闭方法如图所示"></a>关闭方法如图所示</h2><img src="/your/2020/06/27/close-issues-notifications/20200627010706.png" class="" title="上方文章截图">
 
-<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
-<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了 301 重定向到了生产环境 api 地址</p>
-<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找答案和后端沟通, baidu 了也没找到解决方案</p>
-<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
-<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
-
-<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
-<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
-<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
-<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome 浏览器清除 301 缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
+<p>在 issues 的右侧, 找到 Notifications (通知设置) 的一个板块</p>
+<p>直接点击下面的按钮切换 Not subscribed (不订阅)/ Subscribed (订阅),</p>
+<p>或者在点击 Notifications 后出现的弹框中选择</p>
+<p><strong>Not subscribed 不订阅通知</strong></p>
+<p>Only receive notifications from this issue when you have participated or have been @mentioned.<br>只有在您参与或被@提及时才会收到此问题的通知。</p>
+<p><strong>Subscribed 订阅通知</strong></p>
+<p>Receive all notifications from this issue.<br>接收此问题的所有通知。</p>
+<p>特意申请小号测试, 有效</p>
 
                                                                         
                                     </div>
                                     <footer class="article-footer">
                                         <!-- 注释 - 分享按钮 -->
-                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/05/31/301-moved-permanently/" data-id="ckbwhk77x0005roon9xw0bg88" class="article-share-link">
+                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/06/27/close-issues-notifications/" data-id="ckbwhk787000iroon78ww4a4k" class="article-share-link">
                                             分享
                                         </a> -->
                                         
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/301/" rel="tag">301</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98/" rel="tag">浏览器缓存</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/Github/" rel="tag">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/your/tags/Issues/" rel="tag">Issues</a></li></ul>
 
                                     </footer>
 
@@ -114,19 +111,10 @@
         
   <nav class="article-nav">
     
-      <a href="/your/2020/05/31/summary-of-git/" class="article-nav-link">
-        <strong class="article-nav-caption">前一篇</strong>
-        <div class="article-nav-title">
-          
-            Git 常用操作命令总结
-          
-        </div>
-      </a>
     
-    
-      <a href="/your/2020/05/29/yarn-global-add-package/" class="article-nav-link">
+      <a href="/your/2020/06/12/remove-event-listener/" class="article-nav-link">
         <strong class="article-nav-caption">后一篇</strong>
-        <div class="article-nav-title">yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</div>
+        <div class="article-nav-title">EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因</div>
       </a>
     
   </nav>

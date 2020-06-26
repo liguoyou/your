@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-06-13T15:42:05.119Z</updated>
+  <updated>2020-06-26T17:24:23.570Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何关闭 Github issues 中的邮件通知</title>
+    <link href="http://liguoyou.gitee.io/your/2020/06/27/close-issues-notifications/"/>
+    <id>http://liguoyou.gitee.io/your/2020/06/27/close-issues-notifications/</id>
+    <published>2020-06-26T16:31:04.000Z</published>
+    <updated>2020-06-26T17:24:23.570Z</updated>
+    
+    <summary type="html">
+    
+      在 issues 的右侧, 找到 Notifications (通知设置) 的一个板块, 直接点击下面的按钮切换 Not subscribed (不订阅)/ Subscribed (订阅), 或者在点击 Notifications 后出现的弹框中选择
+    
+    </summary>
+    
+    
+      <category term="问题解决" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+      <category term="Github Issues" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/Github-Issues/"/>
+    
+    
+      <category term="Github" scheme="http://liguoyou.gitee.io/your/tags/Github/"/>
+    
+      <category term="Issues" scheme="http://liguoyou.gitee.io/your/tags/Issues/"/>
+    
+  </entry>
   
   <entry>
     <title>EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因</title>
@@ -110,7 +135,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/06/03/plan/"/>
     <id>http://liguoyou.gitee.io/your/2020/06/03/plan/</id>
     <published>2020-06-03T15:31:20.000Z</published>
-    <updated>2020-06-13T06:47:14.577Z</updated>
+    <updated>2020-06-21T15:20:59.973Z</updated>
     
     <summary type="html">
     
