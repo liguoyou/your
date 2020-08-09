@@ -59,5 +59,10 @@ ok, 重启终端成功了(**win7 可能需要重启电脑!!**)
 1. 可能是从 npm/cnpm 切换为 yarn 某个环节不对
 2. 可能是安装 yarn 的时候缺少了某个操作步骤造成的
 
+问题没解决? 也可以看看我写的另一篇笔记:
+
+[使用 Node.js 和 npm 安装和配置 Yarn](liguoyou.gitee.io/your/2020/08/10/install-yarn-through-nodejs-and-npm/)
+
+
 **参考**
 [yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN](https://blog.csdn.net/weixin_41643133/article/details/83829235)

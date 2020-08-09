@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-06-26T17:24:23.570Z</updated>
+  <updated>2020-08-09T17:24:13.674Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 Node.js 和 npm 安装和配置 Yarn</title>
+    <link href="http://liguoyou.gitee.io/your/2020/08/10/install-yarn-through-nodejs-and-npm/"/>
+    <id>http://liguoyou.gitee.io/your/2020/08/10/install-yarn-through-nodejs-and-npm/</id>
+    <published>2020-08-09T16:03:27.000Z</published>
+    <updated>2020-08-09T17:24:13.674Z</updated>
+    
+    <summary type="html">
+    
+      由于种种令人心酸的原因, 我决定卸载 Node.js, npm, 以及 Yarn, 再重新安装配置, 并将过程记录了下来
+    
+    </summary>
+    
+    
+      <category term="问题解决" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+      <category term="Yarn" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/Yarn/"/>
+    
+    
+      <category term="Yarn" scheme="http://liguoyou.gitee.io/your/tags/Yarn/"/>
+    
+      <category term="npm" scheme="http://liguoyou.gitee.io/your/tags/npm/"/>
+    
+  </entry>
   
   <entry>
     <title>如何关闭 Github issues 中的邮件通知</title>
@@ -227,7 +252,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/"/>
     <id>http://liguoyou.gitee.io/your/2020/05/29/yarn-global-add-package/</id>
     <published>2020-05-28T16:07:52.000Z</published>
-    <updated>2020-06-06T14:15:28.550Z</updated>
+    <updated>2020-08-09T17:26:23.214Z</updated>
     
     <summary type="html">
     
