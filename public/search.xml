@@ -616,8 +616,7 @@
 <li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
 <li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
 </ol>
-<p>问题没解决? 也可以看看我写的另一篇笔记:</p>
-<p><a href="liguoyou.gitee.io/your/2020/08/10/install-yarn-through-nodejs-and-npm/">使用 Node.js 和 npm 安装和配置 Yarn</a></p>
+<p>问题没解决? 也可以看看我写的另一篇笔记: <a href="/your/2020/08/10/install-yarn-through-nodejs-and-npm/" title="使用 Node.js 和 npm 安装和配置 Yarn">使用 Node.js 和 npm 安装和配置 Yarn</a></p>
 <p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
 ]]></content>
       <categories>
