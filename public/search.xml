@@ -1,68 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>计划列表</title>
-    <url>/your/2020/06/03/plan/</url>
-    <content><![CDATA[<p><strong>这里的是一个计划列表, 包括已完成和未完成的所有计划…</strong></p>
-<a id="more"></a>
+    <title>JavaScript 内置对象 String 的 padStart() 和 padEnd() 方法</title>
+    <url>/your/2020/08/14/string-prototype-padStart-and-padEnd/</url>
+    <content><![CDATA[<h2 id="padStart"><a href="#padStart" class="headerlink" title="padStart()"></a><code>padStart()</code></h2><p><code>padStart</code> 和 <code>padEnd</code> 方法是 <code>String.prototype</code> 上定义的方法, 在 <code>ECMAScript</code> 2017 (<code>ES7</code>) 中首次被定义; 两个方法都是返回新的字符串, 并且不会改变原来的值</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.padStart(targetLength [, padString])</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><input checked="" disabled="" type="checkbox"> 基于 Hexo 搭建 Gitee 个人静态博客</li>
-<li><input checked="" disabled="" type="checkbox"> yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</li>
-<li><input checked="" disabled="" type="checkbox"> 301 Moved Permanently (from disk cache)</li>
-<li><input checked="" disabled="" type="checkbox"> Git 常用操作命令总结</li>
-<li><input disabled="" type="checkbox"> 前端基础知识点<ul>
-<li><input checked="" disabled="" type="checkbox"> HTTP 网络协议</li>
-<li><input disabled="" type="checkbox"> ajax 与跨域的了解</li>
-<li><input disabled="" type="checkbox"> BOM Browser Object Model 浏览器对象模型</li>
-<li><input disabled="" type="checkbox"> DOM Document Object Model 事件类</li>
-<li><input checked="" disabled="" type="checkbox"> 原型链</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Array 的常用方法总结<ul>
-<li><input disabled="" type="checkbox"> forEach, map - Array</li>
-<li><input disabled="" type="checkbox"> …</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> JavaScript 中的深拷贝与浅拷贝</li>
-<li><input disabled="" type="checkbox"> Webpack 常用配置方案</li>
-<li><input disabled="" type="checkbox"> EsLint 配置方案</li>
-<li><input disabled="" type="checkbox"> 单元测试</li>
-<li><input checked="" disabled="" type="checkbox"> removeEventListener 取消监听事件不起作用(失效)的原因</li>
-<li><input disabled="" type="checkbox"> Node.js 相关<ul>
-<li><input disabled="" type="checkbox"> Sequelize ORM 框架</li>
-<li><input disabled="" type="checkbox"> …</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> Vue.js 相关<ul>
-<li><input disabled="" type="checkbox"> …</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> React 相关<ul>
-<li><input disabled="" type="checkbox"> React-Native</li>
-<li><input disabled="" type="checkbox"> …</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> 小程序相关<ul>
-<li><input disabled="" type="checkbox"> …</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> UI 组件相关<ul>
-<li><input checked="" disabled="" type="checkbox"> Element table 组件实现行合并(span-method)</li>
-<li><input disabled="" type="checkbox"> …</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> 多端框架相关<ul>
-<li><input disabled="" type="checkbox"> …</li>
-</ul>
-</li>
-<li><input disabled="" type="checkbox"> 做题<ul>
-<li><input disabled="" type="checkbox"> Leetcode 算法题记录</li>
-<li><input disabled="" type="checkbox"> 面试题</li>
-</ul>
-</li>
-</ul>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h3><p>用另一个字符串(<code>padString</code>)从当前字符串(<code>str</code>)<strong>左侧</strong>开始填充, 直到字符串(<code>str</code>)达到给定的长度(<code>targetLength</code>), 然后将新的字符串返回</p>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'2'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">2</span>, <span class="string">'0'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(str) <span class="comment">// '2'</span></span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '02'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p><strong>1.</strong> 如果 <code>targetLength</code> 这个数值小于当前字符串(<code>str</code>)的长度, 则返回当前字符串</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'08'</span> <span class="comment">// str.length = 2</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">1</span>, <span class="string">'LLLL'</span>) <span class="comment">// targetLength: 1</span></span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '08'</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2.</strong> 如果填充字符串(<code>padString</code>)太长，使填充后的字符串长度超过了目标长度(<code>targetLength</code>)，则只保留最左侧的部分，其他部分会被截断</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'abc'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">6</span>, <span class="string">'0123'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '012abc'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>兼容性并不理想, 在 ECMAScript 2017 (ES7) 中首次被定义。</p>
+<p>查看 <a href="https://caniuse.com/#search=padStart" target="_blank" rel="noopener">https://caniuse.com/#search=padStart</a></p>
+<img src="/your/2020/08/14/string-prototype-padStart-and-padEnd/20200815145303_start.jpg" class="" title="padStart 兼容性">
+
+<p><strong>如果原生环境不支持该方法，在其他代码之前先运行下面的代码，将创建 <code>String.prototype.padStart()</code> 方法。</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">String</span>.prototype.padStart) &#123;</span><br><span class="line">    <span class="built_in">String</span>.prototype.padStart = <span class="function"><span class="keyword">function</span> <span class="title">padStart</span>(<span class="params">targetLength,padString</span>) </span>&#123;</span><br><span class="line">        targetLength = targetLength&gt;&gt;<span class="number">0</span>; <span class="comment">//floor if number or convert non-number to 0;</span></span><br><span class="line">        padString = <span class="built_in">String</span>((<span class="keyword">typeof</span> padString !== <span class="string">'undefined'</span> ? padString : <span class="string">' '</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength-<span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength/padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> padString.slice(<span class="number">0</span>,targetLength) + <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>目前常见用于日期和时间字符串实现补0</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="keyword">let</span> month = <span class="string">`<span class="subst">$&#123;date.getMonth() + <span class="number">1</span>&#125;</span>`</span></span><br><span class="line"><span class="keyword">if</span> (month.length === <span class="number">1</span>) month = month.padStart(<span class="number">2</span>, <span class="string">'0'</span>) <span class="comment">// 用得好像鸡肋的. 哈哈..</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'month:'</span>, month) <span class="comment">// month: 08</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="padEnd"><a href="#padEnd" class="headerlink" title="padEnd()"></a><code>padEnd()</code></h2><p>用另一个字符串(<code>padString</code>)从当前字符串(<code>str</code>)<strong>右侧</strong>开始填充, 直到字符串(<code>str</code>)达到给定的长度(<code>targetLength</code>), 然后将新的字符串返回</p>
+<p><code>padEnd</code> 和 <code>padStart</code> 语法, 作用, 规则基本上一致的, 不同的是 <code>padEnd</code>, 从<strong>右侧</strong>开始填充</p>
+<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.padEnd(targetLength [, padString])</span><br></pre></td></tr></table></figure>
+
+<p>例子: </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'23'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padEnd(<span class="number">4</span>, <span class="string">'ABC'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// 23AB</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="兼容性-1"><a href="#兼容性-1" class="headerlink" title="兼容性"></a>兼容性</h3><p>兼容和 <code>padStart</code> 一致, 查看 <a href="https://caniuse.com/#search=padEnd" target="_blank" rel="noopener">https://caniuse.com/#search=padEnd</a></p>
+<p><strong>如果原生环境不支持该方法，在其他代码之前先运行下面的代码，将创建 <code>String.prototype.padEnd()</code> 方法。</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">String</span>.prototype.padEnd) &#123;</span><br><span class="line">    <span class="built_in">String</span>.prototype.padEnd = <span class="function"><span class="keyword">function</span> <span class="title">padEnd</span>(<span class="params">targetLength,padString</span>) </span>&#123;</span><br><span class="line">        targetLength = targetLength&gt;&gt;<span class="number">0</span>; <span class="comment">//floor if number or convert non-number to 0;</span></span><br><span class="line">        padString = <span class="built_in">String</span>((<span class="keyword">typeof</span> padString !== <span class="string">'undefined'</span> ? padString: <span class="string">''</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength-<span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength/padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>) + padString.slice(<span class="number">0</span>,targetLength);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong></p>
+<p>翻看 <code>uView ui</code> 源码才知道有 <code>padStart</code> 这么一个方法的存在, 去 MDN 查到了相关的文档学习, 目前不推荐使用.</p>
+<p>看源码很有意思, 可以学习到一些开发骚技巧来补充自己的不足.</p>
+<p><strong>参考</strong><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padStart" target="_blank" rel="noopener">String.prototype.padStart() - MDN</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd" target="_blank" rel="noopener">String.prototype.padEnd() - MDN</a></p>
 ]]></content>
+      <tags>
+        <tag>padStart</tag>
+        <tag>padEnd</tag>
+      </tags>
   </entry>
   <entry>
     <title>使用 Node.js 和 npm 安装和配置 Yarn</title>

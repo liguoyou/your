@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-08-09T17:24:13.674Z</updated>
+  <updated>2020-08-15T07:21:42.800Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript 内置对象 String 的 padStart() 和 padEnd() 方法</title>
+    <link href="http://liguoyou.gitee.io/your/2020/08/14/string-prototype-padStart-and-padEnd/"/>
+    <id>http://liguoyou.gitee.io/your/2020/08/14/string-prototype-padStart-and-padEnd/</id>
+    <published>2020-08-14T15:56:36.000Z</published>
+    <updated>2020-08-15T07:21:42.800Z</updated>
+    
+    <summary type="html">
+    
+      padStart 和 padEnd 方法是 String.prototype 上定义的方法, 在 ECMAScript 2017 (ES7) 中首次被定义; 两个方法都是返回新的字符串, 并且不会改变原来的值...
+    
+    </summary>
+    
+    
+    
+      <category term="padStart" scheme="http://liguoyou.gitee.io/your/tags/padStart/"/>
+    
+      <category term="padEnd" scheme="http://liguoyou.gitee.io/your/tags/padEnd/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 Node.js 和 npm 安装和配置 Yarn</title>
@@ -152,23 +173,6 @@
       <category term="hasOwnProperty" scheme="http://liguoyou.gitee.io/your/tags/hasOwnProperty/"/>
     
       <category term="instanceof" scheme="http://liguoyou.gitee.io/your/tags/instanceof/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计划列表</title>
-    <link href="http://liguoyou.gitee.io/your/2020/06/03/plan/"/>
-    <id>http://liguoyou.gitee.io/your/2020/06/03/plan/</id>
-    <published>2020-06-03T15:31:20.000Z</published>
-    <updated>2020-06-21T15:20:59.973Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;这里的是一个计划列表, 包括已完成和未完成的所有计划…&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
     
   </entry>
   
