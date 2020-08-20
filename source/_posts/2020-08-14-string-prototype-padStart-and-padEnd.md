@@ -4,7 +4,7 @@ date: 2020-08-14 23:56:36
 tags:
   - padStart
   - padEnd
-categorites:
+categories:
  - [学习笔记, JavaScript]
 excerpt: padStart 和 padEnd 方法是 String.prototype 上定义的方法, 在 ECMAScript 2017 (ES7) 中首次被定义; 两个方法都是返回新的字符串, 并且不会改变原来的值...
 ---

@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>uni-app-display-flex-v-show-invalid</title>
+    <title>uni-app 给 view 设置 display:flex 后, v-show=&quot;false&quot; 在微信小程序中失效</title>
     <url>/your/2020/08/20/uni-app-display-flex-v-show-invalid/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>最近在学习 uni-app 并用来开发新项目,经常用到 <code>v-show</code> 用来做元素的显示隐藏控制, 然后神奇的发现给 view 设置 display:flex 后, v-show=”false” 在微信小程序中失效, 并没有把元素隐藏掉…</p>
+<a id="more"></a>
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShowIndicator"</span> <span class="attr">class</span>=<span class="string">"indicator"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 显示控制</span></span><br><span class="line">    isShowIndicator: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.indicator</span> &#123;</span><br><span class="line">  <span class="comment">/* 其他... */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="comment">/* 其他... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>预期表现: <strong>view 不显示</strong></p>
+<p>结果: 在微信浏览器端 <code>view</code> 不显示, 在微信小程序中<strong>显示了!</strong></p>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><code>v-show=&quot;false&quot;</code> 在 H5 浏览器中解析为 <code>style=&quot;display: none;&quot;</code> 从而隐藏元素; </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShowIndicator"</span> <span class="attr">class</span>=<span class="string">"indicator"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在小程序中则通过 css 隐藏元素, 而 display: flex; 的层级覆盖了标签属性的样式, 导致<code>view</code> 显示在页面上了</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123; <span class="attribute">display</span>: none; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>可以尝试下面的方式处理</p>
+<ol>
+<li>设置 <code>view[hidden]</code></li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* #ifdef MP-WEIXIN */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* #endif */</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>通过不使用 <code>v-show</code>, 通过 style 设置 display 实现隐藏</p>
+</li>
+<li><p>使用 <code>v-if</code></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+        <category>uni-app</category>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>uni-app</tag>
+        <tag>v-show</tag>
+        <tag>flex</tag>
+        <tag>微信小程序</tag>
+      </tags>
   </entry>
   <entry>
     <title>JavaScript 内置对象 String 的 padStart() 和 padEnd() 方法</title>
@@ -49,6 +89,10 @@
 <p>看源码很有意思, 可以学习到一些开发骚技巧来补充自己的不足.</p>
 <p><strong>参考</strong><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padStart" target="_blank" rel="noopener">String.prototype.padStart() - MDN</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd" target="_blank" rel="noopener">String.prototype.padEnd() - MDN</a></p>
 ]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>JavaScript</category>
+      </categories>
       <tags>
         <tag>padStart</tag>
         <tag>padEnd</tag>

@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-08-20T15:40:28.832Z</updated>
+  <updated>2020-08-20T16:29:40.112Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -17,17 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>uni-app-display-flex-v-show-invalid</title>
+    <title>uni-app 给 view 设置 display:flex 后, v-show=&quot;false&quot; 在微信小程序中失效</title>
     <link href="http://liguoyou.gitee.io/your/2020/08/20/uni-app-display-flex-v-show-invalid/"/>
     <id>http://liguoyou.gitee.io/your/2020/08/20/uni-app-display-flex-v-show-invalid/</id>
     <published>2020-08-20T15:40:28.000Z</published>
-    <updated>2020-08-20T15:40:28.832Z</updated>
+    <updated>2020-08-20T16:29:40.112Z</updated>
     
     <summary type="html">
+    
+      &lt;p&gt;最近在学习 uni-app 并用来开发新项目,经常用到 &lt;code&gt;v-show&lt;/code&gt; 用来做元素的显示隐藏控制, 然后神奇的发现给 view 设置 display:flex 后, v-show=”false” 在微信小程序中失效, 并没有把元素隐藏掉…&lt;/p&gt;
     
     </summary>
     
     
+      <category term="问题解决" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    
+      <category term="uni-app" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/uni-app/"/>
+    
+      <category term="微信小程序" scheme="http://liguoyou.gitee.io/your/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+    
+      <category term="uni-app" scheme="http://liguoyou.gitee.io/your/tags/uni-app/"/>
+    
+      <category term="v-show" scheme="http://liguoyou.gitee.io/your/tags/v-show/"/>
+    
+      <category term="flex" scheme="http://liguoyou.gitee.io/your/tags/flex/"/>
+    
+      <category term="微信小程序" scheme="http://liguoyou.gitee.io/your/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
   </entry>
   
@@ -36,7 +52,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/08/14/string-prototype-padStart-and-padEnd/"/>
     <id>http://liguoyou.gitee.io/your/2020/08/14/string-prototype-padStart-and-padEnd/</id>
     <published>2020-08-14T15:56:36.000Z</published>
-    <updated>2020-08-15T07:21:42.800Z</updated>
+    <updated>2020-08-20T16:27:19.301Z</updated>
     
     <summary type="html">
     
@@ -44,6 +60,10 @@
     
     </summary>
     
+    
+      <category term="学习笔记" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="JavaScript" scheme="http://liguoyou.gitee.io/your/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/JavaScript/"/>
     
     
       <category term="padStart" scheme="http://liguoyou.gitee.io/your/tags/padStart/"/>
@@ -57,7 +77,7 @@
     <link href="http://liguoyou.gitee.io/your/2020/08/10/install-yarn-through-nodejs-and-npm/"/>
     <id>http://liguoyou.gitee.io/your/2020/08/10/install-yarn-through-nodejs-and-npm/</id>
     <published>2020-08-09T16:03:27.000Z</published>
-    <updated>2020-08-09T17:24:13.674Z</updated>
+    <updated>2020-08-20T16:27:24.269Z</updated>
     
     <summary type="html">
     
