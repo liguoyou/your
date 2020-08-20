@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>uni-app-display-flex-v-show-invalid</title>
+    <url>/your/2020/08/20/uni-app-display-flex-v-show-invalid/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>JavaScript 内置对象 String 的 padStart() 和 padEnd() 方法</title>
     <url>/your/2020/08/14/string-prototype-padStart-and-padEnd/</url>
     <content><![CDATA[<h2 id="padStart"><a href="#padStart" class="headerlink" title="padStart()"></a><code>padStart()</code></h2><p><code>padStart</code> 和 <code>padEnd</code> 方法是 <code>String.prototype</code> 上定义的方法, 在 <code>ECMAScript</code> 2017 (<code>ES7</code>) 中首次被定义; 两个方法都是返回新的字符串, 并且不会改变原来的值</p>
