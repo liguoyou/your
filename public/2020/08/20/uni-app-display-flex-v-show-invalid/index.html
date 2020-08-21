@@ -100,11 +100,11 @@
 <p>在小程序中则通过 css 隐藏元素, 而 display: flex; 的层级覆盖了标签属性的样式, 导致<code>view</code> 显示在页面上了</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 微信小程序生成的 css */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>所以根本原因是因为 <strong>CSS 的权重</strong> 不一样导致样式被覆盖造成了元素没有正确的被隐藏:</p>
+<p>所以根本原因是因为最终生成的 <code>CSS</code> <strong>权重</strong> 的不同, 在某些情况下覆盖了微信小程序设置的 <code>view[hidden]</code>, 而导致元素没有正确隐藏</p>
 <h3 id="CSS-的权重等级"><a href="#CSS-的权重等级" class="headerlink" title="CSS 的权重等级"></a><code>CSS</code> 的权重等级</h3><img src="/your/2020/08/20/uni-app-display-flex-v-show-invalid/20200821224131.jpg" class="" title="css 权重">
 
 <blockquote>
-<p>!important, 权值为最大<br>代表内联样式，如: style=””，权值为 1000。<br>代表 ID 选择器，如：#content，权值为 100。<br>代表类，伪类和属性选择器，如 .content，权值为 10。<br>代表元素和伪元素选择器，如 h2、:before 与 :after，权值为 1。</p>
+<p>!important, 权值为最大<br>内联样式，如: style=””，权值为 1000。<br>ID 选择器，如：#content，权值为 100。<br>类，伪类和属性选择器，如 .content, ::after, div[type=’text’]，权值为 10。<br>元素和伪元素选择器，如 h2、:hover，权值为 1。</p>
 </blockquote>
 <p>那么可以得到如下:</p>
 <p>微信小程序隐藏元素样式: <strong>权重值 1 + 10 = 11</strong></p>
@@ -157,7 +157,7 @@
                                     </div>
                                     <footer class="article-footer">
                                         <!-- 注释 - 分享按钮 -->
-                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/08/20/uni-app-display-flex-v-show-invalid/" data-id="cke4eig0z000lagon7hzphgyg" class="article-share-link">
+                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/08/20/uni-app-display-flex-v-show-invalid/" data-id="cke4f112u001fh0on56c5gznl" class="article-share-link">
                                             分享
                                         </a> -->
                                         
