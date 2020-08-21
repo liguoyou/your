@@ -86,38 +86,78 @@
                                                                     <p>最近在学习 uni-app 并用来开发新项目,经常用到 <code>v-show</code> 用来做元素的显示隐藏控制, 然后神奇的发现给 view 设置 display:flex 后, v-show=”false” 在微信小程序中失效, 并没有把元素隐藏掉…</p>
 <a id="more"></a>
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShowIndicator"</span> <span class="attr">class</span>=<span class="string">"indicator"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Your.vue template --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span> <span class="attr">class</span>=<span class="string">"indicator"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 显示控制</span></span><br><span class="line">    isShowIndicator: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Your.vue JavaScript</span></span><br><span class="line">data() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 显示控制</span></span><br><span class="line">    isShow: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.indicator</span> &#123;</span><br><span class="line">  <span class="comment">/* 其他... */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="comment">/* 其他... */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Your.vue style</span></span><br><span class="line">&lt;style land="scss" scoped&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
 <p>预期表现: <strong>view 不显示</strong></p>
 <p>结果: 在微信浏览器端 <code>view</code> 不显示, 在微信小程序中<strong>显示了!</strong></p>
-<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><code>v-show=&quot;false&quot;</code> 在 H5 浏览器中解析为 <code>style=&quot;display: none;&quot;</code> 从而隐藏元素; </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShowIndicator"</span> <span class="attr">class</span>=<span class="string">"indicator"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><code>v-show=&quot;false&quot;</code> 在 H5 浏览器中解析为 <code>style=&quot;display: none;&quot;</code> 从而隐藏元素;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span> <span class="attr">class</span>=<span class="string">"indicator"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>在小程序中则通过 css 隐藏元素, 而 display: flex; 的层级覆盖了标签属性的样式, 导致<code>view</code> 显示在页面上了</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123; <span class="attribute">display</span>: none; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 微信小程序生成的 css */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>可以尝试下面的方式处理</p>
+<p>所以根本原因是因为 <strong>CSS 的权重</strong> 不一样导致样式被覆盖造成了元素没有正确的被隐藏:</p>
+<h3 id="CSS-的权重等级"><a href="#CSS-的权重等级" class="headerlink" title="CSS 的权重等级"></a><code>CSS</code> 的权重等级</h3><img src="/your/2020/08/20/uni-app-display-flex-v-show-invalid/20200821224131.jpg" class="" title="css 权重">
+
+<blockquote>
+<p>!important, 权值为最大<br>代表内联样式，如: style=””，权值为 1000。<br>代表 ID 选择器，如：#content，权值为 100。<br>代表类，伪类和属性选择器，如 .content，权值为 10。<br>代表元素和伪元素选择器，如 h2、:before 与 :after，权值为 1。</p>
+</blockquote>
+<p>那么可以得到如下:</p>
+<p>微信小程序隐藏元素样式: <strong>权重值 1 + 10 = 11</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 设置 v-show="false" 后微信开发者工具中可以看到 */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="情况-1-使用全局样式"><a href="#情况-1-使用全局样式" class="headerlink" title="情况 1: 使用全局样式"></a>情况 1: 使用全局样式</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 全局样式 uni.scss */</span></span><br><span class="line"><span class="selector-class">.your-flex</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终生成的样式 <code>.your-flex { display: flex; align-items: center; }</code> <strong>权重值 10</strong></p>
+<p>10 &lt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是生效的</strong></p>
+<hr>
+<h3 id="情况-2-1-页面或组件内写样式"><a href="#情况-2-1-页面或组件内写样式" class="headerlink" title="情况 2.1: 页面或组件内写样式"></a>情况 2.1: 页面或组件内写样式</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* scoped 模式下: */</span></span><br><span class="line">&lt;style land="scss" scoped&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终的 <code>html</code> 会生产一串 <code>css</code>: 比如: <code>class=&quot;indicator data-v-01011e28&quot;</code>,</p>
+<p><code>.indicator.data-v-01011e28 { display: flex; }</code> <strong>权重值 10 + 10 = 20</strong></p>
+<p>20 &gt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是无效的</strong></p>
+<hr>
+<h3 id="情况-2-2-页面或组件内写样式"><a href="#情况-2-2-页面或组件内写样式" class="headerlink" title="情况 2.2: 页面或组件内写样式"></a>情况 2.2: 页面或组件内写样式</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 去掉 scoped */</span></span><br><span class="line">&lt;style land="scss"&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终生成的 <code>css</code> <code>.indicator { display: flex; }</code> <strong>权重值 10</strong></p>
+<p>10 &lt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是生效的, 但是并不推荐</strong></p>
+<hr>
+<h3 id="情况-2-2-1-值得注意的是"><a href="#情况-2-2-1-值得注意的是" class="headerlink" title="情况 2.2.1: 值得注意的是"></a>情况 2.2.1: 值得注意的是</h3><p>如果外层被其他元素包裹了:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 去掉 scoped */</span></span><br><span class="line">&lt;style land="scss"&gt;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">      <span class="comment">/* 其他... */</span></span><br><span class="line">      <span class="attribute">display</span>: flex;</span><br><span class="line">      <span class="comment">/* 其他... */</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>.container .indicator { display: flex; }</code>: <strong>权重值 10 + 10 = 20</strong></p>
+<p>20 &gt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是无效的</strong></p>
+<hr>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>通过上面的分析, 可以得到下面的解决方式</p>
 <ol>
-<li>设置 <code>view[hidden]</code></li>
+<li>使用全局样式设置 <code>display: flex;</code></li>
 </ol>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* #ifdef MP-WEIXIN */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* #endif */</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 全局样式 uni.scss */</span></span><br><span class="line"><span class="selector-class">.your-flex</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 比如直接 使用 ui 组件库 uView 的 .u-flex</span></span><br></pre></td></tr></table></figure>
 
 <ol start="2">
-<li><p>通过不使用 <code>v-show</code>, 通过 style 设置 display 实现隐藏</p>
+<li>设置 <code>view[hidden]</code> 最高权重</li>
+</ol>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* #ifdef MP-WEIXIN */</span></span><br><span class="line">view<span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* #endif */</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>不使用 <code>v-show</code>, 通过行内样式 <code>style</code> 设置 <code>display: &quot;none&quot;</code> 实现隐藏</p>
 </li>
-<li><p>使用 <code>v-if</code></p>
+<li><p>使用 <code>v-if</code> 代替 <code>v-show</code>, 两个实现隐藏的机制不一样, 不推荐</p>
 </li>
 </ol>
+<p><strong>参考</strong></p>
+<p><a href="https://blog.csdn.net/longfeng1234/article/details/94436068" target="_blank" rel="noopener">微信小程序条件渲染 hidden 与 wx:if 的比较和不生效问题 - CSDN</a><br><a href="https://www.jianshu.com/p/a8cf1e55032c" target="_blank" rel="noopener">CSS：权重 - 简书</a></p>
 
                                                                         
                                     </div>
                                     <footer class="article-footer">
                                         <!-- 注释 - 分享按钮 -->
-                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/08/20/uni-app-display-flex-v-show-invalid/" data-id="cke30tvg1000q08on30klcoca" class="article-share-link">
+                                        <!-- <a data-url="http://liguoyou.gitee.io/your/2020/08/20/uni-app-display-flex-v-show-invalid/" data-id="cke4eig0z000lagon7hzphgyg" class="article-share-link">
                                             分享
                                         </a> -->
                                         
