@@ -6,7 +6,7 @@
   <link href="/your/atom.xml" rel="self"/>
   
   <link href="http://liguoyou.gitee.io/your/"/>
-  <updated>2020-08-21T15:53:11.606Z</updated>
+  <updated>2020-08-29T16:11:43.533Z</updated>
   <id>http://liguoyou.gitee.io/your/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>uni-app 的 video 组件的使用</title>
+    <link href="http://liguoyou.gitee.io/your/2020/08/29/uni-app-video-example/"/>
+    <id>http://liguoyou.gitee.io/your/2020/08/29/uni-app-video-example/</id>
+    <published>2020-08-29T15:03:08.000Z</published>
+    <updated>2020-08-29T16:11:43.533Z</updated>
+    
+    <summary type="html">
+    
+      uni-app 的 video 组件的使用, 兼容微信H5及微信小程序端
+    
+    </summary>
+    
+    
+    
+      <category term="uni-app" scheme="http://liguoyou.gitee.io/your/tags/uni-app/"/>
+    
+      <category term="video" scheme="http://liguoyou.gitee.io/your/tags/video/"/>
+    
+  </entry>
   
   <entry>
     <title>uni-app 给 view 设置 display:flex 后, v-show=&quot;false&quot; 在微信小程序中失效</title>

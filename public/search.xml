@@ -1,194 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>uni-app 给 view 设置 display:flex 后, v-show=&quot;false&quot; 在微信小程序中失效</title>
-    <url>/your/2020/08/20/uni-app-display-flex-v-show-invalid/</url>
-    <content><![CDATA[<p>最近在学习 uni-app 并用来开发新项目,经常用到 <code>v-show</code> 用来做元素的显示隐藏控制, 然后神奇的发现给 view 设置 display:flex 后, v-show=”false” 在微信小程序中失效, 并没有把元素隐藏掉…</p>
-<a id="more"></a>
+    <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
+    <url>/your/2020/05/29/build-a-blog-based-on-hexo/</url>
+    <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理工具</em></p>
+<h3 id="1-全局安装-Hexo"><a href="#1-全局安装-Hexo" class="headerlink" title="1. 全局安装 Hexo"></a>1. 全局安装 Hexo</h3><p>本文使用的是 <code>yarn</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Your.vue template --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span> <span class="attr">class</span>=<span class="string">"indicator"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 <del>hexo</del> your (<strong>后面我把文件夹名改成了 your, 保持和访问的根目录一致</strong>),</p>
+<p>在 <del>hexo</del> your 中打开 git Bash, 执行:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 网速不好的话, 这里可能需要点时间</span></span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Your.vue JavaScript</span></span><br><span class="line">data() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 显示控制</span></span><br><span class="line">    isShow: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526204940892.png" class="" title="init 成功">
 
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Your.vue style</span></span><br><span class="line">&lt;style land="scss" scoped&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>init 后目录如下, 关于目录及文件的说明请查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档(中文)</a></p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526205207269.png" class="" title="init 生成的目录">
 
-<p>预期表现: <strong>view 不显示</strong></p>
-<p>结果: 在微信浏览器端 <code>view</code> 不显示, 在微信小程序中<strong>显示了!</strong></p>
-<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><code>v-show=&quot;false&quot;</code> 在 H5 浏览器中解析为 <code>style=&quot;display: none;&quot;</code> 从而隐藏元素;</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span> <span class="attr">class</span>=<span class="string">"indicator"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-编译-amp-运行"><a href="#3-编译-amp-运行" class="headerlink" title="3. 编译&amp;运行"></a>3. 编译&amp;运行</h3><p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">yarn build</span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">yarn server</span><br></pre></td></tr></table></figure>
 
-<p>在小程序中则通过 css 隐藏元素, 而 display: flex; 的层级覆盖了标签属性的样式, 导致<code>view</code> 显示在页面上了</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 微信小程序生成的 css */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210826688.png" class="" title="编译&amp;运行">
 
-<p>所以根本原因是因为最终生成的 <code>CSS</code> <strong>权重</strong> 的不同, 在某些情况下覆盖了微信小程序设置的 <code>view[hidden]</code>, 而导致元素没有正确隐藏</p>
-<h3 id="CSS-的权重等级"><a href="#CSS-的权重等级" class="headerlink" title="CSS 的权重等级"></a><code>CSS</code> 的权重等级</h3><img src="/your/2020/08/20/uni-app-display-flex-v-show-invalid/20200821224131.jpg" class="" title="css 权重">
+<p>当然, 更便捷的操作是执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>!important, 权值为最大<br>内联样式，如: style=””，权值为 1000。<br>ID 选择器，如：#content，权值为 100。<br>类，伪类和属性选择器，如 .content, ::after, div[type=’text’]，权值为 10。<br>元素和伪元素选择器，如 h2、:hover，权值为 1。</p>
+<p>简写</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
+
+<h3 id="4-首次运行如图"><a href="#4-首次运行如图" class="headerlink" title="4. 首次运行如图"></a>4. 首次运行如图</h3><p>默认主题 landscape</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210938239.png" class="" title="首次运行">
+
+<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><h3 id="一-选择主题"><a href="#一-选择主题" class="headerlink" title="一. 选择主题"></a>一. 选择主题</h3><p>本文选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
+<p>在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方的主题</a>里面选择一个你喜欢的主题, 按照主题的<a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">文档</a>来就好</p>
+<p>下载好慢….等等等…</p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题:"></a>遇到的问题:</h3><h4 id="1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程"><a href="#1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程" class="headerlink" title="(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:"></a>(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:</h4><blockquote><p>一开始按照作者的文档操作配置</p>
+<p>安装插件依赖<br><code>yarn add hexo-generator-searchdb</code></p>
+<p>在 <code>./_config.yml</code> 中添加配置 (注意: 这不是 ocean 中的)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本地检索 hexo-generator-searchdb</span></span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>那么可以得到如下:</p>
-<p>微信小程序隐藏元素样式: <strong>权重值 1 + 10 = 11</strong></p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 设置 v-show="false" 后微信开发者工具中可以看到 */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h3 id="情况-1-使用全局样式"><a href="#情况-1-使用全局样式" class="headerlink" title="情况 1: 使用全局样式"></a>情况 1: 使用全局样式</h3><figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 全局样式 uni.scss */</span></span><br><span class="line"><span class="selector-class">.your-flex</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后就报错 Cannot GET /js/search.js 404!!</p>
+<p><strong>首先</strong>, 按照 <a href="https://github.com/zhwangart/gitalk/issues/7" target="_blank" rel="noopener">关于搜索问题 sevilen 同学给了一个详细的步骤</a></p>
+<p>在 <code>\themes\ocean\layout\_partial\after-footer.ejs</code> 中配置(<strong>此方法不行</strong>)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不管是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.search)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"><span class="comment"># 还是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.local_search.enable)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'/js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 
-<p>最终生成的样式 <code>.your-flex { display: flex; align-items: center; }</code> <strong>权重值 10</strong></p>
-<p>10 &lt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是生效的</strong></p>
-<hr>
-<h3 id="情况-2-1-页面或组件内写样式"><a href="#情况-2-1-页面或组件内写样式" class="headerlink" title="情况 2.1: 页面或组件内写样式"></a>情况 2.1: 页面或组件内写样式</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* scoped 模式下: */</span></span><br><span class="line">&lt;style land="scss" scoped&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..</p>
+<p>然后 又试了下面的方法: 直接找到加载 js 的地方修改路径(<strong>此方法不行</strong>)</p>
+<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">\$.getScript(<span class="string">'js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"search.xml"</span>,</span><br></pre></td></tr></table></figure>
 
-<p>最终的 <code>html</code> 会生产一串 <code>css</code>: 比如: <code>class=&quot;indicator data-v-01011e28&quot;</code>,</p>
-<p><code>.indicator.data-v-01011e28 { display: flex; }</code> <strong>权重值 10 + 10 = 20</strong></p>
-<p>20 &gt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是无效的</strong></p>
-<hr>
-<h3 id="情况-2-2-页面或组件内写样式"><a href="#情况-2-2-页面或组件内写样式" class="headerlink" title="情况 2.2: 页面或组件内写样式"></a>情况 2.2: 页面或组件内写样式</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 去掉 scoped */</span></span><br><span class="line">&lt;style land="scss"&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>首页可以了! 内页还是不行啊, 一看请求失败的链接, 居然把路径拼在了整个地址的最后, 好无奈:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;your&#x2F;2020&#x2F;05&#x2F;29&#x2F;build-a-blog-based-on-hexo&#x2F;js&#x2F;search.js?_&#x3D;1590852138728</span><br></pre></td></tr></table></figure>
 
-<p>最终生成的 <code>css</code> <code>.indicator { display: flex; }</code> <strong>权重值 10</strong></p>
-<p>10 &lt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是生效的, 但是并不推荐</strong></p>
-<hr>
-<h3 id="情况-2-2-1-值得注意的是"><a href="#情况-2-2-1-值得注意的是" class="headerlink" title="情况 2.2.1: 值得注意的是"></a>情况 2.2.1: 值得注意的是</h3><p>如果外层被其他元素包裹了:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 去掉 scoped */</span></span><br><span class="line">&lt;style land="scss"&gt;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">      <span class="comment">/* 其他... */</span></span><br><span class="line">      <span class="attribute">display</span>: flex;</span><br><span class="line">      <span class="comment">/* 其他... */</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>最后使用了一种不是很好的办法解决了</strong></p>
+<p>在文件路径前面添加根路径<code>/your/</code> (这是在 _config.yml 中的配置 <code>root: /your/</code>, 也就是我的博客根路径)</p>
+<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">\$.getScript(<span class="string">'/your/js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"/your/search.xml"</span>,</span><br></pre></td></tr></table></figure>
 
-<p><code>.container .indicator { display: flex; }</code>: <strong>权重值 10 + 10 = 20</strong></p>
-<p>20 &gt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是无效的</strong></p>
-<hr>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>通过上面的分析, 可以得到下面的解决方式</p>
-<ol>
-<li>使用全局样式设置 <code>display: flex;</code></li>
-</ol>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 全局样式 uni.scss */</span></span><br><span class="line"><span class="selector-class">.your-flex</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 比如直接 使用 ui 组件库 uView 的 .u-flex</span></span><br></pre></td></tr></table></figure>
+<p>就<strong>ok</strong>了!</p>
+<h4 id="2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示"><a href="#2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示" class="headerlink" title="(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示"></a>(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示</h4><p>图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加<a href="https://hexo.io/zh-cn/docs/helpers#url-for" target="_blank" rel="noopener">辅助函数 url_for</a>就可以顺利解决:</p>
+<p><strong>修改以下文件</strong></p>
+<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\sidebar.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.brand</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>设置 <code>view[hidden]</code> 最高权重</li>
-</ol>
-<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* #ifdef MP-WEIXIN */</span></span><br><span class="line">view<span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* #endif */</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\head.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.favicon</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.favicon</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li><p>不使用 <code>v-show</code>, 通过行内样式 <code>style</code> 设置 <code>display: &quot;none&quot;</code> 实现隐藏</p>
-</li>
-<li><p>使用 <code>v-if</code> 代替 <code>v-show</code>, 两个实现隐藏的机制不一样, 不推荐</p>
-</li>
-</ol>
-<p><strong>参考</strong></p>
-<p><a href="https://blog.csdn.net/longfeng1234/article/details/94436068" target="_blank" rel="noopener">微信小程序条件渲染 hidden 与 wx:if 的比较和不生效问题 - CSDN</a><br><a href="https://www.jianshu.com/p/a8cf1e55032c" target="_blank" rel="noopener">CSS：权重 - 简书</a></p>
-]]></content>
-      <categories>
-        <category>问题解决</category>
-        <category>uni-app</category>
-        <category>微信小程序</category>
-      </categories>
-      <tags>
-        <tag>uni-app</tag>
-        <tag>v-show</tag>
-        <tag>flex</tag>
-        <tag>微信小程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaScript 内置对象 String 的 padStart() 和 padEnd() 方法</title>
-    <url>/your/2020/08/14/string-prototype-padStart-and-padEnd/</url>
-    <content><![CDATA[<h2 id="padStart"><a href="#padStart" class="headerlink" title="padStart()"></a><code>padStart()</code></h2><p><code>padStart</code> 和 <code>padEnd</code> 方法是 <code>String.prototype</code> 上定义的方法, 在 <code>ECMAScript</code> 2017 (<code>ES7</code>) 中首次被定义; 两个方法都是返回新的字符串, 并且不会改变原来的值</p>
-<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.padStart(targetLength [, padString])</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\ocean.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 有五处 --&gt;</span></span><br><span class="line">theme.ocean.path</span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line">url_for(theme.ocean.path)</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.ocean.brand</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.ocean.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h3><p>用另一个字符串(<code>padString</code>)从当前字符串(<code>str</code>)<strong>左侧</strong>开始填充, 直到字符串(<code>str</code>)达到给定的长度(<code>targetLength</code>), 然后将新的字符串返回</p>
-<p>例子:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'2'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">2</span>, <span class="string">'0'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(str) <span class="comment">// '2'</span></span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '02'</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-修改文件-比如修改样式部署之后不生效"><a href="#3-修改文件-比如修改样式部署之后不生效" class="headerlink" title="(3) 修改文件, 比如修改样式部署之后不生效?"></a>(3) 修改文件, 比如修改样式部署之后不生效?</h4><p>一般是缓存文件问题, 试试:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br></pre></td></tr></table></figure>
 
-<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p><strong>1.</strong> 如果 <code>targetLength</code> 这个数值小于当前字符串(<code>str</code>)的长度, 则返回当前字符串</p>
-<p>示例:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'08'</span> <span class="comment">// str.length = 2</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">1</span>, <span class="string">'LLLL'</span>) <span class="comment">// targetLength: 1</span></span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '08'</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-关于很多的问题"><a href="#4-关于很多的问题" class="headerlink" title="(4) 关于很多的问题"></a>(4) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
+<p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
+<h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
 
-<p><strong>2.</strong> 如果填充字符串(<code>padString</code>)太长，使填充后的字符串长度超过了目标长度(<code>targetLength</code>)，则只保留最左侧的部分，其他部分会被截断</p>
-<p>示例:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'abc'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">6</span>, <span class="string">'0123'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '012abc'</span></span><br></pre></td></tr></table></figure>
+<p>新的主题:</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526221210487.png" class="" title="新主题">
 
-<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>兼容性并不理想, 在 ECMAScript 2017 (ES7) 中首次被定义。</p>
-<p>查看 <a href="https://caniuse.com/#search=padStart" target="_blank" rel="noopener">https://caniuse.com/#search=padStart</a></p>
-<img src="/your/2020/08/14/string-prototype-padStart-and-padEnd/20200815145303_start.jpg" class="" title="padStart 兼容性">
+<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235114597.png" class="" title="创建仓库及开启服务">
 
-<p><strong>如果原生环境不支持该方法，在其他代码之前先运行下面的代码，将创建 <code>String.prototype.padStart()</code> 方法。</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">String</span>.prototype.padStart) &#123;</span><br><span class="line">    <span class="built_in">String</span>.prototype.padStart = <span class="function"><span class="keyword">function</span> <span class="title">padStart</span>(<span class="params">targetLength,padString</span>) </span>&#123;</span><br><span class="line">        targetLength = targetLength&gt;&gt;<span class="number">0</span>; <span class="comment">//floor if number or convert non-number to 0;</span></span><br><span class="line">        padString = <span class="built_in">String</span>((<span class="keyword">typeof</span> padString !== <span class="string">'undefined'</span> ? padString : <span class="string">' '</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength-<span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength/padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> padString.slice(<span class="number">0</span>,targetLength) + <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-配置-config-yml"><a href="#2-配置-config-yml" class="headerlink" title="(2) 配置 _config.yml"></a>(2) 配置 <code>_config.yml</code></h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liguoyou.gitee.io/your/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/your/</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>目前常见用于日期和时间字符串实现补0</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="keyword">let</span> month = <span class="string">`<span class="subst">$&#123;date.getMonth() + <span class="number">1</span>&#125;</span>`</span></span><br><span class="line"><span class="keyword">if</span> (month.length === <span class="number">1</span>) month = month.padStart(<span class="number">2</span>, <span class="string">'0'</span>) <span class="comment">// 用得好像鸡肋的. 哈哈..</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'month:'</span>, month) <span class="comment">// month: 08</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@gitee.com:liguoyou/your.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="padEnd"><a href="#padEnd" class="headerlink" title="padEnd()"></a><code>padEnd()</code></h2><p>用另一个字符串(<code>padString</code>)从当前字符串(<code>str</code>)<strong>右侧</strong>开始填充, 直到字符串(<code>str</code>)达到给定的长度(<code>targetLength</code>), 然后将新的字符串返回</p>
-<p><code>padEnd</code> 和 <code>padStart</code> 语法, 作用, 规则基本上一致的, 不同的是 <code>padEnd</code>, 从<strong>右侧</strong>开始填充</p>
-<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.padEnd(targetLength [, padString])</span><br></pre></td></tr></table></figure>
+<h3 id="3-安装自动部署发布工具"><a href="#3-安装自动部署发布工具" class="headerlink" title="(3) 安装自动部署发布工具"></a>(3) 安装自动部署发布工具</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span><br></pre></td></tr></table></figure>
 
-<p>例子: </p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'23'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padEnd(<span class="number">4</span>, <span class="string">'ABC'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// 23AB</span></span><br></pre></td></tr></table></figure>
+<p>发布博客</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
 
-<h3 id="兼容性-1"><a href="#兼容性-1" class="headerlink" title="兼容性"></a>兼容性</h3><p>兼容和 <code>padStart</code> 一致, 查看 <a href="https://caniuse.com/#search=padEnd" target="_blank" rel="noopener">https://caniuse.com/#search=padEnd</a></p>
-<p><strong>如果原生环境不支持该方法，在其他代码之前先运行下面的代码，将创建 <code>String.prototype.padEnd()</code> 方法。</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">String</span>.prototype.padEnd) &#123;</span><br><span class="line">    <span class="built_in">String</span>.prototype.padEnd = <span class="function"><span class="keyword">function</span> <span class="title">padEnd</span>(<span class="params">targetLength,padString</span>) </span>&#123;</span><br><span class="line">        targetLength = targetLength&gt;&gt;<span class="number">0</span>; <span class="comment">//floor if number or convert non-number to 0;</span></span><br><span class="line">        padString = <span class="built_in">String</span>((<span class="keyword">typeof</span> padString !== <span class="string">'undefined'</span> ? padString: <span class="string">''</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength-<span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength/padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>) + padString.slice(<span class="number">0</span>,targetLength);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>进入 Gitee Pages 点击更新按钮, 等待部署完成即可</p>
+<p><strong>值得注意的是</strong></p>
+<p>如果你只想把编译完成后的 public 文件中的所有文件 push 至仓库中:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
-<p><strong>总结</strong></p>
-<p>翻看 <code>uView ui</code> 源码才知道有 <code>padStart</code> 这么一个方法的存在, 去 MDN 查到了相关的文档学习, 目前不推荐使用.</p>
-<p>看源码很有意思, 可以学习到一些开发骚技巧来补充自己的不足.</p>
-<p><strong>参考</strong><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padStart" target="_blank" rel="noopener">String.prototype.padStart() - MDN</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd" target="_blank" rel="noopener">String.prototype.padEnd() - MDN</a></p>
+<p>如图:</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235831345.png" class="" title="hexo d">
+
+<p><strong>但是, 我想把整个本地的仓库 push 上去怎么做呢</strong></p>
+<p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="/your/2020/05/31/summary-of-git/" title="更多git操作">更多git操作</a>)</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527224538977.png" class="" title="git push">
+
+<p>然后<strong>设置部署目录为 public</strong> 即可</p>
+<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527000632686.png" class="" title="设置部署目录为 public">
+
+<p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
+<p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档, 真的很详细</a><br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">Ocean 中文文档 - zhwangart</a><br><a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题 - zhwangart</a><br><a href="https://zhwangart.github.io/2018/12/06/Gitalk/" target="_blank" rel="noopener">Gitalk 的使用 - zhwangart</a><br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">基于 Gitee+Hexo 搭建个人博客 - segmentfault</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">使用 Gitee+Hexo 搭建个人博客 - 简书</a></p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
-        <category>JavaScript</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>padStart</tag>
-        <tag>padEnd</tag>
+        <tag>Hexo</tag>
+        <tag>Ocean</tag>
+        <tag>静态博客</tag>
       </tags>
   </entry>
   <entry>
-    <title>使用 Node.js 和 npm 安装和配置 Yarn</title>
-    <url>/your/2020/08/10/install-yarn-through-nodejs-and-npm/</url>
-    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于种种令人心酸的原因, 我决定卸载 <code>Node.js</code>, <code>npm</code>, 以及 <code>Yarn</code>, 再重新安装</p>
-<hr>
-<h2 id="安装-Nodejs-和-npm"><a href="#安装-Nodejs-和-npm" class="headerlink" title="安装 Nodejs 和 npm"></a>安装 Nodejs 和 npm</h2><p><strong>安装</strong></p>
-<p><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">下载 Node.js</a> 安装程序, 过程基本都是点击 next 按钮即可, 不再赘述</p>
-<p>我的安装目录 <code>D:\Program Files\Nodejs</code>, 安装完成后, <code>npm</code> 也被安装到了电脑上</p>
-<p>可以通过命令查看是否已经正确安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">node -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+    <title>yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</title>
+    <url>/your/2020/05/29/yarn-global-add-package/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br></pre></td></tr></table></figure>
 
-<p><strong>配置</strong></p>
-<p>为了方便管理和不占用电脑的C盘容量, 我需要修改 npm 全局依赖包下载保存目录和缓存目录</p>
-<p>在 <code>Node.js</code> 的安装目录下新建文件夹 <code>node_cache</code> 和 <code>node_global</code></p>
-<p>然后执行命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局依赖包缓存目录</span></span><br><span class="line">npm config <span class="built_in">set</span> cache <span class="string">"D:\Program Files\Nodejs\node_cache"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局依赖包下载保存目录</span></span><br><span class="line">npm config <span class="built_in">set</span> prefix <span class="string">"D:\Program Files\Nodejs\node_global"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置列表</span></span><br><span class="line">npm config list</span><br></pre></td></tr></table></figure>
+<p>安装成功, 但是使用命令却不生效…</p>
+<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
+<p>(1) 找到 yarn 的全局安装目录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global bin</span><br></pre></td></tr></table></figure>
 
-<p>看到下面的东西就代表成功了</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line">userconfig C:\Users\guoyo\.npmrc</span><br><span class="line">cache = <span class="string">"D:\\Program Files\\Nodejs\\node_cache"</span></span><br><span class="line">prefix = <span class="string">"D:\\Program Files\\Nodejs\\node_global"</span></span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+<img src="/your/2020/05/29/yarn-global-add-package/image_01.png" class="" title="yarn global bin">
 
-<p>当然, 也可以直接打开目录 <code>C:\Users\[your-computer-name]\.npmrc</code>, 找到 <code>.npmrc</code> 这个文件, 查看里面的内容</p>
-<hr>
-<h2 id="安装与配置-Yarn"><a href="#安装与配置-Yarn" class="headerlink" title="安装与配置 Yarn"></a>安装与配置 Yarn</h2><p>执行命令全局安装 <code>yarn</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">npm i -g yarn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">yarn version</span><br></pre></td></tr></table></figure>
+<p>(2) 将该目录地址拷贝至系统属性-环境变量-系统变量-path 中:</p>
+<img src="/your/2020/05/29/yarn-global-add-package/image_02.png" class="" title="将该目录地址拷贝至系统属性-环境变量-系统变量-path">
 
-<p><strong>修改 yarn 全局安装依赖包目录与缓存目录</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看全局安装依赖包保存目录</span></span><br><span class="line">yarn global dir</span><br><span class="line"><span class="comment"># 默认 C:\Users\[your-computer-name]\AppData\Local\Yarn\Data\global</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看全局安装依赖包缓存目录</span></span><br><span class="line">yarn cache dir</span><br></pre></td></tr></table></figure>
+<p>(3) 重启终端, <strong>应该</strong>就可以了.</p>
+<p><strong>好吧, 我的还不可以</strong></p>
+<img src="/your/2020/05/29/yarn-global-add-package/image_03.png" class="" title="hexo init 失败">
 
-<p>在 <code>Yarn</code> 的安装目录(D:\Program Files\Nodejs\node_global)下新建文件夹 <code>yarn_cache</code> 和 <code>yarn_global</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置 yarn 全局安装依赖包保存目录</span></span><br><span class="line">yarn config <span class="built_in">set</span> global-folder <span class="string">"D:\Program Files\Nodejs\node_global\yarn_global"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置缓存目录</span></span><br><span class="line">yarn config <span class="built_in">set</span> cache-folder <span class="string">"D:\Program Files\Nodejs\node_global\yarn_cache"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看保存目录配置</span></span><br><span class="line">yarn global dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看缓存目录配置</span></span><br><span class="line">yarn cache dir</span><br></pre></td></tr></table></figure>
+<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</span><br></pre></td></tr></table></figure>
 
-<p><strong>同 npm, 也可以直接打开目录 <code>C:\Users\[your-computer-name]\.yarnrc</code>, 找到 <code>.yarnrc</code> 这个文件, 查看里面的内容</strong></p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装 rimraf</span></span><br><span class="line">yarn global add rimraf</span><br></pre></td></tr></table></figure>
+<p>ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
+<img src="/your/2020/05/29/yarn-global-add-package/20200531155353.jpg" class="" title="修改环境变量地址">
 
-<p><strong>特别介绍: 用 <code>rimraf</code> 删除超级大, 层级深的目录, 比如 node_modules, 非常方便</strong></p>
-<p>可以看到在 <code>D:\Program Files\Nodejs\node_global\yarn_global\node_modules\.bin</code></p>
-<img src="/your/2020/08/10/install-yarn-through-nodejs-and-npm/2020-08-10_00-51-00.png" class="" title="yarn global 安装目录">
-
-<p>测试: 桌面新建一个文件夹 aaa_modules, 在桌面打开 <code>git bash</code> 终端: </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除文件夹</span></span><br><span class="line">rimraf aaa_modules</span><br></pre></td></tr></table></figure>
-
-<p><strong>报错</strong>: bash: rimraf: command not found</p>
-<p>这时, 还需要配置环境变量, 才能使 <code>yarn</code> 全局安装的依赖包命令生效</p>
-<p>将路径URL:  <code>D:\Program Files\Nodejs\node_global\yarn_global\node_modules\.bin</code> 复制到: </p>
-<p>控制面板 - 系统属性 - 高级系统设置 - 高级 - 环境变量 - 系统变量 - Path - 编辑 - 新增 - <strong>输入内容 URL</strong> - 确定 - 确定 - 确定</p>
-<img src="/your/2020/08/10/install-yarn-through-nodejs-and-npm/2020-08-10_00-59-38.png" class="" title="yarn global 环境变量配置">
-
-<p><strong>重启终端, 再次输入命令, 即可</strong></p>
-<p><code>Yarn</code> 就重新安装完成了!</p>
-<p>文章很短, 但是过程很坎坷, 遇事不要烦躁, 慢慢来</p>
-<p><strong>参考</strong><br><a href="https://www.cnblogs.com/Jimc/p/11121632.html" target="_blank" rel="noopener">修改Yarn的全局安装和缓存位置 - cnblogs</a><br><a href="https://www.jianshu.com/p/13f45e24b1de" target="_blank" rel="noopener">Nodejs安装及环境配置 - 简书</a></p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
+<li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
+<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
+</ol>
+<p>问题没解决? 也可以看看我写的另一篇笔记: <a href="/your/2020/08/10/install-yarn-through-nodejs-and-npm/" title="使用 Node.js 和 npm 安装和配置 Yarn">使用 Node.js 和 npm 安装和配置 Yarn</a></p>
+<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
 ]]></content>
       <categories>
         <category>问题解决</category>
@@ -196,93 +155,33 @@
       </categories>
       <tags>
         <tag>Yarn</tag>
-        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
-    <title>如何关闭 Github issues 中的邮件通知</title>
-    <url>/your/2020/06/27/close-issues-notifications/</url>
-    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当我们参与了 github 中某个仓库的问题讨论, 默认会订阅了所有问题的通知, 不管该提问与我是否有关, 都会发送邮件通知我, 有时候会觉得比较烦, 需要关闭掉该通知功能</p>
-<h2 id="关闭方法如图所示"><a href="#关闭方法如图所示" class="headerlink" title="关闭方法如图所示"></a>关闭方法如图所示</h2><img src="/your/2020/06/27/close-issues-notifications/20200627010706.png" class="" title="上方文章截图">
+    <title>301 Moved Permanently (from disk cache)</title>
+    <url>/your/2020/05/31/301-moved-permanently/</url>
+    <content><![CDATA[<p>不得不记录下这个奇葩的遭遇,</p>
+<p>本来一切好好的, 然后我把 vue.config.js 的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
-<p>在 issues 的右侧, 找到 Notifications (通知设置) 的一个板块</p>
-<p>直接点击下面的按钮切换 Not subscribed (不订阅)/ Subscribed (订阅),</p>
-<p>或者在点击 Notifications 后出现的弹框中选择</p>
-<p><strong>Not subscribed 不订阅通知</strong></p>
-<p>Only receive notifications from this issue when you have participated or have been @mentioned.<br>只有在您参与或被@提及时才会收到此问题的通知。</p>
-<p><strong>Subscribed 订阅通知</strong></p>
-<p>Receive all notifications from this issue.<br>接收此问题的所有通知。</p>
-<p>特意申请小号测试, 有效</p>
+<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
+<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了 301 重定向到了生产环境 api 地址</p>
+<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找答案和后端沟通, baidu 了也没找到解决方案</p>
+<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
+<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
+
+<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
+<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
+<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
+<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome 浏览器清除 301 缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
 ]]></content>
       <categories>
         <category>问题解决</category>
-        <category>Github Issues</category>
+        <category>缓存</category>
       </categories>
       <tags>
-        <tag>Github</tag>
-        <tag>Issues</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因</title>
-    <url>/your/2020/06/12/remove-event-listener/</url>
-    <content><![CDATA[<h2 id="问题产生的原因"><a href="#问题产生的原因" class="headerlink" title="问题产生的原因"></a>问题产生的原因</h2><p><strong>没有正确匹配到要删除的事件监听</strong></p>
-<h2 id="监听和取消事件"><a href="#监听和取消事件" class="headerlink" title="监听和取消事件"></a>监听和取消事件</h2><p><code>addEventListener()</code> 语法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">target.addEventListener(type, listener[, options])</span><br><span class="line">target.addEventListener(type, listener[, useCapture])</span><br></pre></td></tr></table></figure>
-
-<p><code>removeEventListener()</code> 语法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">target.removeEventListener(type, listener[, options])</span><br><span class="line">target.removeEventListener(type, listener[, useCapture])</span><br></pre></td></tr></table></figure>
-
-<p><strong>参数说明</strong></p>
-<p><code>type</code>: 表示监听事件类型的字符串。</p>
-<p><code>listener</code>: 目标事件绑定的回调函数</p>
-<p><code>options</code>: 一个指定有关 <code>listener</code> 属性的可选参数对象</p>
-<p><code>useCapture</code>: 指定需要移除的 <code>EventListener</code> 函数是否为捕获监听器。<code>true</code> 表示“事件捕获”, 默认为 <code>false</code>, 表示“事件冒泡”</p>
-<h3 id="removeEventListener-移除成功需要满足"><a href="#removeEventListener-移除成功需要满足" class="headerlink" title="removeEventListener() 移除成功需要满足"></a><code>removeEventListener()</code> 移除成功需要满足</h3><ul>
-<li>需要移除的事件类型必须是一样的, 比如: <code>click</code></li>
-<li>需要从目标事件移除的 <code>EventListener</code> 函数必须和 <code>addEventListener</code> 中注册的是<strong>同一个</strong>, 也就是说<strong>引用地址是相同的</strong></li>
-<li>指定需要移除的 <code>EventListener</code> 函数的<code>useCapture</code> 和 <code>addEventListener</code> 中注册的相同的</li>
-</ul>
-<h3 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h3><ol>
-<li>设置 <code>useCapture</code></li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">false</span>); <span class="comment">// 失败</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>); <span class="comment">// 成功</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>设置 <code>options</code></li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">true</span> &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>注意此时的 <code>useCapture</code> 默认为 <code>false</code>, 所以 <code>removeEventListener</code> 也应该设置 <code>useCapture</code> 为 false</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">true</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">capture</span>: <span class="literal">false</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">capture</span>: <span class="literal">true</span> &#125;); <span class="comment">// 失败</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">false</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">false</span>); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>); <span class="comment">// 失败</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><h3 id="1-使用了匿名函数"><a href="#1-使用了匿名函数" class="headerlink" title="1.使用了匿名函数"></a>1.使用了匿名函数</h3><p>这样写是<strong>无效</strong>的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="built_in">document</span>.addEventListener( <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="comment">// 这样写是无效的</span></span><br><span class="line">  <span class="built_in">document</span>.removeEventListener( <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>需要改成:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="built_in">document</span>.addEventListener( <span class="string">"click"</span>, <span class="keyword">this</span>.callBack, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="built_in">document</span>.removeEventListener( <span class="string">"click"</span>, <span class="keyword">this</span>.callBack, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  callBack() &#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-忽略了函数的引用地址"><a href="#2-忽略了函数的引用地址" class="headerlink" title="2.忽略了函数的引用地址"></a>2.忽略了函数的引用地址</h3><p>这样写是<strong>无效</strong>的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="keyword">this</span>.eventListener(<span class="string">"add"</span>)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="keyword">this</span>.eventListener(<span class="string">"remove"</span>)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  eventListener(val) &#123;</span><br><span class="line">    <span class="keyword">const</span> callBackFn = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"函数表达式, click"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="string">"add"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, callBackFn)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="string">"remove"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.removeEventListener(<span class="string">"click"</span>, callBackFn)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>因为 <code>create()</code> 和 <code>destroyed()</code> 两次的调用分别初始化了一个函数 <code>callBackFn</code>, 这两个 <code>callBackFn</code> 存放在内存中的地址是不一样的, 是两个没有关系的函数, 所以 <code>removeEventListener()</code> 是不起作用(失效)的</p>
-<p>同理改成下面这样: 把 <code>callBackFn</code> 提取到一个公共方法中:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// code...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  eventListener(val) &#123;</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="string">"add"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, <span class="keyword">this</span>.callBackFn)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="string">"remove"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.removeEventListener(<span class="string">"click"</span>, <span class="keyword">this</span>.callBackFn)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  callBackFn() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"函数表达式, click"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>归根结底的原因是: <strong>没有正确匹配到要删除的事件监听</strong></p>
-<p><strong>参考</strong></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener">EventTarget.addEventListener - MDN web docs</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/removeEventListener" target="_blank" rel="noopener">EventTarget.removeEventListener - MDN web docs</a></p>
-]]></content>
-      <categories>
-        <category>问题解决</category>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>事件监听</tag>
-        <tag>addEventListener</tag>
-        <tag>removeEventListener</tag>
+        <tag>301</tag>
+        <tag>浏览器缓存</tag>
       </tags>
   </entry>
   <entry>
@@ -368,98 +267,6 @@
         <tag>状态码</tag>
         <tag>持久连接</tag>
         <tag>keepAlive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JS中的构造函数、原型与原型链</title>
-    <url>/your/2020/06/05/prototype/</url>
-    <content><![CDATA[<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.showInfo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">" "</span> + <span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zhangsan = <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="number">23</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="comment">// class Person &#123;</span></span><br><span class="line"><span class="comment">//   constructor(name, age) &#123;</span></span><br><span class="line"><span class="comment">//     this.name = name;</span></span><br><span class="line"><span class="comment">//     this.age = age;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   showInfo () &#123;</span></span><br><span class="line"><span class="comment">//     console.log(this.name + " " + this.age);</span></span><br><span class="line"><span class="comment">//   &#125;;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="什么是构造函数？"><a href="#什么是构造函数？" class="headerlink" title="什么是构造函数？"></a>什么是构造函数？</h3><p>上面的 <code>Person</code> 就是构造函数,</p>
-<blockquote>
-<p><strong>constructor</strong> 是一种用于创建和初始化 class 创建的对象的特殊方法。<br>—— MDN web docs</p>
-</blockquote>
-<h3 id="构造函数的特点"><a href="#构造函数的特点" class="headerlink" title="构造函数的特点"></a>构造函数的特点</h3><blockquote><ul>
-<li><p>构造函数的函数名的第一个字母通常大写。</p>
-</li>
-<li><p>函数体内使用 <code>this</code> 关键字，代表所要生成的对象实例。</p>
-</li>
-<li><p>生成对象的时候，必须使用 <code>new</code> 命令来调用构造函数。</p>
-</li>
-</ul>
-</blockquote>
-
-<h3 id="new-命令的作用"><a href="#new-命令的作用" class="headerlink" title="new 命令的作用"></a>new 命令的作用</h3><blockquote><p>new 命令的作用，就是执行一个构造函数，并且返回一个对象实例</p>
-<p>new 一个对象的过程</p>
-<ul>
-<li><p>创建一个空对象，作为将要返回的对象实例。</p>
-</li>
-<li><p>将空对象的原型指向了构造函数的 <code>prototype</code> 属性。</p>
-</li>
-<li><p>将空对象赋值给构造函数内部的 <code>this</code> 关键字。</p>
-</li>
-<li><p>开始执行构造函数内部的代码。</p>
-</li>
-</ul>
-</blockquote>
-
-<p>最后返回 <code>this</code> 赋值给 zhangsan</p>
-<p>再看这些：</p>
-<ul>
-<li><p><code>const o = {}</code> 是 <code>const o = new Object()</code> 的语法糖</p>
-</li>
-<li><p><code>const a = []</code> 是 <code>const a = new Array()</code> 的语法糖</p>
-</li>
-<li><p><code>function Fn () {}</code> 是 <code>const Fn = new Function ()</code> 的语法糖</p>
-</li>
-</ul>
-<p>也就是说，<code>Object</code>、<code>Array</code>、<code>Function</code> 就是构造函数，而 o, a, Fn 就是它们的一个实例</p>
-<p><strong>那么这里, zhangsan 就是 <code>new Person</code> 后得到的一个对象实例</strong>:</p>
-<img src="/your/2020/06/05/prototype/prototype_01.png" class="" title="zhangsan">
-
-<p>从输出的结果上可以看到:<br>zhangsan 拥有了 <code>name</code> 和 <code>age</code> 属性, 在原型<code>__proto__</code>上还有一个 <code>showInfo</code> 的方法</p>
-<p>下面看看了解一下原型<code>__proto__</code>的规则</p>
-<h2 id="原型规则"><a href="#原型规则" class="headerlink" title="原型规则"></a>原型规则</h2><p>(1) 所有的引用类型(数组、对象、函数)，都具有对象特性，即可自由扩展属性，<code>null</code> 除外。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">obj.a = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line">arr.b = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">fn.c = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nObj = <span class="literal">null</span>;</span><br><span class="line">nObj.d = <span class="number">100</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
-
-<p>(2) 所有的引用类型（数组、对象、函数），都有一个 <code>__proto__</code> 属性，属性值是一个普通的对象。</p>
-<p>(3) 所有的函数，都有一个 <code>prototype</code> 属性，属性值也是一个普通的对象。</p>
-<p><em>约定 <code>__proto__</code> 为隐式原型，<code>prototype</code> 为显式原型</em></p>
-<p>(4) 所有的引用类型(数组、对象、函数)，<code>__proto__</code> 属性值指向它的构造函数的 <code>prototype</code> 属性值，</p>
-<p>在代码例子中，</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 项目中不推荐直接使用 XX.__proto__</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>(5) 当试图得到一个对象的某个属性，如果这个对象本身没有这个属性，那么它就会去它的 <code>__proto__</code>, 即它的构造函数的 <code>prototype</code> 属性值中去寻找。</p>
-<p>代码例子:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用了 zhangsan.__proto__ (即 Person.prototype) 的 showInfo 方法</span></span><br><span class="line">zhangsan.showInfo(); <span class="comment">// 张三 23</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了 zhangsan.__proto__.__proto__ 即(Object) 的 toString 方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.toString()); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><img src="/your/2020/06/05/prototype/prototype_02.png" class="" title="原型链">
-<p><em>图片来源于慕课网 并经过修改处理</em></p>
-<p><strong>注解:</strong></p>
-<p>如同上面所说,</p>
-<p>将 zhangsan 的原型指向了构造函数(<code>Person</code>)的 <code>prototype</code> 属性。</p>
-<p>而更深一层, 构造函数(<code>Person</code>)的原型又指向了 构造函数(<code>Object</code>) 的 <code>prototype</code> 属性, 一直到 null</p>
-<h2 id="相关补充"><a href="#相关补充" class="headerlink" title="相关补充"></a>相关补充</h2><h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>可以使用 <code>hasOwnProperty()</code> 方法来判断是否是自身的属性</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">zhangsan.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"正在吃..."</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了自身的 eat 方法</span></span><br><span class="line">zhangsan.eat(); <span class="comment">// 正在吃...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 eat 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"eat"</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 showInfo 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"showInfo"</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>用于判断引用类型属于哪个构造函数的方法</p>
-<p><code>instanceof</code> 的判断逻辑: 通过 <code>__proto__</code> 一层一个层往上找,</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-<p>以上为学习笔记</p>
-<p><strong>参考</strong><br><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网</a><br><a href="https://juejin.im/entry/584a1c98ac502e006c5d63b8" target="_blank" rel="noopener">JavaScript 中的构造函数 - 掘金</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>Object.prototype.__proto__</code> - MDN</a></p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>构造函数</tag>
-        <tag>原型</tag>
-        <tag>原型链</tag>
-        <tag>hasOwnProperty</tag>
-        <tag>instanceof</tag>
       </tags>
   </entry>
   <entry>
@@ -633,65 +440,234 @@
       </tags>
   </entry>
   <entry>
-    <title>301 Moved Permanently (from disk cache)</title>
-    <url>/your/2020/05/31/301-moved-permanently/</url>
-    <content><![CDATA[<p>不得不记录下这个奇葩的遭遇,</p>
-<p>本来一切好好的, 然后我把 vue.config.js 的</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'测试 api 地址'</span>,</span><br><span class="line">        <span class="comment">// code...</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+    <title>EventTarget.removeEventListener() 取消监听事件不起作用(失效)的原因</title>
+    <url>/your/2020/06/12/remove-event-listener/</url>
+    <content><![CDATA[<h2 id="问题产生的原因"><a href="#问题产生的原因" class="headerlink" title="问题产生的原因"></a>问题产生的原因</h2><p><strong>没有正确匹配到要删除的事件监听</strong></p>
+<h2 id="监听和取消事件"><a href="#监听和取消事件" class="headerlink" title="监听和取消事件"></a>监听和取消事件</h2><p><code>addEventListener()</code> 语法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">target.addEventListener(type, listener[, options])</span><br><span class="line">target.addEventListener(type, listener[, useCapture])</span><br></pre></td></tr></table></figure>
 
-<p>把这个测试 api 地址修改成了生产环境 api 地址, 为了检查某个问题</p>
-<p>然后再改了回来, 重启了服务, 然后就发生了不正常的事情: 获取导航的接口, 居然发生了 301 重定向到了生产环境 api 地址</p>
-<p>一开始我觉得是不是后端改了什么东西, 后面想着先自己排查, 然后花了宝贵的一小时查找答案和后端沟通, baidu 了也没找到解决方案</p>
-<p>然后去 google 搜了下, ‘301 Moved Permanently (from disk cache)’, 找到了这篇文章,</p>
-<img src="/your/2020/05/31/301-moved-permanently/01.jpg" class="" title="上方文章截图">
+<p><code>removeEventListener()</code> 语法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">target.removeEventListener(type, listener[, options])</span><br><span class="line">target.removeEventListener(type, listener[, useCapture])</span><br></pre></td></tr></table></figure>
 
-<p>成功解决了. 原来是缓存的问题, 要清除浏览器的 301 缓存:</p>
-<p><strong>把鼠标按住浏览器刷新按钮不放或者右键, 在弹出来的菜单中选择”清空缓存并硬性重新加载”</strong></p>
-<p><strong>如果没有弹出菜单, 可能需要先打开浏览器的控制台再操作</strong></p>
-<p><strong>参考</strong><br><a href="https://laotan.net/clear-chrome-301-disk-cache/" target="_blank" rel="noopener">Chrome 浏览器清除 301 缓存 - 老谭</a><br>上方文章来源于<br><a href="https://superuser.com/questions/304589/how-can-i-make-chrome-stop-caching-redirects" target="_blank" rel="noopener">How can I make Chrome stop caching redirects? - superuser</a></p>
+<p><strong>参数说明</strong></p>
+<p><code>type</code>: 表示监听事件类型的字符串。</p>
+<p><code>listener</code>: 目标事件绑定的回调函数</p>
+<p><code>options</code>: 一个指定有关 <code>listener</code> 属性的可选参数对象</p>
+<p><code>useCapture</code>: 指定需要移除的 <code>EventListener</code> 函数是否为捕获监听器。<code>true</code> 表示“事件捕获”, 默认为 <code>false</code>, 表示“事件冒泡”</p>
+<h3 id="removeEventListener-移除成功需要满足"><a href="#removeEventListener-移除成功需要满足" class="headerlink" title="removeEventListener() 移除成功需要满足"></a><code>removeEventListener()</code> 移除成功需要满足</h3><ul>
+<li>需要移除的事件类型必须是一样的, 比如: <code>click</code></li>
+<li>需要从目标事件移除的 <code>EventListener</code> 函数必须和 <code>addEventListener</code> 中注册的是<strong>同一个</strong>, 也就是说<strong>引用地址是相同的</strong></li>
+<li>指定需要移除的 <code>EventListener</code> 函数的<code>useCapture</code> 和 <code>addEventListener</code> 中注册的相同的</li>
+</ul>
+<h3 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h3><ol>
+<li>设置 <code>useCapture</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">false</span>); <span class="comment">// 失败</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>); <span class="comment">// 成功</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>设置 <code>options</code></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">true</span> &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意此时的 <code>useCapture</code> 默认为 <code>false</code>, 所以 <code>removeEventListener</code> 也应该设置 <code>useCapture</code> 为 false</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">true</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">capture</span>: <span class="literal">false</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">capture</span>: <span class="literal">true</span> &#125;); <span class="comment">// 失败</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, &#123; <span class="attr">passive</span>: <span class="literal">false</span> &#125;); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">false</span>); <span class="comment">// 成功</span></span><br><span class="line">element.removeEventListener(<span class="string">"mousedown"</span>, handleMouseDown, <span class="literal">true</span>); <span class="comment">// 失败</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h2><h3 id="1-使用了匿名函数"><a href="#1-使用了匿名函数" class="headerlink" title="1.使用了匿名函数"></a>1.使用了匿名函数</h3><p>这样写是<strong>无效</strong>的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="built_in">document</span>.addEventListener( <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="comment">// 这样写是无效的</span></span><br><span class="line">  <span class="built_in">document</span>.removeEventListener( <span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>需要改成:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="built_in">document</span>.addEventListener( <span class="string">"click"</span>, <span class="keyword">this</span>.callBack, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="built_in">document</span>.removeEventListener( <span class="string">"click"</span>, <span class="keyword">this</span>.callBack, <span class="literal">false</span> )</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  callBack() &#123; <span class="built_in">console</span>.log(<span class="string">"匿名函数, click"</span>) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-忽略了函数的引用地址"><a href="#2-忽略了函数的引用地址" class="headerlink" title="2.忽略了函数的引用地址"></a>2.忽略了函数的引用地址</h3><p>这样写是<strong>无效</strong>的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// index.vue</span></span><br><span class="line">create ()&#123;</span><br><span class="line">  <span class="keyword">this</span>.eventListener(<span class="string">"add"</span>)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">destroyed() &#123;</span><br><span class="line">  <span class="keyword">this</span>.eventListener(<span class="string">"remove"</span>)</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">  eventListener(val) &#123;</span><br><span class="line">    <span class="keyword">const</span> callBackFn = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"函数表达式, click"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="string">"add"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, callBackFn)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="string">"remove"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.removeEventListener(<span class="string">"click"</span>, callBackFn)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>create()</code> 和 <code>destroyed()</code> 两次的调用分别初始化了一个函数 <code>callBackFn</code>, 这两个 <code>callBackFn</code> 存放在内存中的地址是不一样的, 是两个没有关系的函数, 所以 <code>removeEventListener()</code> 是不起作用(失效)的</p>
+<p>同理改成下面这样: 把 <code>callBackFn</code> 提取到一个公共方法中:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// code...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  eventListener(val) &#123;</span><br><span class="line">    <span class="keyword">if</span> (val === <span class="string">"add"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, <span class="keyword">this</span>.callBackFn)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val === <span class="string">"remove"</span>) &#123;</span><br><span class="line">      <span class="built_in">document</span>.removeEventListener(<span class="string">"click"</span>, <span class="keyword">this</span>.callBackFn)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  callBackFn() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"函数表达式, click"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>归根结底的原因是: <strong>没有正确匹配到要删除的事件监听</strong></p>
+<p><strong>参考</strong></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener">EventTarget.addEventListener - MDN web docs</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget/removeEventListener" target="_blank" rel="noopener">EventTarget.removeEventListener - MDN web docs</a></p>
 ]]></content>
       <categories>
         <category>问题解决</category>
-        <category>缓存</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>301</tag>
-        <tag>浏览器缓存</tag>
+        <tag>事件监听</tag>
+        <tag>addEventListener</tag>
+        <tag>removeEventListener</tag>
       </tags>
   </entry>
   <entry>
-    <title>yarn 全局安装（yarn global add [package]）成功后，执行命令不生效</title>
-    <url>/your/2020/05/29/yarn-global-add-package/</url>
-    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近使用 npm/cnpm 很不爽, 尝试将自己的项目全部转成 yarn</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>使用 yarn 全局安装 <code>@vue/cli</code>, <code>hexo-cli</code> 等</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br></pre></td></tr></table></figure>
+    <title>JS中的构造函数、原型与原型链</title>
+    <url>/your/2020/06/05/prototype/</url>
+    <content><![CDATA[<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ES5</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.showInfo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">" "</span> + <span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> zhangsan = <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="number">23</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line"><span class="comment">// class Person &#123;</span></span><br><span class="line"><span class="comment">//   constructor(name, age) &#123;</span></span><br><span class="line"><span class="comment">//     this.name = name;</span></span><br><span class="line"><span class="comment">//     this.age = age;</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//   showInfo () &#123;</span></span><br><span class="line"><span class="comment">//     console.log(this.name + " " + this.age);</span></span><br><span class="line"><span class="comment">//   &#125;;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>安装成功, 但是使用命令却不生效…</p>
-<h2 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h2><p>第一个感觉就是环境变量问题了, 本文是 win10 下的截图</p>
-<p>(1) 找到 yarn 的全局安装目录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global bin</span><br></pre></td></tr></table></figure>
+<h3 id="什么是构造函数？"><a href="#什么是构造函数？" class="headerlink" title="什么是构造函数？"></a>什么是构造函数？</h3><p>上面的 <code>Person</code> 就是构造函数,</p>
+<blockquote>
+<p><strong>constructor</strong> 是一种用于创建和初始化 class 创建的对象的特殊方法。<br>—— MDN web docs</p>
+</blockquote>
+<h3 id="构造函数的特点"><a href="#构造函数的特点" class="headerlink" title="构造函数的特点"></a>构造函数的特点</h3><blockquote><ul>
+<li><p>构造函数的函数名的第一个字母通常大写。</p>
+</li>
+<li><p>函数体内使用 <code>this</code> 关键字，代表所要生成的对象实例。</p>
+</li>
+<li><p>生成对象的时候，必须使用 <code>new</code> 命令来调用构造函数。</p>
+</li>
+</ul>
+</blockquote>
 
-<img src="/your/2020/05/29/yarn-global-add-package/image_01.png" class="" title="yarn global bin">
+<h3 id="new-命令的作用"><a href="#new-命令的作用" class="headerlink" title="new 命令的作用"></a>new 命令的作用</h3><blockquote><p>new 命令的作用，就是执行一个构造函数，并且返回一个对象实例</p>
+<p>new 一个对象的过程</p>
+<ul>
+<li><p>创建一个空对象，作为将要返回的对象实例。</p>
+</li>
+<li><p>将空对象的原型指向了构造函数的 <code>prototype</code> 属性。</p>
+</li>
+<li><p>将空对象赋值给构造函数内部的 <code>this</code> 关键字。</p>
+</li>
+<li><p>开始执行构造函数内部的代码。</p>
+</li>
+</ul>
+</blockquote>
 
-<p>(2) 将该目录地址拷贝至系统属性-环境变量-系统变量-path 中:</p>
-<img src="/your/2020/05/29/yarn-global-add-package/image_02.png" class="" title="将该目录地址拷贝至系统属性-环境变量-系统变量-path">
+<p>最后返回 <code>this</code> 赋值给 zhangsan</p>
+<p>再看这些：</p>
+<ul>
+<li><p><code>const o = {}</code> 是 <code>const o = new Object()</code> 的语法糖</p>
+</li>
+<li><p><code>const a = []</code> 是 <code>const a = new Array()</code> 的语法糖</p>
+</li>
+<li><p><code>function Fn () {}</code> 是 <code>const Fn = new Function ()</code> 的语法糖</p>
+</li>
+</ul>
+<p>也就是说，<code>Object</code>、<code>Array</code>、<code>Function</code> 就是构造函数，而 o, a, Fn 就是它们的一个实例</p>
+<p><strong>那么这里, zhangsan 就是 <code>new Person</code> 后得到的一个对象实例</strong>:</p>
+<img src="/your/2020/06/05/prototype/prototype_01.png" class="" title="zhangsan">
 
-<p>(3) 重启终端, <strong>应该</strong>就可以了.</p>
-<p><strong>好吧, 我的还不可以</strong></p>
-<img src="/your/2020/05/29/yarn-global-add-package/image_03.png" class="" title="hexo init 失败">
+<p>从输出的结果上可以看到:<br>zhangsan 拥有了 <code>name</code> 和 <code>age</code> 属性, 在原型<code>__proto__</code>上还有一个 <code>showInfo</code> 的方法</p>
+<p>下面看看了解一下原型<code>__proto__</code>的规则</p>
+<h2 id="原型规则"><a href="#原型规则" class="headerlink" title="原型规则"></a>原型规则</h2><p>(1) 所有的引用类型(数组、对象、函数)，都具有对象特性，即可自由扩展属性，<code>null</code> 除外。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">obj.a = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line">arr.b = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">fn.c = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> nObj = <span class="literal">null</span>;</span><br><span class="line">nObj.d = <span class="number">100</span>; <span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
 
-<p>上图可以看到我的安装 Hexo 文件并不在 D 盘, 而在 C 盘, 尝试将刚刚新增的环境变量地址修改成图中 C 盘的地址:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\guoyo\AppData\Local\Yarn\Data\global\node_modules\.bin</span><br></pre></td></tr></table></figure>
+<p>(2) 所有的引用类型（数组、对象、函数），都有一个 <code>__proto__</code> 属性，属性值是一个普通的对象。</p>
+<p>(3) 所有的函数，都有一个 <code>prototype</code> 属性，属性值也是一个普通的对象。</p>
+<p><em>约定 <code>__proto__</code> 为隐式原型，<code>prototype</code> 为显式原型</em></p>
+<p>(4) 所有的引用类型(数组、对象、函数)，<code>__proto__</code> 属性值指向它的构造函数的 <code>prototype</code> 属性值，</p>
+<p>在代码例子中，</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 项目中不推荐直接使用 XX.__proto__</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>ok, 重启终端成功了(<strong>win7 可能需要重启电脑!!</strong>)</p>
-<img src="/your/2020/05/29/yarn-global-add-package/20200531155353.jpg" class="" title="修改环境变量地址">
+<p>(5) 当试图得到一个对象的某个属性，如果这个对象本身没有这个属性，那么它就会去它的 <code>__proto__</code>, 即它的构造函数的 <code>prototype</code> 属性值中去寻找。</p>
+<p>代码例子:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用了 zhangsan.__proto__ (即 Person.prototype) 的 showInfo 方法</span></span><br><span class="line">zhangsan.showInfo(); <span class="comment">// 张三 23</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了 zhangsan.__proto__.__proto__ 即(Object) 的 toString 方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.toString()); <span class="comment">// [object Object]</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><ol>
-<li>可能是从 npm/cnpm 切换为 yarn 某个环节不对</li>
-<li>可能是安装 yarn 的时候缺少了某个操作步骤造成的</li>
-</ol>
-<p>问题没解决? 也可以看看我写的另一篇笔记: <a href="/your/2020/08/10/install-yarn-through-nodejs-and-npm/" title="使用 Node.js 和 npm 安装和配置 Yarn">使用 Node.js 和 npm 安装和配置 Yarn</a></p>
-<p><strong>参考</strong><br><a href="https://blog.csdn.net/weixin_41643133/article/details/83829235" target="_blank" rel="noopener">yarn 全局安装（yarn global add [package]）后，命令不生效；- CSDN</a></p>
+<h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><img src="/your/2020/06/05/prototype/prototype_02.png" class="" title="原型链">
+<p><em>图片来源于慕课网 并经过修改处理</em></p>
+<p><strong>注解:</strong></p>
+<p>如同上面所说,</p>
+<p>将 zhangsan 的原型指向了构造函数(<code>Person</code>)的 <code>prototype</code> 属性。</p>
+<p>而更深一层, 构造函数(<code>Person</code>)的原型又指向了 构造函数(<code>Object</code>) 的 <code>prototype</code> 属性, 一直到 null</p>
+<h2 id="相关补充"><a href="#相关补充" class="headerlink" title="相关补充"></a>相关补充</h2><h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>可以使用 <code>hasOwnProperty()</code> 方法来判断是否是自身的属性</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">zhangsan.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"正在吃..."</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用了自身的 eat 方法</span></span><br><span class="line">zhangsan.eat(); <span class="comment">// 正在吃...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 eat 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"eat"</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断 showInfo 是否是自身的属性/方法</span></span><br><span class="line"><span class="built_in">console</span>.log(zhangsan.hasOwnProperty(<span class="string">"showInfo"</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>用于判断引用类型属于哪个构造函数的方法</p>
+<p><code>instanceof</code> 的判断逻辑: 通过 <code>__proto__</code> 一层一个层往上找,</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Function</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(fn <span class="keyword">instanceof</span> <span class="built_in">Object</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>以上为学习笔记</p>
+<p><strong>参考</strong><br><a href="https://coding.imooc.com/class/115.html" target="_blank" rel="noopener">慕课网</a><br><a href="https://juejin.im/entry/584a1c98ac502e006c5d63b8" target="_blank" rel="noopener">JavaScript 中的构造函数 - 掘金</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>Object.prototype.__proto__</code> - MDN</a></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>构造函数</tag>
+        <tag>原型</tag>
+        <tag>原型链</tag>
+        <tag>hasOwnProperty</tag>
+        <tag>instanceof</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何关闭 Github issues 中的邮件通知</title>
+    <url>/your/2020/06/27/close-issues-notifications/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当我们参与了 github 中某个仓库的问题讨论, 默认会订阅了所有问题的通知, 不管该提问与我是否有关, 都会发送邮件通知我, 有时候会觉得比较烦, 需要关闭掉该通知功能</p>
+<h2 id="关闭方法如图所示"><a href="#关闭方法如图所示" class="headerlink" title="关闭方法如图所示"></a>关闭方法如图所示</h2><img src="/your/2020/06/27/close-issues-notifications/20200627010706.png" class="" title="上方文章截图">
+
+<p>在 issues 的右侧, 找到 Notifications (通知设置) 的一个板块</p>
+<p>直接点击下面的按钮切换 Not subscribed (不订阅)/ Subscribed (订阅),</p>
+<p>或者在点击 Notifications 后出现的弹框中选择</p>
+<p><strong>Not subscribed 不订阅通知</strong></p>
+<p>Only receive notifications from this issue when you have participated or have been @mentioned.<br>只有在您参与或被@提及时才会收到此问题的通知。</p>
+<p><strong>Subscribed 订阅通知</strong></p>
+<p>Receive all notifications from this issue.<br>接收此问题的所有通知。</p>
+<p>特意申请小号测试, 有效</p>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+        <category>Github Issues</category>
+      </categories>
+      <tags>
+        <tag>Github</tag>
+        <tag>Issues</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Node.js 和 npm 安装和配置 Yarn</title>
+    <url>/your/2020/08/10/install-yarn-through-nodejs-and-npm/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>由于种种令人心酸的原因, 我决定卸载 <code>Node.js</code>, <code>npm</code>, 以及 <code>Yarn</code>, 再重新安装</p>
+<hr>
+<h2 id="安装-Nodejs-和-npm"><a href="#安装-Nodejs-和-npm" class="headerlink" title="安装 Nodejs 和 npm"></a>安装 Nodejs 和 npm</h2><p><strong>安装</strong></p>
+<p><a href="http://nodejs.cn/download/" target="_blank" rel="noopener">下载 Node.js</a> 安装程序, 过程基本都是点击 next 按钮即可, 不再赘述</p>
+<p>我的安装目录 <code>D:\Program Files\Nodejs</code>, 安装完成后, <code>npm</code> 也被安装到了电脑上</p>
+<p>可以通过命令查看是否已经正确安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">node -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置</strong></p>
+<p>为了方便管理和不占用电脑的C盘容量, 我需要修改 npm 全局依赖包下载保存目录和缓存目录</p>
+<p>在 <code>Node.js</code> 的安装目录下新建文件夹 <code>node_cache</code> 和 <code>node_global</code></p>
+<p>然后执行命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局依赖包缓存目录</span></span><br><span class="line">npm config <span class="built_in">set</span> cache <span class="string">"D:\Program Files\Nodejs\node_cache"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局依赖包下载保存目录</span></span><br><span class="line">npm config <span class="built_in">set</span> prefix <span class="string">"D:\Program Files\Nodejs\node_global"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看配置列表</span></span><br><span class="line">npm config list</span><br></pre></td></tr></table></figure>
+
+<p>看到下面的东西就代表成功了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line">userconfig C:\Users\guoyo\.npmrc</span><br><span class="line">cache = <span class="string">"D:\\Program Files\\Nodejs\\node_cache"</span></span><br><span class="line">prefix = <span class="string">"D:\\Program Files\\Nodejs\\node_global"</span></span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
+
+<p>当然, 也可以直接打开目录 <code>C:\Users\[your-computer-name]\.npmrc</code>, 找到 <code>.npmrc</code> 这个文件, 查看里面的内容</p>
+<hr>
+<h2 id="安装与配置-Yarn"><a href="#安装与配置-Yarn" class="headerlink" title="安装与配置 Yarn"></a>安装与配置 Yarn</h2><p>执行命令全局安装 <code>yarn</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">npm i -g yarn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">yarn version</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改 yarn 全局安装依赖包目录与缓存目录</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看全局安装依赖包保存目录</span></span><br><span class="line">yarn global dir</span><br><span class="line"><span class="comment"># 默认 C:\Users\[your-computer-name]\AppData\Local\Yarn\Data\global</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看全局安装依赖包缓存目录</span></span><br><span class="line">yarn cache dir</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>Yarn</code> 的安装目录(D:\Program Files\Nodejs\node_global)下新建文件夹 <code>yarn_cache</code> 和 <code>yarn_global</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置 yarn 全局安装依赖包保存目录</span></span><br><span class="line">yarn config <span class="built_in">set</span> global-folder <span class="string">"D:\Program Files\Nodejs\node_global\yarn_global"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置缓存目录</span></span><br><span class="line">yarn config <span class="built_in">set</span> cache-folder <span class="string">"D:\Program Files\Nodejs\node_global\yarn_cache"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看保存目录配置</span></span><br><span class="line">yarn global dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看缓存目录配置</span></span><br><span class="line">yarn cache dir</span><br></pre></td></tr></table></figure>
+
+<p><strong>同 npm, 也可以直接打开目录 <code>C:\Users\[your-computer-name]\.yarnrc</code>, 找到 <code>.yarnrc</code> 这个文件, 查看里面的内容</strong></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 全局安装 rimraf</span></span><br><span class="line">yarn global add rimraf</span><br></pre></td></tr></table></figure>
+
+<p><strong>特别介绍: 用 <code>rimraf</code> 删除超级大, 层级深的目录, 比如 node_modules, 非常方便</strong></p>
+<p>可以看到在 <code>D:\Program Files\Nodejs\node_global\yarn_global\node_modules\.bin</code></p>
+<img src="/your/2020/08/10/install-yarn-through-nodejs-and-npm/2020-08-10_00-51-00.png" class="" title="yarn global 安装目录">
+
+<p>测试: 桌面新建一个文件夹 aaa_modules, 在桌面打开 <code>git bash</code> 终端: </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除文件夹</span></span><br><span class="line">rimraf aaa_modules</span><br></pre></td></tr></table></figure>
+
+<p><strong>报错</strong>: bash: rimraf: command not found</p>
+<p>这时, 还需要配置环境变量, 才能使 <code>yarn</code> 全局安装的依赖包命令生效</p>
+<p>将路径URL:  <code>D:\Program Files\Nodejs\node_global\yarn_global\node_modules\.bin</code> 复制到: </p>
+<p>控制面板 - 系统属性 - 高级系统设置 - 高级 - 环境变量 - 系统变量 - Path - 编辑 - 新增 - <strong>输入内容 URL</strong> - 确定 - 确定 - 确定</p>
+<img src="/your/2020/08/10/install-yarn-through-nodejs-and-npm/2020-08-10_00-59-38.png" class="" title="yarn global 环境变量配置">
+
+<p><strong>重启终端, 再次输入命令, 即可</strong></p>
+<p><code>Yarn</code> 就重新安装完成了!</p>
+<p>文章很短, 但是过程很坎坷, 遇事不要烦躁, 慢慢来</p>
+<p><strong>参考</strong><br><a href="https://www.cnblogs.com/Jimc/p/11121632.html" target="_blank" rel="noopener">修改Yarn的全局安装和缓存位置 - cnblogs</a><br><a href="https://www.jianshu.com/p/13f45e24b1de" target="_blank" rel="noopener">Nodejs安装及环境配置 - 简书</a></p>
 ]]></content>
       <categories>
         <category>问题解决</category>
@@ -699,121 +675,175 @@
       </categories>
       <tags>
         <tag>Yarn</tag>
+        <tag>npm</tag>
       </tags>
   </entry>
   <entry>
-    <title>基于 Hexo 搭建 Gitee 个人静态博客</title>
-    <url>/your/2020/05/29/build-a-blog-based-on-hexo/</url>
-    <content><![CDATA[<h2 id="首次搭建博客"><a href="#首次搭建博客" class="headerlink" title="首次搭建博客"></a>首次搭建博客</h2><p><em>本文默认你已经安装了 Node.js 环境以及 npm 或者 yarn 资源管理工具</em></p>
-<h3 id="1-全局安装-Hexo"><a href="#1-全局安装-Hexo" class="headerlink" title="1. 全局安装 Hexo"></a>1. 全局安装 Hexo</h3><p>本文使用的是 <code>yarn</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn global add hexo-cli</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+    <title>JavaScript 内置对象 String 的 padStart() 和 padEnd() 方法</title>
+    <url>/your/2020/08/14/string-prototype-padStart-and-padEnd/</url>
+    <content><![CDATA[<h2 id="padStart"><a href="#padStart" class="headerlink" title="padStart()"></a><code>padStart()</code></h2><p><code>padStart</code> 和 <code>padEnd</code> 方法是 <code>String.prototype</code> 上定义的方法, 在 <code>ECMAScript</code> 2017 (<code>ES7</code>) 中首次被定义; 两个方法都是返回新的字符串, 并且不会改变原来的值</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.padStart(targetLength [, padString])</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-初始化文件夹"><a href="#2-初始化文件夹" class="headerlink" title="2. 初始化文件夹"></a>2. 初始化文件夹</h3><p>创建文件夹 <del>hexo</del> your (<strong>后面我把文件夹名改成了 your, 保持和访问的根目录一致</strong>),</p>
-<p>在 <del>hexo</del> your 中打开 git Bash, 执行:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 网速不好的话, 这里可能需要点时间</span></span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h3><p>用另一个字符串(<code>padString</code>)从当前字符串(<code>str</code>)<strong>左侧</strong>开始填充, 直到字符串(<code>str</code>)达到给定的长度(<code>targetLength</code>), 然后将新的字符串返回</p>
+<p>例子:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'2'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">2</span>, <span class="string">'0'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(str) <span class="comment">// '2'</span></span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '02'</span></span><br></pre></td></tr></table></figure>
 
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526204940892.png" class="" title="init 成功">
+<h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p><strong>1.</strong> 如果 <code>targetLength</code> 这个数值小于当前字符串(<code>str</code>)的长度, 则返回当前字符串</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'08'</span> <span class="comment">// str.length = 2</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">1</span>, <span class="string">'LLLL'</span>) <span class="comment">// targetLength: 1</span></span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '08'</span></span><br></pre></td></tr></table></figure>
 
-<p>init 后目录如下, 关于目录及文件的说明请查看<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档(中文)</a></p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526205207269.png" class="" title="init 生成的目录">
+<p><strong>2.</strong> 如果填充字符串(<code>padString</code>)太长，使填充后的字符串长度超过了目标长度(<code>targetLength</code>)，则只保留最左侧的部分，其他部分会被截断</p>
+<p>示例:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'abc'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padStart(<span class="number">6</span>, <span class="string">'0123'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// '012abc'</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="3-编译-amp-运行"><a href="#3-编译-amp-运行" class="headerlink" title="3. 编译&amp;运行"></a>3. 编译&amp;运行</h3><p>打开代码, 从 <code>package.json</code> 文件中可以看到:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">yarn build</span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">yarn server</span><br></pre></td></tr></table></figure>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>兼容性并不理想, 在 ECMAScript 2017 (ES7) 中首次被定义。</p>
+<p>查看 <a href="https://caniuse.com/#search=padStart" target="_blank" rel="noopener">https://caniuse.com/#search=padStart</a></p>
+<img src="/your/2020/08/14/string-prototype-padStart-and-padEnd/20200815145303_start.jpg" class="" title="padStart 兼容性">
 
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210826688.png" class="" title="编译&amp;运行">
+<p><strong>如果原生环境不支持该方法，在其他代码之前先运行下面的代码，将创建 <code>String.prototype.padStart()</code> 方法。</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">String</span>.prototype.padStart) &#123;</span><br><span class="line">    <span class="built_in">String</span>.prototype.padStart = <span class="function"><span class="keyword">function</span> <span class="title">padStart</span>(<span class="params">targetLength,padString</span>) </span>&#123;</span><br><span class="line">        targetLength = targetLength&gt;&gt;<span class="number">0</span>; <span class="comment">//floor if number or convert non-number to 0;</span></span><br><span class="line">        padString = <span class="built_in">String</span>((<span class="keyword">typeof</span> padString !== <span class="string">'undefined'</span> ? padString : <span class="string">' '</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength-<span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength/padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> padString.slice(<span class="number">0</span>,targetLength) + <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>当然, 更便捷的操作是执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate &amp;&amp; hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>目前常见用于日期和时间字符串实现补0</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="keyword">let</span> month = <span class="string">`<span class="subst">$&#123;date.getMonth() + <span class="number">1</span>&#125;</span>`</span></span><br><span class="line"><span class="keyword">if</span> (month.length === <span class="number">1</span>) month = month.padStart(<span class="number">2</span>, <span class="string">'0'</span>) <span class="comment">// 用得好像鸡肋的. 哈哈..</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'month:'</span>, month) <span class="comment">// month: 08</span></span><br></pre></td></tr></table></figure>
 
-<p>简写</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<h2 id="padEnd"><a href="#padEnd" class="headerlink" title="padEnd()"></a><code>padEnd()</code></h2><p>用另一个字符串(<code>padString</code>)从当前字符串(<code>str</code>)<strong>右侧</strong>开始填充, 直到字符串(<code>str</code>)达到给定的长度(<code>targetLength</code>), 然后将新的字符串返回</p>
+<p><code>padEnd</code> 和 <code>padStart</code> 语法, 作用, 规则基本上一致的, 不同的是 <code>padEnd</code>, 从<strong>右侧</strong>开始填充</p>
+<h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">str.padEnd(targetLength [, padString])</span><br></pre></td></tr></table></figure>
 
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526211114174.png" class="" title="hexo g &amp;&amp; hexo s">
+<p>例子: </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'23'</span></span><br><span class="line"><span class="keyword">const</span> newStr = str.padEnd(<span class="number">4</span>, <span class="string">'ABC'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(newStr) <span class="comment">// 23AB</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="4-首次运行如图"><a href="#4-首次运行如图" class="headerlink" title="4. 首次运行如图"></a>4. 首次运行如图</h3><p>默认主题 landscape</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526210938239.png" class="" title="首次运行">
+<h3 id="兼容性-1"><a href="#兼容性-1" class="headerlink" title="兼容性"></a>兼容性</h3><p>兼容和 <code>padStart</code> 一致, 查看 <a href="https://caniuse.com/#search=padEnd" target="_blank" rel="noopener">https://caniuse.com/#search=padEnd</a></p>
+<p><strong>如果原生环境不支持该方法，在其他代码之前先运行下面的代码，将创建 <code>String.prototype.padEnd()</code> 方法。</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// https://github.com/uxitten/polyfill/blob/master/string.polyfill.js</span></span><br><span class="line"><span class="comment">// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">String</span>.prototype.padEnd) &#123;</span><br><span class="line">    <span class="built_in">String</span>.prototype.padEnd = <span class="function"><span class="keyword">function</span> <span class="title">padEnd</span>(<span class="params">targetLength,padString</span>) </span>&#123;</span><br><span class="line">        targetLength = targetLength&gt;&gt;<span class="number">0</span>; <span class="comment">//floor if number or convert non-number to 0;</span></span><br><span class="line">        padString = <span class="built_in">String</span>((<span class="keyword">typeof</span> padString !== <span class="string">'undefined'</span> ? padString: <span class="string">''</span>));</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.length &gt; targetLength) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            targetLength = targetLength-<span class="keyword">this</span>.length;</span><br><span class="line">            <span class="keyword">if</span> (targetLength &gt; padString.length) &#123;</span><br><span class="line">                padString += padString.repeat(targetLength/padString.length); <span class="comment">//append to original to ensure we are longer than needed</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">String</span>(<span class="keyword">this</span>) + padString.slice(<span class="number">0</span>,targetLength);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装主题"><a href="#安装主题" class="headerlink" title="安装主题"></a>安装主题</h2><h3 id="一-选择主题"><a href="#一-选择主题" class="headerlink" title="一. 选择主题"></a>一. 选择主题</h3><p>本文选择的主题是 <a href="https://zhwangart.github.io/" target="_blank" rel="noopener">Ocean</a>,</p>
-<p>在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">官方的主题</a>里面选择一个你喜欢的主题, 按照主题的<a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">文档</a>来就好</p>
-<p>下载好慢….等等等…</p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题:"></a>遇到的问题:</h3><h4 id="1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程"><a href="#1-Cannot-GET-js-search-js-404-这个问题搞了好久…下面是历程" class="headerlink" title="(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:"></a>(1) Cannot GET /js/search.js 404 这个问题搞了好久…下面是历程:</h4><blockquote><p>一开始按照作者的文档操作配置</p>
-<p>安装插件依赖<br><code>yarn add hexo-generator-searchdb</code></p>
-<p>在 <code>./_config.yml</code> 中添加配置 (注意: 这不是 ocean 中的)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 本地检索 hexo-generator-searchdb</span></span><br><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  content: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-
-<p>然后就报错 Cannot GET /js/search.js 404!!</p>
-<p><strong>首先</strong>, 按照 <a href="https://github.com/zhwangart/gitalk/issues/7" target="_blank" rel="noopener">关于搜索问题 sevilen 同学给了一个详细的步骤</a></p>
-<p>在 <code>\themes\ocean\layout\_partial\after-footer.ejs</code> 中配置(<strong>此方法不行</strong>)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不管是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.search)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"><span class="comment"># 还是这个</span></span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.local_search.enable)&#123; %&gt;</span><br><span class="line">  &lt;%- js(<span class="string">'/js/search'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>然而都没有起作用. 甚至因为我没有 local_search 配置而导致报错..</p>
-<p>然后 又试了下面的方法: 直接找到加载 js 的地方修改路径(<strong>此方法不行</strong>)</p>
-<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">\$.getScript(<span class="string">'js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"search.xml"</span>,</span><br></pre></td></tr></table></figure>
-
-<p>首页可以了! 内页还是不行啊, 一看请求失败的链接, 居然把路径拼在了整个地址的最后, 好无奈:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;your&#x2F;2020&#x2F;05&#x2F;29&#x2F;build-a-blog-based-on-hexo&#x2F;js&#x2F;search.js?_&#x3D;1590852138728</span><br></pre></td></tr></table></figure>
-
-<p><strong>最后使用了一种不是很好的办法解决了</strong></p>
-<p>在文件路径前面添加根路径<code>/your/</code> (这是在 _config.yml 中的配置 <code>root: /your/</code>, 也就是我的博客根路径)</p>
-<figure class="highlight bash"><figcaption><span>themes\ocean\source\js\ocean.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># \$.getScript('/js/search.js',</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">\$.getScript(<span class="string">'/your/js/search.js'</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="comment"># searchFunc("/search.xml",</span></span><br><span class="line"><span class="comment"># 修改为</span></span><br><span class="line">searchFunc(<span class="string">"/your/search.xml"</span>,</span><br></pre></td></tr></table></figure>
-
-<p>就<strong>ok</strong>了!</p>
-<h4 id="2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示"><a href="#2-首页的视频-图片-图标-logo-favicon-ico-等无法正常显示" class="headerlink" title="(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示"></a>(2) 首页的视频 / 图片 / 图标 / logo / favicon.ico 等无法正常显示</h4><p>图片的问题和上面类似, 直接写解决方案: 直接查看官方文档添加<a href="https://hexo.io/zh-cn/docs/helpers#url-for" target="_blank" rel="noopener">辅助函数 url_for</a>就可以顺利解决:</p>
-<p><strong>修改以下文件</strong></p>
-<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\sidebar.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.brand</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\head.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.favicon</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.favicon</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><figcaption><span>themes\ocean\layout\_partial\ocean.ejs</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 原代码 有五处 --&gt;</span></span><br><span class="line">theme.ocean.path</span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line">url_for(theme.ocean.path)</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 原代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">theme.ocean.brand</span> %&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 修改为 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%-</span> <span class="attr">url_for</span>(<span class="attr">theme.ocean.brand</span>) %&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-修改文件-比如修改样式部署之后不生效"><a href="#3-修改文件-比如修改样式部署之后不生效" class="headerlink" title="(3) 修改文件, 比如修改样式部署之后不生效?"></a>(3) 修改文件, 比如修改样式部署之后不生效?</h4><p>一般是缓存文件问题, 试试:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-关于很多的问题"><a href="#4-关于很多的问题" class="headerlink" title="(4) 关于很多的问题"></a>(4) 关于很多的问题</h4><p>直接查看作者的这篇文章 <a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题</a>, 以及阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 的文档</a>, 非常详细…</p>
-<p><strong>切记, 遇事冷静思考, 不要烦躁.</strong></p>
-<h3 id="二-编译-amp-重启"><a href="#二-编译-amp-重启" class="headerlink" title="二. 编译&amp;重启"></a>二. 编译&amp;重启</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-
-<p>新的主题:</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526221210487.png" class="" title="新主题">
-
-<h2 id="部署博客到-Gitee-上"><a href="#部署博客到-Gitee-上" class="headerlink" title="部署博客到 Gitee 上"></a>部署博客到 Gitee 上</h2><h3 id="1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务"><a href="#1-首先到-Gitee-注册账号并创建仓库-例如-your-并开启-Gitee-pages-服务" class="headerlink" title="(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务"></a>(1) 首先到 Gitee 注册账号并创建仓库, 例如: your, 并开启 Gitee pages 服务</h3><img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235114597.png" class="" title="创建仓库及开启服务">
-
-<h3 id="2-配置-config-yml"><a href="#2-配置-config-yml" class="headerlink" title="(2) 配置 _config.yml"></a>(2) 配置 <code>_config.yml</code></h3><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://liguoyou.gitee.io/your/</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/your/</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@gitee.com:liguoyou/your.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-安装自动部署发布工具"><a href="#3-安装自动部署发布工具" class="headerlink" title="(3) 安装自动部署发布工具"></a>(3) 安装自动部署发布工具</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<p>发布博客</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p>进入 Gitee Pages 点击更新按钮, 等待部署完成即可</p>
-<p><strong>值得注意的是</strong></p>
-<p>如果你只想把编译完成后的 public 文件中的所有文件 push 至仓库中:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>如图:</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200526235831345.png" class="" title="hexo d">
-
-<p><strong>但是, 我想把整个本地的仓库 push 上去怎么做呢</strong></p>
-<p>那就将编译好的整个仓库的内容提交(<code>git push</code>)上去, (<a href="/your/2020/05/31/summary-of-git/" title="更多git操作">更多git操作</a>)</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527224538977.png" class="" title="git push">
-
-<p>然后<strong>设置部署目录为 public</strong> 即可</p>
-<img src="/your/2020/05/29/build-a-blog-based-on-hexo/image-20200527000632686.png" class="" title="设置部署目录为 public">
-
-<p><strong>每次提交后, 都需要点击更新按钮(付费用户听说会自动更新)</strong></p>
-<p><strong>参考</strong><br><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo 官方文档, 真的很详细</a><br><a href="https://zhwangart.github.io/2018/11/30/Ocean/" target="_blank" rel="noopener">Ocean 中文文档 - zhwangart</a><br><a href="https://zhwangart.github.io/2019/07/02/Ocean-Issues/" target="_blank" rel="noopener">关于 Ocean 使用中的问题 - zhwangart</a><br><a href="https://zhwangart.github.io/2018/12/06/Gitalk/" target="_blank" rel="noopener">Gitalk 的使用 - zhwangart</a><br><a href="https://segmentfault.com/a/1190000018662692" target="_blank" rel="noopener">基于 Gitee+Hexo 搭建个人博客 - segmentfault</a><br><a href="https://www.jianshu.com/p/5014133ba61a" target="_blank" rel="noopener">使用 Gitee+Hexo 搭建个人博客 - 简书</a></p>
+<p><strong>总结</strong></p>
+<p>翻看 <code>uView ui</code> 源码才知道有 <code>padStart</code> 这么一个方法的存在, 去 MDN 查到了相关的文档学习, 目前不推荐使用.</p>
+<p>看源码很有意思, 可以学习到一些开发骚技巧来补充自己的不足.</p>
+<p><strong>参考</strong><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padStart" target="_blank" rel="noopener">String.prototype.padStart() - MDN</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd" target="_blank" rel="noopener">String.prototype.padEnd() - MDN</a></p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
-        <category>Hexo</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Ocean</tag>
-        <tag>静态博客</tag>
+        <tag>padStart</tag>
+        <tag>padEnd</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uni-app 给 view 设置 display:flex 后, v-show=&quot;false&quot; 在微信小程序中失效</title>
+    <url>/your/2020/08/20/uni-app-display-flex-v-show-invalid/</url>
+    <content><![CDATA[<p>最近在学习 uni-app 并用来开发新项目,经常用到 <code>v-show</code> 用来做元素的显示隐藏控制, 然后神奇的发现给 view 设置 display:flex 后, v-show=”false” 在微信小程序中失效, 并没有把元素隐藏掉…</p>
+<a id="more"></a>
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Your.vue template --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span> <span class="attr">class</span>=<span class="string">"indicator"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Your.vue JavaScript</span></span><br><span class="line">data() &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="comment">// 显示控制</span></span><br><span class="line">    isShow: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Your.vue style</span></span><br><span class="line">&lt;style land="scss" scoped&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>预期表现: <strong>view 不显示</strong></p>
+<p>结果: 在微信浏览器端 <code>view</code> 不显示, 在微信小程序中<strong>显示了!</strong></p>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p><code>v-show=&quot;false&quot;</code> 在 H5 浏览器中解析为 <code>style=&quot;display: none;&quot;</code> 从而隐藏元素;</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-show</span>=<span class="string">"isShow"</span> <span class="attr">class</span>=<span class="string">"indicator"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span>1/5<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在小程序中则通过 css 隐藏元素, 而 display: flex; 的层级覆盖了标签属性的样式, 导致<code>view</code> 显示在页面上了</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 微信小程序生成的 css */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以根本原因是因为最终生成的 <code>CSS</code> <strong>权重</strong> 的不同, 在某些情况下覆盖了微信小程序设置的 <code>view[hidden]</code>, 而导致元素没有正确隐藏</p>
+<h3 id="CSS-的权重等级"><a href="#CSS-的权重等级" class="headerlink" title="CSS 的权重等级"></a><code>CSS</code> 的权重等级</h3><img src="/your/2020/08/20/uni-app-display-flex-v-show-invalid/20200821224131.jpg" class="" title="css 权重">
+
+<blockquote>
+<p>!important, 权值为最大<br>内联样式，如: style=””，权值为 1000。<br>ID 选择器，如：#content，权值为 100。<br>类，伪类和属性选择器，如 .content, ::after, div[type=’text’]，权值为 10。<br>元素和伪元素选择器，如 h2、:hover，权值为 1。</p>
+</blockquote>
+<p>那么可以得到如下:</p>
+<p>微信小程序隐藏元素样式: <strong>权重值 1 + 10 = 11</strong></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 设置 v-show="false" 后微信开发者工具中可以看到 */</span></span><br><span class="line"><span class="selector-tag">view</span><span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="情况-1-使用全局样式"><a href="#情况-1-使用全局样式" class="headerlink" title="情况 1: 使用全局样式"></a>情况 1: 使用全局样式</h3><figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 全局样式 uni.scss */</span></span><br><span class="line"><span class="selector-class">.your-flex</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终生成的样式 <code>.your-flex { display: flex; align-items: center; }</code> <strong>权重值 10</strong></p>
+<p>10 &lt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是生效的</strong></p>
+<hr>
+<h3 id="情况-2-1-页面或组件内写样式"><a href="#情况-2-1-页面或组件内写样式" class="headerlink" title="情况 2.1: 页面或组件内写样式"></a>情况 2.1: 页面或组件内写样式</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* scoped 模式下: */</span></span><br><span class="line">&lt;style land="scss" scoped&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终的 <code>html</code> 会生产一串 <code>css</code>: 比如: <code>class=&quot;indicator data-v-01011e28&quot;</code>,</p>
+<p><code>.indicator.data-v-01011e28 { display: flex; }</code> <strong>权重值 10 + 10 = 20</strong></p>
+<p>20 &gt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是无效的</strong></p>
+<hr>
+<h3 id="情况-2-2-页面或组件内写样式"><a href="#情况-2-2-页面或组件内写样式" class="headerlink" title="情况 2.2: 页面或组件内写样式"></a>情况 2.2: 页面或组件内写样式</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 去掉 scoped */</span></span><br><span class="line">&lt;style land="scss"&gt;</span><br><span class="line">  <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终生成的 <code>css</code> <code>.indicator { display: flex; }</code> <strong>权重值 10</strong></p>
+<p>10 &lt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是生效的, 但是并不推荐</strong></p>
+<hr>
+<h3 id="情况-2-2-1-值得注意的是"><a href="#情况-2-2-1-值得注意的是" class="headerlink" title="情况 2.2.1: 值得注意的是"></a>情况 2.2.1: 值得注意的是</h3><p>如果外层被其他元素包裹了:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 去掉 scoped */</span></span><br><span class="line">&lt;style land="scss"&gt;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="comment">/* 其他... */</span></span><br><span class="line">    <span class="selector-class">.indicator</span> &#123;</span><br><span class="line">      <span class="comment">/* 其他... */</span></span><br><span class="line">      <span class="attribute">display</span>: flex;</span><br><span class="line">      <span class="comment">/* 其他... */</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>.container .indicator { display: flex; }</code>: <strong>权重值 10 + 10 = 20</strong></p>
+<p>20 &gt; 11 这种情况使用 <code>v-show=&quot;false&quot;</code> <strong>是无效的</strong></p>
+<hr>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>通过上面的分析, 可以得到下面的解决方式</p>
+<ol>
+<li>使用全局样式设置 <code>display: flex;</code></li>
+</ol>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 全局样式 uni.scss */</span></span><br><span class="line"><span class="selector-class">.your-flex</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 比如直接 使用 ui 组件库 uView 的 .u-flex</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>设置 <code>view[hidden]</code> 最高权重</li>
+</ol>
+<figure class="highlight scss"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* #ifdef MP-WEIXIN */</span></span><br><span class="line">view<span class="selector-attr">[hidden]</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* #endif */</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>不使用 <code>v-show</code>, 通过行内样式 <code>style</code> 设置 <code>display: &quot;none&quot;</code> 实现隐藏</p>
+</li>
+<li><p>使用 <code>v-if</code> 代替 <code>v-show</code>, 两个实现隐藏的机制不一样, 不推荐</p>
+</li>
+</ol>
+<p><strong>参考</strong></p>
+<p><a href="https://blog.csdn.net/longfeng1234/article/details/94436068" target="_blank" rel="noopener">微信小程序条件渲染 hidden 与 wx:if 的比较和不生效问题 - CSDN</a><br><a href="https://www.jianshu.com/p/a8cf1e55032c" target="_blank" rel="noopener">CSS：权重 - 简书</a></p>
+]]></content>
+      <categories>
+        <category>问题解决</category>
+        <category>uni-app</category>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>uni-app</tag>
+        <tag>v-show</tag>
+        <tag>flex</tag>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>uni-app 的 video 组件的使用</title>
+    <url>/your/2020/08/29/uni-app-video-example/</url>
+    <content><![CDATA[<p><strong>相关说明</strong></p>
+<ol>
+<li><code>id=&quot;videoWrap&quot;</code>: 用于创建并返回 video 上下文 videoContext 对象;</li>
+<li><code>src</code>: 要播放视频的资源地址;</li>
+<li><code>controls</code>: 是否显示默认播放控件（播放/暂停按钮、播放进度、时间）;</li>
+<li><code>show-center-play-btn</code>: 是否显示视频中间的播放按钮;</li>
+<li><code>object-fit</code>: 当视频大小与 video 容器大小不一致时，视频的表现形式。contain：包含，fill：填充，cover：覆盖;</li>
+<li><code>poster</code>: 视频封面的图片网络资源地址，如果 controls 属性值为 false, 则设置 poster 无效(官网说明, 实际上我测试是有效的?);</li>
+<li><code>:custom-cache=&quot;false&quot;</code>: 解决 video 组件播放会卡顿、绿屏,尤其是在快进、拖动时间条时;</li>
+<li><code>show-mute-btn</code>: 是否显示静音按钮; - 微信小程序;</li>
+<li><code>muted</code>: 是否静音播放; <strong>需要自定义按钮操作静音时, 必须在组件写上 muted 属性</strong>;</li>
+<li><code>x5-video-player-type=&quot;h5&quot;</code>: 防止微信内置浏览器强制调用原生播放器播放; 如果没有设置这个, <code>:controls=&quot;false&quot;</code> 不起作用;</li>
+<li><code>@ended</code>: 当播放到末尾时触发 ended 事件;</li>
+<li><code>@error</code>: 视频播放出错时触发;</li>
+</ol>
+<p><strong>代码示例</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- video 组件使用示例 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"videoWrap"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">"video-wrap"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:src</span>=<span class="string">"videoData.videoUrl"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:controls</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:show-center-play-btn</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">object-fit</span>=<span class="string">"contain"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:poster</span>=<span class="string">"videoData.imageUrl"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:custom-cache</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">show-mute-btn</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:muted</span>=<span class="string">"isMuted"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-player-type</span>=<span class="string">"h5"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">ended</span>=<span class="string">"handleEnded"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">error</span>=<span class="string">"videoErrorCallback"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 控制按钮 - 播放 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-if</span>=<span class="string">"!isPlaying"</span> @<span class="attr">tap</span>=<span class="string">"handlePlay"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 控制按钮 - 暂停 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-else</span> @<span class="attr">tap</span>=<span class="string">"handlePause"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 音量开关 - 取消静音 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-if</span>=<span class="string">"isMuted"</span> @<span class="attr">tap</span>=<span class="string">"setIsMuted(false)"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 音量开关 - 静音 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">v-else</span> @<span class="attr">tap</span>=<span class="string">"setIsMuted(true)"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="comment">// 正在播放</span></span><br><span class="line">      isPlaying: <span class="literal">false</span>,</span><br><span class="line">      <span class="comment">// 静音</span></span><br><span class="line">      isMuted: <span class="literal">false</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  mounted() &#123;</span><br><span class="line">    <span class="comment">// 更多请查找官方文档 https://uniapp.dcloud.io/api/media/video-context</span></span><br><span class="line">    <span class="comment">// 创建并返回 video 上下文 videoContext 对象。在自定义组件下，第二个参数传入组件实例this，以操作组件内 &lt;video&gt; 组件。</span></span><br><span class="line">    <span class="keyword">this</span>.videoContext = uni.createVideoContext(<span class="string">"videoWrap"</span>, <span class="keyword">this</span>);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 方法</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="comment">// 播放视频</span></span><br><span class="line">    handlePlay() &#123;</span><br><span class="line">      <span class="keyword">this</span>.isPlaying = <span class="literal">true</span>;</span><br><span class="line">      <span class="comment">// 调用 play() 必须使用 uni.createVideoContext 创建 video</span></span><br><span class="line">      <span class="keyword">this</span>.videoContext.play();</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 暂停视频</span></span><br><span class="line">    handlePause() &#123;</span><br><span class="line">      <span class="keyword">this</span>.isPlaying = <span class="literal">false</span>;</span><br><span class="line">      <span class="comment">// 调用 pause() 必须使用 uni.createVideoContext 创建 video</span></span><br><span class="line">      <span class="keyword">this</span>.videoContext.pause();</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置静音</span></span><br><span class="line">    setIsMuted(val) &#123;</span><br><span class="line">      <span class="keyword">this</span>.isMuted = val;</span><br><span class="line">      <span class="comment">// 注意: 必须在组件写上 muted 属性</span></span><br><span class="line">      <span class="keyword">this</span>.videoContext.muted = val;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 播放结束</span></span><br><span class="line">    handleEnded() &#123;</span><br><span class="line">      <span class="keyword">this</span>.isPlaying = <span class="literal">false</span>;</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 播放错误</span></span><br><span class="line">    videoErrorCallback(e) &#123;</span><br><span class="line">      uni.showToast(&#123;</span><br><span class="line">        title: <span class="string">`视频播放错误信息:<span class="subst">$&#123;e.target.errMsg&#125;</span>`</span>,</span><br><span class="line">        duration: <span class="number">2000</span>,</span><br><span class="line">        icon: <span class="string">"none"</span>,</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>参考</strong><br><a href="https://uniapp.dcloud.io/component/video" target="_blank" rel="noopener">video - uni-app 官网</a><br><a href="https://uniapp.dcloud.io/api/media/video-context" target="_blank" rel="noopener">视频组件控制 API - uni-app 官网</a></p>
+]]></content>
+      <tags>
+        <tag>uni-app</tag>
+        <tag>video</tag>
       </tags>
   </entry>
 </search>
